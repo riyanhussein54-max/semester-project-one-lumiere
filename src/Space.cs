@@ -1,6 +1,6 @@
-/* Space class for modeling spaces (rooms, caves, ...)
- */
-
+/// <summary>
+/// Space class for modeling spaces (rooms, caves, ...)
+/// </summary>
 class Space : Node
 {
     public Space(string name) : base(name)

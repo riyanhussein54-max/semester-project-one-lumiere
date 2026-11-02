@@ -1,6 +1,6 @@
-/* Node class for modeling graphs
- */
-
+/// <summary>
+/// Node class for modeling graphs
+/// </summary>
 class Node
 {
     protected string name;

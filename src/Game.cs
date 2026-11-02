@@ -1,6 +1,6 @@
-/* Main class for launching the game
- */
-
+/// <summary>
+/// Main class for launching the game
+/// </summary>
 class Game
 {
     static World world = new World();

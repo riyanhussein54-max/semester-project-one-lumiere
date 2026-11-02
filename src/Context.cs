@@ -1,6 +1,6 @@
-/* Context class to hold all context relevant to a session.
- */
-
+/// <summary>
+/// Context class to hold all context relevant to a session.
+/// </summary>
 class Context
 {
     Space current;

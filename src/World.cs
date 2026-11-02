@@ -1,6 +1,6 @@
-/* World class for modeling the entire in-game world
- */
-
+/// <summary>
+/// World class for modeling the entire in-game world
+/// </summary>
 class World
 {
     Space entry;
