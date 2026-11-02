@@ -3,7 +3,7 @@
 
 class Space : Node
 {
-    public Space(String name) : base(name)
+    public Space(string name) : base(name)
     {
     }
 
@@ -12,7 +12,7 @@ class Space : Node
         Console.WriteLine("You are now at " + name);
         HashSet<string> exits = edges.Keys.ToHashSet();
         Console.WriteLine("Current exits are:");
-        foreach (String exit in exits)
+        foreach (string exit in exits)
         {
             Console.WriteLine(" - " + exit);
         }
