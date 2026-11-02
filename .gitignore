@@ -1,0 +1,22 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Build artifacts
+artifacts/
+
+# IDE
+.vs/
+.idea/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
