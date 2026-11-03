@@ -27,6 +27,7 @@ class Program
                 case "exit":
                 case "quit":
                 case "bye":
+                case "q":
                     context.MakeDone();
                     break;
                 case "go":
