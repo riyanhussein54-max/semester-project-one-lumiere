@@ -4,26 +4,26 @@
 /// </summary>
 class SpilStyrer
 {
-    public Lokation nuværendeLokation { get; private set; }
+    public Lokation NuværendeLokation { get; private set; }
 
     bool done = false;
 
     public SpilStyrer(Lokation node)
     {
-        nuværendeLokation = node;
+        NuværendeLokation = node;
     }
 
     public void Transition(string direction)
     {
-        Lokation next = nuværendeLokation.FollowEdge(direction);
+        Lokation next = NuværendeLokation.FollowEdge(direction);
         if (next == null)
         {
             Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
         }
         else
         {
-            nuværendeLokation = next;
-            nuværendeLokation.Welcome();
+            NuværendeLokation = next;
+            NuværendeLokation.Welcome();
         }
     }
 
