@@ -53,12 +53,24 @@ class Program
     private static void Introduktion()
     {
         Console.Clear();
-        Console.WriteLine("Velkommen til Lumiére");
-        Thread.Sleep(2200);
+        Thread.Sleep(1000);
+        Console.Write("Velkommen til Lumiére.");
+        Thread.Sleep(2400);
+
+        Console.Clear();
+        Console.Write("En by hvor lyset aldrig slukker.");
+        Thread.Sleep(2600);
+
+        Console.Clear();
+        Console.Write("Dette har fysiske og mentale konsekvenser for de lokale.");
+        Thread.Sleep(3400);
+
+        Console.Clear();
+        Console.Write("Du er den eneste der kan redde byen, held og lykke.");
+        Thread.Sleep(3400);
 
         Console.Clear();
         spilStyrer.TegnSkærm();
-        Thread.Sleep(0);
     }
 
     private static void UdskrivKommandoer()
