@@ -24,9 +24,9 @@ class SpilStyrer
         Console.WriteLine(
             $"""
             –––––––––––––––––––– [Info] ––––––––––––––––––––
-            | Lysforurening:  {Lysforurening}
-            | Lokation:       {NuværendeLokation.GetName()}
-            | Opgave:         Ingen
+            | Lysforurening:  {Lysforurening}                   |
+            | Lokation:       {NuværendeLokation.GetName()}                    |
+            | Opgave:         Ingen                   |
             ––––––––––––––––––––––––––––––––––––––––––––––––
             """
         );
