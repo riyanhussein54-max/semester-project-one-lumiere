@@ -8,10 +8,9 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the World of Zuul!");
-        spilStyrer.NuværendeLokation.Welcome();
+        Introduktion();
 
-        while (spilStyrer.IsDone() == false)
+        while (spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
             Console.Write("> ");
             string? line = Console.ReadLine();
@@ -26,12 +25,6 @@ class Program
 
             switch (command)
             {
-                case "exit":
-                case "quit":
-                case "bye":
-                case "q":
-                    spilStyrer.MakeDone();
-                    break;
                 case "go":
                     if (parameters.Length != 1)
                     {
@@ -40,12 +33,14 @@ class Program
                     }
                     spilStyrer.Transition(parameters[0]);
                     break;
+                case "h":
                 case "help":
-                    Console.WriteLine(" - exit  Exit the program");
-                    Console.WriteLine(" - quit  Exit the program");
-                    Console.WriteLine(" - bye   Exit the program");
-                    Console.WriteLine(" - go    Follow an exit");
-                    Console.WriteLine(" - help  Display a help message");
+                    UdskrivKommandoer();
+                    break;
+                case "q":
+                case "quit":
+                case "exit":
+                    spilStyrer.AfslutSpil();
                     break;
                 default:
                     Console.WriteLine($"Woopsie, I don't understand '{command}' 😕");
@@ -53,6 +48,36 @@ class Program
             }
         }
         Console.WriteLine("Game Over 😥");
+    }
+
+    private static void Introduktion()
+    {
+        Console.Clear();
+        Console.WriteLine("Velkommen til Lumiére");
+        Thread.Sleep(2200);
+
+        Console.Clear();
+        spilStyrer.TegnSkærm();
+        Thread.Sleep(0);
+        /*
+            TODO:
+            - Fjern "You are now at {name}" i Lokation-klassen.
+            - Derudover skal vi havde ændret movementsystemet, så det ikke bliver en
+              kedelig væk med kommandoer
+        */
+        // spilStyrer.NuværendeLokation.Welcome();
+    }
+
+    private static void UdskrivKommandoer()
+    {
+        Console.WriteLine(
+            $"""
+            Muligheder:
+            - q, quit, exit   Forlad spil
+            - go              Følg en udgang
+            - h, help         Display a help message
+            """
+        );
     }
 
     private static string[] GetParameters(string[] input)
