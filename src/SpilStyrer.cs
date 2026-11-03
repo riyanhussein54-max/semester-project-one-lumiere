@@ -4,21 +4,21 @@
 /// </summary>
 class SpilStyrer
 {
-    public int Lysforurening { get; private set; } = 100;
-    public Lokation NuværendeLokation { get; private set; }
     public SpilStatus status = SpilStatus.Aktiv;
-
     private readonly int[,] gitter = new int[7, 11];
-
-    // TODO: Implementer nedenstående så snart det er muligt
-    // public Lokation NuværendeOpgave { get; private set; }
-    // public int[,] SpillerLokation { get; private set; }
 
     public SpilStyrer(Lokation node)
     {
         NuværendeLokation = node;
     }
 
+    public int Lysforurening { get; private set; } = 100;
+    public Lokation NuværendeLokation { get; private set; }
+    // TODO: Implementer nedenstående så snart det er muligt
+    // public Lokation NuværendeOpgave { get; private set; }
+    // public int[,] SpillerLokation { get; private set; }
+
+    #region Public APIs
     public void TegnSkærm()
     {
         Console.WriteLine(
@@ -33,6 +33,27 @@ class SpilStyrer
         TegnKoordinatSystem(gitter);
     }
 
+    [Obsolete("String skal udskiftes med enum!")]
+    public void Transition(string direction)
+    {
+        Lokation næsteLokation = NuværendeLokation.FollowEdge(direction);
+
+        if (næsteLokation == null)
+        {
+            Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
+        }
+        else
+        {
+            NuværendeLokation = næsteLokation;
+            NuværendeLokation.Welcome();
+        }
+    }
+
+    public void AfslutSpil() => status = SpilStatus.Slut;
+    public SpilStatus TjekStatus() => status;
+    #endregion
+
+    #region Private Methods
     private void TegnKoordinatSystem(int[,] gitterRamme)
     {
         for (int række = 0; række < gitterRamme.GetLength(0); række++)
@@ -51,23 +72,5 @@ class SpilStyrer
             Console.WriteLine();
         }
     }
-
-    public void AfslutSpil() => status = SpilStatus.Slut;
-    public SpilStatus TjekStatus() => status;
-
-    [Obsolete("String skal udskiftes med enum!")]
-    public void Transition(string direction)
-    {
-        Lokation næsteLokation = NuværendeLokation.FollowEdge(direction);
-
-        if (næsteLokation == null)
-        {
-            Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
-        }
-        else
-        {
-            NuværendeLokation = næsteLokation;
-            NuværendeLokation.Welcome();
-        }
-    }
+    #endregion
 }
