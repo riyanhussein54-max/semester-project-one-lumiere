@@ -1,6 +1,6 @@
-/* Context class to hold all context relevant to a session.
- */
-
+/// <summary>
+/// Context class to hold all context relevant to a session.
+/// </summary>
 class Context
 {
     Space current;
@@ -21,7 +21,7 @@ class Context
         Space next = current.FollowEdge(direction);
         if (next == null)
         {
-            Console.WriteLine("You are confused, and walk in a circle looking for '" + direction + "'. In the end you give up 😩");
+            Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
         }
         else
         {

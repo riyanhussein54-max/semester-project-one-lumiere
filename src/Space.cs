@@ -1,20 +1,20 @@
-/* Space class for modeling spaces (rooms, caves, ...)
- */
-
+/// <summary>
+/// Space class for modeling spaces (rooms, caves, ...)
+/// </summary>
 class Space : Node
 {
-    public Space(String name) : base(name)
+    public Space(string name) : base(name)
     {
     }
 
     public void Welcome()
     {
-        Console.WriteLine("You are now at " + name);
+        Console.WriteLine($"You are now at {name}");
         HashSet<string> exits = edges.Keys.ToHashSet();
         Console.WriteLine("Current exits are:");
-        foreach (String exit in exits)
+        foreach (string exit in exits)
         {
-            Console.WriteLine(" - " + exit);
+            Console.WriteLine($" - {exit}");
         }
     }
 

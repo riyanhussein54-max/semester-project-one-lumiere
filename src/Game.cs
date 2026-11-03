@@ -1,6 +1,6 @@
-/* Main class for launching the game
- */
-
+/// <summary>
+/// Main class for launching the game
+/// </summary>
 class Game
 {
     static World world = new World();
@@ -46,7 +46,7 @@ class Game
                     Console.WriteLine(" - help  Display a help message");
                     break;
                 default:
-                    Console.WriteLine("Woopsie, I don't understand '" + command + "' 😕");
+                    Console.WriteLine($"Woopsie, I don't understand '{command}' 😕");
                     break;
             }
         }

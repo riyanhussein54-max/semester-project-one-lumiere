@@ -1,6 +1,6 @@
-/* Node class for modeling graphs
- */
-
+/// <summary>
+/// Node class for modeling graphs
+/// </summary>
 class Node
 {
     protected string name;
@@ -11,7 +11,7 @@ class Node
         this.name = name;
     }
 
-    public String GetName()
+    public string GetName()
     {
         return name;
     }
