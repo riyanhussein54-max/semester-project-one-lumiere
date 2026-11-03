@@ -1,31 +1,31 @@
 /// <summary>
-/// Context class to hold all context relevant to a session.
+/// SpilStyren holder styr på spillets kontekst og andet relavant info.
+/// Derudover har den også styr på spillets flow, regler og tilstand.
 /// </summary>
-class Context
+class SpilStyrer
 {
-    Space current;
+    Lokation current;
     bool done = false;
 
-    public Context(Space node)
+    public SpilStyrer(Lokation node)
     {
         current = node;
     }
 
-    public Space GetCurrent()
+    public Lokation GetCurrentLocation()
     {
         return current;
     }
 
     public void Transition(string direction)
     {
-        Space next = current.FollowEdge(direction);
+        Lokation next = current.FollowEdge(direction);
         if (next == null)
         {
             Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
         }
         else
         {
-            current.Goodbye();
             current = next;
             current.Welcome();
         }

@@ -1,9 +1,9 @@
 /// <summary>
-/// Space class for modeling spaces (rooms, caves, ...)
+/// Lokation-klassen definerer en lokations layout, genstande, NPCer, osv...
 /// </summary>
-class Space : Node
+class Lokation : GrafNode
 {
-    public Space(string name) : base(name)
+    public Lokation(string name) : base(name)
     {
     }
 
@@ -18,12 +18,8 @@ class Space : Node
         }
     }
 
-    public void Goodbye()
+    public override Lokation FollowEdge(string direction)
     {
-    }
-
-    public override Space FollowEdge(string direction)
-    {
-        return (Space)(base.FollowEdge(direction));
+        return (Lokation)(base.FollowEdge(direction));
     }
 }

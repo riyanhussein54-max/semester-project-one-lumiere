@@ -1,16 +1,15 @@
 /// <summary>
-/// Main class for launching the game
+/// Her starter vi spillet!
 /// </summary>
-class Game
+class Program
 {
-    static World world = new World();
-    static Context context = new Context(world.GetEntry());
+    static Verden world = new Verden();
+    static SpilStyrer context = new SpilStyrer(world.GetEntry());
 
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the World of Zuul!");
-
-        context.GetCurrent().Welcome();
+        context.GetCurrentLocation().Welcome();
 
         while (context.IsDone() == false)
         {
