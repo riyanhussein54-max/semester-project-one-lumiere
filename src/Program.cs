@@ -25,7 +25,7 @@ class Program
 
             switch (command)
             {
-                case "go":
+                case "to":
                     if (parameters.Length != 1)
                     {
                         Console.WriteLine("I don't seem to know where that is 🤔");
@@ -59,13 +59,6 @@ class Program
         Console.Clear();
         spilStyrer.TegnSkærm();
         Thread.Sleep(0);
-        /*
-            TODO:
-            - Fjern "You are now at {name}" i Lokation-klassen.
-            - Derudover skal vi havde ændret movementsystemet, så det ikke bliver en
-              kedelig væk med kommandoer
-        */
-        // spilStyrer.NuværendeLokation.Welcome();
     }
 
     private static void UdskrivKommandoer()
@@ -73,9 +66,9 @@ class Program
         Console.WriteLine(
             $"""
             Muligheder:
-            - q, quit, exit   Forlad spil
-            - go              Følg en udgang
-            - h, help         Display a help message
+            - q, quit, exit    Forlad spil
+            - to               Følg en udgang
+            - h, help          Display a help message
             """
         );
     }
