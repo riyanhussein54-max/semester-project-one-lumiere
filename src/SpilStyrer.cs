@@ -5,8 +5,8 @@
 class SpilStyrer
 {
     public Lokation NuværendeLokation { get; private set; }
-
-    bool done = false;
+    // public Lokation NuværendeOpgave { get; private set; }
+    public SpilStatus status = SpilStatus.Aktiv;
 
     public SpilStyrer(Lokation node)
     {
@@ -27,13 +27,13 @@ class SpilStyrer
         }
     }
 
-    public void MakeDone()
+    public void AfslutSpil()
     {
-        done = true;
+        status = SpilStatus.Slut;
     }
 
-    public bool IsDone()
+    public SpilStatus IsDone()
     {
-        return done;
+        return status;
     }
 }
