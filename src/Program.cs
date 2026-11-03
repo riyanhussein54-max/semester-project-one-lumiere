@@ -4,18 +4,20 @@
 class Program
 {
     static Verden world = new Verden();
-    static SpilStyrer context = new SpilStyrer(world.GetEntry());
+    static SpilStyrer spilStyrer = new SpilStyrer(world.GetEntry());
 
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the World of Zuul!");
-        context.GetCurrentLocation().Welcome();
+        spilStyrer.NuværendeLokation.Welcome();
 
-        while (context.IsDone() == false)
+        while (spilStyrer.IsDone() == false)
         {
             Console.Write("> ");
             string? line = Console.ReadLine();
-            if (line == null) continue;
+
+            if (line == null)
+                continue;
 
             // parse line
             string[] elements = line.Split(" ");
@@ -28,7 +30,7 @@ class Program
                 case "quit":
                 case "bye":
                 case "q":
-                    context.MakeDone();
+                    spilStyrer.MakeDone();
                     break;
                 case "go":
                     if (parameters.Length != 1)
@@ -36,7 +38,7 @@ class Program
                         Console.WriteLine("I don't seem to know where that is 🤔");
                         return;
                     }
-                    context.Transition(parameters[0]);
+                    spilStyrer.Transition(parameters[0]);
                     break;
                 case "help":
                     Console.WriteLine(" - exit  Exit the program");
