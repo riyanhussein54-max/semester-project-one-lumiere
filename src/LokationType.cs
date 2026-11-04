@@ -2,53 +2,30 @@ public enum LokationType
 {
     Opstart = 0,
 
-    [Description("Indendørs")]
-    Bygning, // generelt
-
-    [Description("Indendørs")]
-    Butik,
-
-    [Description("Indendørs")]
-    Bibliotek,
-
-    [Description("Indendørs")]
-    Sygehus,
-
-    [Description("Indendørs")]
-    Bopæl,
-
-    [Description("Indendørs")]
-    Inkøbscenter,
-
-    [Description("Indendørs")]
-    Restaurant,
-
-    [Description("Indendørs")]
-    Cafe,
-
-    [Description("Indendørs")]
-    Kraftværk,
-
-    [Description("Indendørs")]
-    Politistation,
-
-    [Description("Indendørs")]
-    Lager,
-
-    [Description("Indendørs")]
-    Gyde,
-
-    [Description("Indendørs")]
-    Gang,
-
-    [Description("Udendørs")]
-    Gade,
-
-    [Description("Udendørs")]
+    // Generelt
+    Bygning,
     UdenForByen,
 
-    [Description("Udendørs")]
-    Park
+    // Lokationer
+    //[Description("Indendørs")]
+    Butik,
+    Bibliotek,
+    Sygehus,
+    Bopæl,
+    Inkøbscenter,
+    Restaurant,
+    Cafe,
+    Kraftværk,
+    Politistation,
+    Lager,
+    Park,
+    Hospital,
+    Universitet,
+
+    // Mulighvis forbindelsesstier?
+    Gyde,
+    Gang,
+    Gade,
 
     /*
         [Description("Indendørs")]
