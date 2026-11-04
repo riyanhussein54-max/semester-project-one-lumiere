@@ -1,78 +1,86 @@
 /// <summary>
 /// Her starter vi spillet!
 /// </summary>
-class Program
+public class Program
 {
-    static Verden world = new Verden();
-    static SpilStyrer spilStyrer = new SpilStyrer(world.GetEntry());
+    private static Verden _world = new Verden();
+    private static SpilStyrer _spilStyrer = new SpilStyrer(_world.GetEntry());
 
+    /// <summary>
+    /// 1. Spørger brugeren om de er en Spiller eller Dev
+    /// 2. Hvis Spiller vælges –> afspil introduktion
+    ///    Hvis Dev vælges –> ignorer introduktion
+    /// 3. Tegn og print skærm
+    /// 4. Game loopet køres
+    /// 5. Spil afsluttes
+    /// </summary>
     static void Main(string[] args)
     {
-        Introduktion();
+        Console.Clear();
+        BrugerOpretter.VælgAdgangsniveau();
 
-        while (spilStyrer.TjekStatus() == SpilStatus.Aktiv)
+        if (BrugerOpretter.Brugertilstand == Brugertilstand.Spiller)
+            SpilIntroduktion.UdskrivIntro();
+
+        SkærmTegner.TegnSkærm(
+            _spilStyrer.Lysforurening,
+            _spilStyrer.NuværendeLokation
+        );
+        KørSpil();
+        AfslutSpil();
+    }
+
+    [Obsolete("Dette skal udskiftes med et nyt Movement system!")]
+    private static void KørSpil()
+    {
+        while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
-            Console.Write("> ");
+            Console.Write("\n> ");
             string? line = Console.ReadLine();
 
             if (line == null)
                 continue;
 
             // parse line
-            string[] elements = line.Split(" ");
-            string command = elements[0];
-            string[] parameters = GetParameters(elements);
+            string[] elementer = line.Split(" ");
+            string kommando = elementer[0];
+            string[] parametre = HentParametre(elementer);
 
-            switch (command)
+            switch (kommando)
             {
                 case "to":
-                    if (parameters.Length != 1)
+                    if (parametre.Length != 1)
                     {
-                        Console.WriteLine("I don't seem to know where that is 🤔");
+                        Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
                         return;
                     }
-                    spilStyrer.Transition(parameters[0]);
+                    _spilStyrer.Transition(parametre[0]);
                     break;
                 case "h":
                 case "help":
                     UdskrivKommandoer();
+                    Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey(true);
                     break;
                 case "q":
                 case "quit":
                 case "exit":
-                    spilStyrer.AfslutSpil();
+                    _spilStyrer.AfslutSpil();
                     break;
                 default:
-                    Console.WriteLine($"Woopsie, I don't understand '{command}' 😕");
+                    Console.WriteLine($"Ups, jeg forstår ikke kommandoen '{kommando}'");
                     break;
             }
         }
-        Console.WriteLine("Game Over 😥");
     }
 
-    private static void Introduktion()
+    private static void AfslutSpil()
     {
         Console.Clear();
-        Thread.Sleep(1000);
-        Console.Write("Velkommen til Lumiére.");
-        Thread.Sleep(2400);
-
-        Console.Clear();
-        Console.Write("En by hvor lyset aldrig slukker.");
-        Thread.Sleep(2600);
-
-        Console.Clear();
-        Console.Write("Dette har fysiske og mentale konsekvenser for de lokale.");
-        Thread.Sleep(3400);
-
-        Console.Clear();
-        Console.Write("Du er den eneste der kan redde byen, held og lykke.");
-        Thread.Sleep(3400);
-
-        Console.Clear();
-        spilStyrer.TegnSkærm();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Spillet er slut.");
+        Console.ResetColor();
     }
-
     private static void UdskrivKommandoer()
     {
         Console.WriteLine(
@@ -80,12 +88,12 @@ class Program
             Muligheder:
             - q, quit, exit    Forlad spil
             - to               Følg en udgang
-            - h, help          Display a help message
+            - h, help          Vis hjælpemenu
             """
         );
     }
 
-    private static string[] GetParameters(string[] input)
+    private static string[] HentParametre(string[] input)
     {
         string[] output = new string[input.Length - 1];
         for (int i = 0; i < output.Length; i++)
