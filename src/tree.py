@@ -3,7 +3,7 @@ import os
 import re
 from datetime import datetime, timezone
 
-OUTPUT_FILE = "directory-tree.txt"
+OUTPUT_FILE = "../directory-tree.txt"
 START_DATE = datetime.fromisoformat("2026-10-29T15:01:00+02:00")
 
 
