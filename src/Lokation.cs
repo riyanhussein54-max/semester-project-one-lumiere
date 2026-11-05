@@ -22,4 +22,25 @@ class Lokation : GrafNode
     {
         return (Lokation)(base.FollowEdge(direction));
     }
+    
+    public void Koordinatsystem()
+    {
+        int size = 5; // Grid scale
+        int[,] array = new int[size, size];
+        int limit = size / 2; 
+        int r = 0;
+    
+        for (int y = limit; y >= -limit; y--)
+        {
+            int c = 0;
+            for (int x = -limit; x <= limit; x++)
+            {
+                Console.Write($"[{array[r, c]}] ");
+                c++;
+            }
+            Console.WriteLine();
+            r++;
+        }
+    }
 }
+
