@@ -1,85 +1,33 @@
 /// <summary>
 /// Lokation-klassen definerer en lokations layout, genstande, NPCer, osv...
 /// </summary>
-class Lokation : GrafNode
+public class Lokation
 {
-    // A List<Genstand> stores multiple Genstand objects
-    // List<T> is a built in C# collection
-    //
-    // Useful List methods:
-    // .Count  = Returns the number of elements in the List
-    // .Add()  = Adds an element to the List
-    // .Remove() = Removes an element from the List
-    //
-    // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
-    private List<Genstand> items = new List<Genstand>();
+    public string Navn { get; set; }
+    public int[,] Gitter { get; private set; }
+    public LokationType LokationType { get; private set; }
+    public List<Genstand> Genstande { get; private set; }
 
-    // public Lokation(string name, int x, int) : base(name)
-    // {
-    //     // X = x;
-    //     // Y = y;
-    // }
-    public Lokation(string name): base(name)
+    public Lokation(LokationType lokationType, int[,] gitter, List<Genstand> genstande)
     {
-        
-    }
-    
-    public void Welcome()
-    {
-        Console.WriteLine($"You are now at {name}");
-        HashSet<string> exits = edges.Keys.ToHashSet();
-        Console.WriteLine("Current exits are:");
-        foreach (string exit in exits)
-        {
-            Console.WriteLine($" - {exit}");
-        }
-        ShowItems();
-        Koordinatsystem();
+        LokationType = lokationType;
+        Gitter = gitter;
+        Genstande = genstande;
+        GenerateName();
     }
 
-    public void AddItem(Genstand item)
+    /*
+    if (Nærliggende.Nord)
     {
-        items.Add(item);
+        makeDoorWayNorth
     }
 
-    public void ShowItems()
-    {
-        if (items.Count == 0)
-        {
-            Console.WriteLine("There are no items here");
-            return;
-        }
+    */
 
-        Console.WriteLine("Items in this location:");
-        foreach (Genstand g in items)
-        {
-            Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
-        }
-    }
+    public Lokation FollowEdge(string direction) => FollowEdge(direction);
 
-
-    public override Lokation FollowEdge(string direction)
-    {
-        return (Lokation)(base.FollowEdge(direction));
-    }
-
-    public void Koordinatsystem()
-    {
-        int size = 5; // Grid scale
-        int[,] array = new int[size, size];
-        int limit = size / 2;
-        int r = 0;
-
-        for (int y = limit; y >= -limit; y--)
-        {
-            int c = 0;
-            for (int x = -limit; x <= limit; x++)
-            {
-                Console.Write($"[{array[r, c]}] ");
-                c++;
-            }
-            Console.WriteLine();
-            r++;
-        }
-    }
+    /// <summary>
+    /// Generer et navn baseret på LokationsType-enumen
+    /// </summary>
+    private void GenerateName() => Navn = nameof(LokationType);
 }
