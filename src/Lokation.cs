@@ -5,8 +5,10 @@ class Lokation : GrafNode
 {
     private List<Genstand> items = new List<Genstand>();
     
-    public Lokation(string name) : base(name)
+    public Lokation(string name, int x, int y) : base(name)
     {
+        X = x;
+        Y = y;
     }
 
     public void Welcome()
