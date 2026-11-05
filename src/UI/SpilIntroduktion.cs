@@ -6,23 +6,24 @@ public class SpilIntroduktion
         Console.Clear();
 
         Thread.Sleep(500);
-        Console.Write("Velkommen til Lumiére.");
+
+        TypeWriter.Print("Velkommen til Lumiére.");
         Thread.Sleep(2400);
 
         Console.Clear();
-        Console.Write("En by hvor lyset aldrig slukker.");
+        TypeWriter.Print("En by hvor lyset aldrig slukker.");
         Thread.Sleep(2600);
 
         Console.Clear();
-        Console.Write("Dette har fysiske og mentale konsekvenser for de lokale.");
+        TypeWriter.Print("Dette har fysiske og mentale konsekvenser for de lokale.");
         Thread.Sleep(3400);
 
         Console.Clear();
-        Console.Write("Du er den eneste der kan redde byen.");
+        TypeWriter.Print("Du er den eneste der kan redde byen.");
         Thread.Sleep(2400);
 
         Console.Clear();
-        Console.Write("Held og lykke.");
+        TypeWriter.Print("Held og lykke.");
         Thread.Sleep(2000);
     }
 }

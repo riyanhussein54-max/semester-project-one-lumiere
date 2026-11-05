@@ -1,16 +1,11 @@
 /// <summary>
 /// TypeWriter-klassen udskriver tekst et tegn ad gangen med forsinkelse for at skabe en skrivemaskineeffekt i konsollen.
 /// </summary>
-public class TypeWriter
+public static class TypeWriter
 {
-    string text;
-    int Speed;
-    public TypeWriter(string text, int Speed)
-    {
-        this.text = text;
-        this.Speed = Speed;
-    }
-    public void Writing()
+    public static int Speed { get; set; } = 30;
+
+    public static void PrintLine(string text)
     {
         char[] Letter = text.ToCharArray();
         for (int i = 0; i < Letter.Length; i++)
@@ -19,5 +14,14 @@ public class TypeWriter
             Thread.Sleep(Speed);
         }
         Console.Write("\n");
+    }
+    public static void Print(string text)
+    {
+        char[] Letter = text.ToCharArray();
+        for (int i = 0; i < Letter.Length; i++)
+        {
+            Console.Write(Letter[i]);
+            Thread.Sleep(Speed);
+        }
     }
 }
