@@ -3,6 +3,8 @@
 /// </summary>
 class Lokation : GrafNode
 {
+    private Genstand[,] genstandeGrid = new Genstand[5, 5];
+    
     public Lokation(string name) : base(name)
     {
     }
