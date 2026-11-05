@@ -11,7 +11,7 @@ class Spiller
 
     public void Bevæg(string retning)
     {
-        Console.WriteLine($"{navn} bevæger sig mod {retning}");
+        Console.WriteLine($"{_navn} bevæger sig mod {retning}");
     }
 
     public void SamlGenstandOp(Genstand genstand)
