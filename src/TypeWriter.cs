@@ -1,3 +1,6 @@
+/// <summary>
+/// TypeWriter-klassen udskriver tekst et tegn ad gangen med forsinkelse for at skabe en skrivemaskineeffekt i konsollen.
+/// </summary>
 public class TypeWriter
 {
     string text;
