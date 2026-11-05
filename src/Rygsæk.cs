@@ -1,5 +1,6 @@
 public class Rygsæk
 {
+    // TODO: Erstat string med genstand type
     private List<string> genstande = new List<string>();
     public void TilføjGenstand(string genstand)
     {
