@@ -14,12 +14,16 @@ class Lokation : GrafNode
     // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
     private List<Genstand> items = new List<Genstand>();
 
-    public Lokation(string name, int x, int y) : base(name)
+    // public Lokation(string name, int x, int) : base(name)
+    // {
+    //     // X = x;
+    //     // Y = y;
+    // }
+    public Lokation(string name): base(name)
     {
-        // X = x;
-        // Y = y;
+        
     }
-
+    
     public void Welcome()
     {
         Console.WriteLine($"You are now at {name}");

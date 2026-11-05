@@ -7,24 +7,28 @@ class Verden
 
     public Verden()
     {
-        Lokation entry = new Lokation("Entry");
-        Lokation corridor = new Lokation("Corridor");
-        Lokation cave = new Lokation("Cave");
-        Lokation pit = new Lokation("Darkest Pit");
-        Lokation outside = new Lokation("Outside");
+        // Lokation entry = new Lokation("Entry");
+        // Lokation corridor = new Lokation("Corridor");
+        // Lokation cave = new Lokation("Cave");
+        // Lokation pit = new Lokation("Darkest Pit");
+        // Lokation outside = new Lokation("Outside");
 
-        entry.AddEdge("door", corridor);
-        corridor.AddEdge("door", cave);
-        cave.AddEdge("north", pit);
-        cave.AddEdge("south", outside);
-        pit.AddEdge("door", cave);
-        outside.AddEdge("door", cave);
+        // entry.AddEdge("door", corridor);
+        // corridor.AddEdge("door", cave);
+        // cave.AddEdge("north", pit);
+        // cave.AddEdge("south", outside);
+        // pit.AddEdge("door", cave);
+        // outside.AddEdge("door", cave);
 
         this.entry = entry;
     }
 
     public Lokation GetEntry()
     {
+        if (entry == null)
+        {
+            entry = new("Entry");
+        }
         return entry;
     }
 }
