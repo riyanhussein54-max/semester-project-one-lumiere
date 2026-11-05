@@ -13,11 +13,11 @@ class Lokation : GrafNode
     //
     // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
     private List<Genstand> items = new List<Genstand>();
-    
+
     public Lokation(string name, int x, int y) : base(name)
     {
-        X = x;
-        Y = y;
+        // X = x;
+        // Y = y;
     }
 
     public void Welcome()
@@ -32,7 +32,7 @@ class Lokation : GrafNode
         ShowItems();
         Koordinatsystem();
     }
-    
+
     public void AddItem(Genstand item)
     {
         items.Add(item);
@@ -43,9 +43,9 @@ class Lokation : GrafNode
         if (items.Count == 0)
         {
             Console.WriteLine("There are no items here");
-            return ;
+            return;
         }
-        
+
         Console.WriteLine("Items in this location:");
         foreach (Genstand g in items)
         {
@@ -53,19 +53,19 @@ class Lokation : GrafNode
         }
     }
 
-            
+
     public override Lokation FollowEdge(string direction)
     {
         return (Lokation)(base.FollowEdge(direction));
     }
-    
+
     public void Koordinatsystem()
     {
         int size = 5; // Grid scale
         int[,] array = new int[size, size];
-        int limit = size / 2; 
+        int limit = size / 2;
         int r = 0;
-    
+
         for (int y = limit; y >= -limit; y--)
         {
             int c = 0;
@@ -79,4 +79,3 @@ class Lokation : GrafNode
         }
     }
 }
-
