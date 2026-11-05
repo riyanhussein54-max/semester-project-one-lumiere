@@ -1,12 +1,12 @@
 class Spiller
 {
-    private string navn;
-    // private Rygsæk Rygsæk;
+    private string _navn;
+    private Rygsæk _rygsæk;
 
-    public Spiller(string navn /* Rygsæk Rygsæk  */)
+    public Spiller(string navn, Rygsæk rygsæk)
     {
-        this.navn = navn;
-        // this.Rygsæk = Rygsæk;
+        this._navn = navn;
+        this._rygsæk = rygsæk;
     }
 
     public void Bevæg(string retning)
@@ -14,8 +14,7 @@ class Spiller
         Console.WriteLine($"{navn} bevæger sig mod {retning}");
     }
 
-    // TODO: Tilføj Genstand parameter når det er
-    public void SamlGenstandOp()
+    public void SamlGenstandOp(Genstand genstand)
     {
 
     }
@@ -27,7 +26,7 @@ class Spiller
 
     public void KiglRygsæk()
     {
-        // rygsæk.VisGenstande();
+        _rygsæk.VisIndhold();
     }
 
     public bool LøsOpgave()
