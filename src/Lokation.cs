@@ -3,8 +3,21 @@
 /// </summary>
 class Lokation : GrafNode
 {
-    public Lokation(string name) : base(name)
+    // A List<Genstand> stores multiple Genstand objects
+    // List<T> is a built in C# collection
+    //
+    // Useful List methods:
+    // .Count  = Returns the number of elements in the List
+    // .Add()  = Adds an element to the List
+    // .Remove() = Removes an element from the List
+    //
+    // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
+    private List<Genstand> items = new List<Genstand>();
+
+    public Lokation(string name, int x, int y) : base(name)
     {
+        // X = x;
+        // Y = y;
     }
 
     public void Welcome()
@@ -16,10 +29,53 @@ class Lokation : GrafNode
         {
             Console.WriteLine($" - {exit}");
         }
+        ShowItems();
+        Koordinatsystem();
     }
+
+    public void AddItem(Genstand item)
+    {
+        items.Add(item);
+    }
+
+    public void ShowItems()
+    {
+        if (items.Count == 0)
+        {
+            Console.WriteLine("There are no items here");
+            return;
+        }
+
+        Console.WriteLine("Items in this location:");
+        foreach (Genstand g in items)
+        {
+            Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
+        }
+    }
+
 
     public override Lokation FollowEdge(string direction)
     {
         return (Lokation)(base.FollowEdge(direction));
+    }
+
+    public void Koordinatsystem()
+    {
+        int size = 5; // Grid scale
+        int[,] array = new int[size, size];
+        int limit = size / 2;
+        int r = 0;
+
+        for (int y = limit; y >= -limit; y--)
+        {
+            int c = 0;
+            for (int x = -limit; x <= limit; x++)
+            {
+                Console.Write($"[{array[r, c]}] ");
+                c++;
+            }
+            Console.WriteLine();
+            r++;
+        }
     }
 }
