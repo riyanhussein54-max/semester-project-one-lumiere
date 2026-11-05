@@ -3,7 +3,7 @@
 /// </summary>
 class Lokation : GrafNode
 {
-    private Genstand[,] genstandeGrid = new Genstand[5, 5];
+    private List<Genstand> items = new List<Genstand>();
     
     public Lokation(string name) : base(name)
     {
@@ -18,7 +18,19 @@ class Lokation : GrafNode
         {
             Console.WriteLine($" - {exit}");
         }
+        Koordinatsystem();
     }
+    public void AddItem(Genstand item)
+    {
+        items.Add(item);
+    }
+
+    public void ShowItems()
+        {
+            foreach (Genstand g in items)
+            {
+                Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
+            }
 
     public override Lokation FollowEdge(string direction)
     {
