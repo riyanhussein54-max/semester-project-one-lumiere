@@ -4,7 +4,7 @@
 public class Program
 {
     private static Verden _world = new Verden();
-    private static SpilStyrer _spilStyrer = new SpilStyrer(_world.GetEntry());
+    private static SpilStyrer _spilStyrer = new SpilStyrer();
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev

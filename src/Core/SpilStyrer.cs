@@ -12,6 +12,10 @@ class SpilStyrer
         NuværendeLokation = node;
     }
 
+    public SpilStyrer()
+    {
+    }
+
     public int Lysforurening { get; private set; } = 100;
     public Lokation NuværendeLokation { get; private set; }
 
@@ -32,7 +36,7 @@ class SpilStyrer
         else
         {
             NuværendeLokation = næsteLokation;
-            NuværendeLokation.Welcome();
+            // NuværendeLokation.Welcome();
         }
     }
 
