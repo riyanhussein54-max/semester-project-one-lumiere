@@ -3,10 +3,10 @@
 /// </summary>
 class Verden
 {
-    Lokation entry;
 
     public Verden()
     {
+        Lokation hjem = new Lokation(LokationType.Hjem, new int[4, 5], new());
         // Lokation entry = new Lokation("Entry");
         // Lokation corridor = new Lokation("Corridor");
         // Lokation cave = new Lokation("Cave");
@@ -20,15 +20,5 @@ class Verden
         // pit.AddEdge("door", cave);
         // outside.AddEdge("door", cave);
 
-        this.entry = entry;
-    }
-
-    public Lokation GetEntry()
-    {
-        if (entry == null)
-        {
-            entry = new("Entry");
-        }
-        return entry;
     }
 }
