@@ -3,6 +3,15 @@
 /// </summary>
 class Lokation : GrafNode
 {
+    // A List<Genstand> stores multiple Genstand objects
+    // List<T> is a built in C# collection
+    //
+    // Useful List methods:
+    // .Count  = Returns the number of elements in the List
+    // .Add()  = Adds an element to the List
+    // .Remove() = Removes an element from the List
+    //
+    // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
     private List<Genstand> items = new List<Genstand>();
     
     public Lokation(string name, int x, int y) : base(name)
@@ -20,20 +29,31 @@ class Lokation : GrafNode
         {
             Console.WriteLine($" - {exit}");
         }
+        ShowItems();
         Koordinatsystem();
     }
+    
     public void AddItem(Genstand item)
     {
         items.Add(item);
     }
 
     public void ShowItems()
+    {
+        if (items.Count == 0)
         {
-            foreach (Genstand g in items)
-            {
-                Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
-            }
+            Console.WriteLine("There are no items here");
+            return ;
+        }
+        
+        Console.WriteLine("Items in this location:");
+        foreach (Genstand g in items)
+        {
+            Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
+        }
+    }
 
+            
     public override Lokation FollowEdge(string direction)
     {
         return (Lokation)(base.FollowEdge(direction));
