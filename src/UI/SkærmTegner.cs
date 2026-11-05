@@ -1,6 +1,8 @@
 class SkærmTegner
 {
-    private static readonly int[,] _gitter = new int[7, 11];
+    private static readonly int _bredde = 7, _længde = 11;
+    private static readonly int _playerX = 2, _playerY = 4;
+    private static readonly int[,] _gitter = new int[_bredde, _længde];
 
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
@@ -8,9 +10,23 @@ class SkærmTegner
     public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, string opgaveNavn = "Ingen")
     {
         Console.Clear();
+
+        switch (BrugerOpretter.Brugertilstand)
+        {
+            case Brugertilstand.Dev:
+                Console.Write("–––––––––––––––––––– [");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Info");
+                Console.ResetColor();
+                Console.WriteLine("] ––––––––––––––––––––");
+                break;
+            case Brugertilstand.Spiller:
+                Console.WriteLine("–––––––––––––––––––– [Info] ––––––––––––––––––––");
+                break;
+        }
+
         Console.WriteLine(
             $"""
-            –––––––––––––––––––– [Info] ––––––––––––––––––––
             | Lysforurening:      {lysforurening,-18} |
             | Lokation:           {nuværendeLokation.GetName(),-18} |
             | Opgave:             {opgaveNavn,-18} |
