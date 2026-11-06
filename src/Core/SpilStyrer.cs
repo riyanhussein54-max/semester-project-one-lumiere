@@ -27,6 +27,7 @@ class SpilStyrer
     [Obsolete("String skal udskiftes med enum!")]
     public void Transition(string direction)
     {
+        /*
         Lokation næsteLokation = NuværendeLokation.FollowEdge(direction);
 
         if (næsteLokation == null)
@@ -38,6 +39,7 @@ class SpilStyrer
             NuværendeLokation = næsteLokation;
             // NuværendeLokation.Welcome();
         }
+        */
     }
 
     public void AfslutSpil() => status = SpilStatus.Slut;
