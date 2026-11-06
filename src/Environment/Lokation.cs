@@ -3,31 +3,31 @@
 /// </summary>
 public class Lokation
 {
-    public string Navn { get; set; }
-    public int[,] Gitter { get; private set; }
-    public LokationType LokationType { get; private set; }
-    public List<Genstand> Genstande { get; private set; }
+    private readonly Dictionary<Retning, Lokation> _udgange = new();
 
-    public Lokation(LokationType lokationType, int[,] gitter, List<Genstand> genstande)
+    public Lokation(LokationType lokationType, int[,] gitter, Genstand? genstand = null)
     {
-        LokationType = lokationType;
+        Type = lokationType;
         Gitter = gitter;
-        Genstande = genstande;
-        GenerateName();
+        Genstand = genstand;
     }
 
-    /*
-    if (Nærliggende.Nord)
+    public LokationType Type { get; private set; }
+    public int[,] Gitter { get; private set; }
+    public Genstand? Genstand { get; private set; }
+    public string Navn
     {
-        makeDoorWayNorth
+        get => Type.ToString();
+        // private set;
     }
 
-    */
+    public void TilføjUdgang(Retning retning, Lokation destination)
+    {
+        _udgange[retning] = destination;
+    }
 
-    public Lokation FollowEdge(string direction) => FollowEdge(direction);
-
-    /// <summary>
-    /// Generer et navn baseret på LokationsType-enumen
-    /// </summary>
-    private void GenerateName() => Navn = nameof(LokationType);
+    public Lokation? HentUdgang(Retning retning)
+    {
+        return _udgange.GetValueOrDefault(retning);
+    }
 }
