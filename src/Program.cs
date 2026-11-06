@@ -3,8 +3,8 @@
 /// </summary>
 public class Program
 {
-    private static Verden _world = new Verden();
-    private static SpilStyrer _spilStyrer = new SpilStyrer();
+    private static Verden _verden = new Verden();
+    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation);
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
