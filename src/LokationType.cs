@@ -1,3 +1,6 @@
+/// <summary>
+/// Definerer de forskellige typer af lokationer, der kan findes i spillets verden.
+/// </summary>
 public enum LokationType
 {
     Opstart = 0,

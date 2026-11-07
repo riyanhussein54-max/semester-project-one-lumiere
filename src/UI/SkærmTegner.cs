@@ -1,3 +1,6 @@
+/// <summary>
+/// Håndterer tegning af spillets brugerflade, herunder informationer og koordinatsystem.
+/// </summary>
 class SkærmTegner
 {
     private static readonly int _bredde = 7, _længde = 11;
