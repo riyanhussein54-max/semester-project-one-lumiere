@@ -20,14 +20,14 @@ class SpilStyrer
     // public int[,] SpillerLokation { get; private set; }
 
     #region Public APIs
-    [Obsolete("String skal udskiftes med enum!")]
-    public void Transition(string direction)
+    
+    public void Transition(Retning direction)
     {
-        Lokation næsteLokation = NuværendeLokation.FollowEdge(direction);
-
+        Lokation? næsteLokation = NuværendeLokation.FollowEdge(direction);
+    
         if (næsteLokation == null)
         {
-            Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
+            Console.WriteLine($"Du kan ikke bevæge dig mod '{direction}'.");
         }
         else
         {

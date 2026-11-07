@@ -21,8 +21,17 @@ class GrafNode
         edges.Add(name, node);
     }
 
-    public virtual GrafNode FollowEdge(string direction)
+    // public virtual GrafNode FollowEdge(string direction)
+    // {
+    //     return edges[direction];
+    // }
+    public virtual Lokation? FollowEdge(string direction)
     {
-        return edges[direction];
+        if (_edges.TryGetValue(direction, out GrafNode? node))
+        {
+            return (Lokation)node;
+        }
+    
+        return null;
     }
 }

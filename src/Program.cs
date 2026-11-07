@@ -84,21 +84,27 @@ public class Program
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    Console.WriteLine("Piletast op (↑)");
+                    _spilStyrer.Transition("north (↑)");
                     break;
+            
                 case ConsoleKey.DownArrow:
-                    Console.WriteLine("Piletast ned (↓)");
+                    _spilStyrer.Transition("south (↓)");
                     break;
+            
                 case ConsoleKey.LeftArrow:
-                    Console.WriteLine("Piletast venstre (A)");
+                    _spilStyrer.Transition("west (←)");
                     break;
+                    
                 case ConsoleKey.RightArrow:
-                    Console.WriteLine("Piletast højre (D)");
+                    _spilStyrer.Transition("east (→)");
                     break;
+
+                
                 case ConsoleKey.Escape:
                     Console.WriteLine("efterlad spillet");
                     _spilStyrer.AfslutSpil();
                     break;
+                    
                 case ConsoleKey.H:
                     UdskrivKommandoer();
                     Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
