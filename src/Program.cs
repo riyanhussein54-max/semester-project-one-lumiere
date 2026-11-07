@@ -75,7 +75,35 @@ public class Program
     // }
     private static void KørSpil()
     {
-        
+        while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
+        {
+            Console.Write("\nBrug piletasterne til at bevæge dig eller Esc for at afslutte: ");
+    
+            ConsoleKey key = Console.ReadKey(true).Key;
+    
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    Console.WriteLine("Piletast op (↑)");
+                    break;
+                case ConsoleKey.DownArrow:
+                    Console.WriteLine("Piletast ned (↓)");
+                    break;
+                case ConsoleKey.LeftArrow:
+                    Console.WriteLine("Piletast venstre (A)");
+                    break;
+                case ConsoleKey.RightArrow:
+                    Console.WriteLine("Piletast højre (D)");
+                    break;
+                case ConsoleKey.Escape:
+                    Console.WriteLine("efterlad spillet");
+                    _spilStyrer.AfslutSpil();
+                    break;
+                default:
+                    Console.WriteLine("ukendt tast");
+                    break;
+            }
+        }
     }
     
     private static void AfslutSpil()
