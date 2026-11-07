@@ -14,7 +14,9 @@ class SpilStyrer
 
     public int Lysforurening { get; private set; } = 100;
     public Lokation NuværendeLokation { get; private set; }
-
+    private int spillerX = 5;
+    private int spillerY = 3;
+    
     // TODO: Implementer nedenstående så snart det er muligt
     // public Lokation NuværendeOpgave { get; private set; }
     // public int[,] SpillerLokation { get; private set; }
@@ -54,6 +56,34 @@ class SpilStyrer
         NuværendeLokation = næsteLokation;
         NuværendeLokation.Welcome();
     }
+    
+    public void BevægSpiller(Retning direction)
+    {
+        switch (direction)
+        {
+            case Retning.North:
+                if (spillerY > 0) spillerY--;
+                break;
+    
+            case Retning.South:
+                if (spillerY < 6) spillerY++;
+                break;
+    
+            case Retning.West:
+                if (spillerX > 0) spillerX--;
+                break;
+    
+            case Retning.East:
+                if (spillerX < 10) spillerX++;
+                break;
+        }
+    }
+    
+    public bool ErSpillerPå(int x, int y)
+    {
+        return spillerX == x && spillerY == y;
+    }
+    
     public void AfslutSpil() => status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => status;
     #endregion

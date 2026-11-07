@@ -22,101 +22,67 @@ public class Program
         if (BrugerOpretter.Brugertilstand == Brugertilstand.Spiller)
             SpilIntroduktion.UdskrivIntro();
 
-        SkærmTegner.TegnSkærm(
-            _spilStyrer.Lysforurening,
-            _spilStyrer.NuværendeLokation
-        );
+        SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation, _spilStyrer,"");
+        // SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation);
+
         KørSpil();
         AfslutSpil();
     }
 
-    // [Obsolete("Dette skal udskiftes med et nyt Movement system!")]
-    // private static void KørSpil()
-    // {
-    //     while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
-    //     {
-    //         Console.Write("\n> ");
-    //         string? line = Console.ReadLine();
-
-    //         if (line == null)
-    //             continue;
-
-    //         // parse line
-    //         string[] elementer = line.Split(" ");
-    //         string kommando = elementer[0];
-    //         string[] parametre = HentParametre(elementer);
-
-    //         switch (kommando)
-    //         {
-    //             case "to":
-    //                 if (parametre.Length != 1)
-    //                 {
-    //                     Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
-    //                     return;
-    //                 }
-    //                 _spilStyrer.Transition(parametre[0]);
-    //                 break;
-    //             case "h":
-    //             case "help":
-    //                 UdskrivKommandoer();
-    //                 Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
-    //                 Console.ReadKey(true);
-    //                 break;
-    //             case "q":
-    //             case "quit":
-    //             case "exit":
-    //                 _spilStyrer.AfslutSpil();
-    //                 break;
-    //             default:
-    //                 Console.WriteLine($"Ups, jeg forstår ikke kommandoen '{kommando}'");
-    //                 break;
-    //         }
-    //     }
-    // }
     private static void KørSpil()
     {
         while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
             Console.Write("\nBrug piletasterne til at bevæge dig, H for hjælpemenu eller Esc for at afslutte: ");
-    
+
             ConsoleKey key = Console.ReadKey(true).Key;
-    
+
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    _spilStyrer.Transition("north (↑)");
-                    break;
-            
-                case ConsoleKey.DownArrow:
-                    _spilStyrer.Transition("south (↓)");
-                    break;
-            
-                case ConsoleKey.LeftArrow:
-                    _spilStyrer.Transition("west (←)");
-                    break;
-                    
-                case ConsoleKey.RightArrow:
-                    _spilStyrer.Transition("east (→)");
+                    _spilStyrer.BevægSpiller(Retning.North);
                     break;
 
-                
+                case ConsoleKey.DownArrow:
+                    _spilStyrer.BevægSpiller(Retning.South);
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    _spilStyrer.BevægSpiller(Retning.West);
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    _spilStyrer.BevægSpiller(Retning.East);
+                    break;
+
                 case ConsoleKey.Escape:
-                    Console.WriteLine("efterlad spillet");
                     _spilStyrer.AfslutSpil();
                     break;
-                    
+
                 case ConsoleKey.H:
                     UdskrivKommandoer();
                     Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
                     Console.ReadKey(true);
                     break;
+
                 default:
-                    Console.WriteLine("ukendt tast");
+                    Console.WriteLine("Ukendt tast");
                     break;
+            }
+
+            if (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
+            {
+                Console.Clear();
+
+                SkærmTegner.TegnSkærm(
+                    _spilStyrer.Lysforurening,
+                    _spilStyrer.NuværendeLokation,
+                    _spilStyrer
+                );
             }
         }
     }
-    
+
     private static void AfslutSpil()
     {
         Console.Clear();
@@ -124,14 +90,15 @@ public class Program
         Console.WriteLine("Spillet er slut.");
         Console.ResetColor();
     }
+
     private static void UdskrivKommandoer()
     {
         Console.WriteLine(
             $"""
             Muligheder:
             - esc, quit, exit    Forlad spil
-            - to               Følg en udgang
-            - h, help          Vis hjælpemenu
+            - to                 Følg en udgang
+            - h, help            Vis hjælpemenu
             """
         );
     }
@@ -139,10 +106,12 @@ public class Program
     private static string[] HentParametre(string[] input)
     {
         string[] output = new string[input.Length - 1];
+
         for (int i = 0; i < output.Length; i++)
         {
             output[i] = input[i + 1];
         }
+
         return output;
     }
 }
