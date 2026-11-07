@@ -77,7 +77,7 @@ public class Program
     {
         while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
-            Console.Write("\nBrug piletasterne til at bevæge dig eller Esc for at afslutte: ");
+            Console.Write("\nBrug piletasterne til at bevæge dig, H for hjælpemenu eller Esc for at afslutte: ");
     
             ConsoleKey key = Console.ReadKey(true).Key;
     
@@ -99,6 +99,11 @@ public class Program
                     Console.WriteLine("efterlad spillet");
                     _spilStyrer.AfslutSpil();
                     break;
+                case ConsoleKey.H:
+                    UdskrivKommandoer();
+                    Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey(true);
+                    break;
                 default:
                     Console.WriteLine("ukendt tast");
                     break;
@@ -118,7 +123,7 @@ public class Program
         Console.WriteLine(
             $"""
             Muligheder:
-            - q, quit, exit    Forlad spil
+            - esc, quit, exit    Forlad spil
             - to               Følg en udgang
             - h, help          Vis hjælpemenu
             """
