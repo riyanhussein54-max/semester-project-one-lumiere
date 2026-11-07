@@ -30,50 +30,54 @@ public class Program
         AfslutSpil();
     }
 
-    [Obsolete("Dette skal udskiftes med et nyt Movement system!")]
+    // [Obsolete("Dette skal udskiftes med et nyt Movement system!")]
+    // private static void KørSpil()
+    // {
+    //     while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
+    //     {
+    //         Console.Write("\n> ");
+    //         string? line = Console.ReadLine();
+
+    //         if (line == null)
+    //             continue;
+
+    //         // parse line
+    //         string[] elementer = line.Split(" ");
+    //         string kommando = elementer[0];
+    //         string[] parametre = HentParametre(elementer);
+
+    //         switch (kommando)
+    //         {
+    //             case "to":
+    //                 if (parametre.Length != 1)
+    //                 {
+    //                     Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
+    //                     return;
+    //                 }
+    //                 _spilStyrer.Transition(parametre[0]);
+    //                 break;
+    //             case "h":
+    //             case "help":
+    //                 UdskrivKommandoer();
+    //                 Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
+    //                 Console.ReadKey(true);
+    //                 break;
+    //             case "q":
+    //             case "quit":
+    //             case "exit":
+    //                 _spilStyrer.AfslutSpil();
+    //                 break;
+    //             default:
+    //                 Console.WriteLine($"Ups, jeg forstår ikke kommandoen '{kommando}'");
+    //                 break;
+    //         }
+    //     }
+    // }
     private static void KørSpil()
     {
-        while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
-        {
-            Console.Write("\n> ");
-            string? line = Console.ReadLine();
-
-            if (line == null)
-                continue;
-
-            // parse line
-            string[] elementer = line.Split(" ");
-            string kommando = elementer[0];
-            string[] parametre = HentParametre(elementer);
-
-            switch (kommando)
-            {
-                case "to":
-                    if (parametre.Length != 1)
-                    {
-                        Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
-                        return;
-                    }
-                    _spilStyrer.Transition(parametre[0]);
-                    break;
-                case "h":
-                case "help":
-                    UdskrivKommandoer();
-                    Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
-                    Console.ReadKey(true);
-                    break;
-                case "q":
-                case "quit":
-                case "exit":
-                    _spilStyrer.AfslutSpil();
-                    break;
-                default:
-                    Console.WriteLine($"Ups, jeg forstår ikke kommandoen '{kommando}'");
-                    break;
-            }
-        }
+        
     }
-
+    
     private static void AfslutSpil()
     {
         Console.Clear();
