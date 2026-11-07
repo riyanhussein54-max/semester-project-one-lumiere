@@ -4,7 +4,7 @@
 class GrafNode
 {
     protected string name;
-    protected Dictionary<string, GrafNode> edges = new Dictionary<string, GrafNode>();
+    protected Dictionary<Retning, GrafNode> edges = new Dictionary<Retning, GrafNode>();
 
     public GrafNode(string name)
     {
@@ -16,20 +16,16 @@ class GrafNode
         return name;
     }
 
-    public void AddEdge(string name, GrafNode node)
+    public void AddEdge(Retning direction, GrafNode node)
     {
-        edges.Add(name, node);
+        edges.Add(direction, node);
     }
 
-    // public virtual GrafNode FollowEdge(string direction)
-    // {
-    //     return edges[direction];
-    // }
-    public virtual Lokation? FollowEdge(string direction)
+    public virtual GrafNode? FollowEdge(Retning direction)
     {
-        if (_edges.TryGetValue(direction, out GrafNode? node))
+        if (edges.TryGetValue(direction, out GrafNode? node))
         {
-            return (Lokation)node;
+            return node;
         }
     
         return null;

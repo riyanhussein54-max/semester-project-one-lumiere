@@ -20,15 +20,11 @@ class Verden
         // pit.AddEdge("door", cave);
         // outside.AddEdge("door", cave);
 
-        this.entry = entry;
+        entry = new Lokation("Entry");
     }
 
     public Lokation GetEntry()
     {
-        if (entry == null)
-        {
-            entry = new("Entry");
-        }
         return entry;
     }
 }

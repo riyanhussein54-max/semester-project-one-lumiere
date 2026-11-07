@@ -21,21 +21,39 @@ class SpilStyrer
 
     #region Public APIs
     
-    public void Transition(Retning direction)
+    public void Transition(string direction)
     {
-        Lokation? næsteLokation = NuværendeLokation.FollowEdge(direction);
+        Retning? retning = direction switch
+        {
+            "north (↑)" => Retning.North,
+            "south (↓)" => Retning.South,
+            "east (→)" => Retning.East,
+            "west (←)" => Retning.West,
+            _ => null
+        };
     
-        if (næsteLokation == null)
+        if (retning == null)
         {
-            Console.WriteLine($"Du kan ikke bevæge dig mod '{direction}'.");
+            Console.WriteLine("Ukendt retning.");
+            return;
         }
-        else
-        {
-            NuværendeLokation = næsteLokation;
-            NuværendeLokation.Welcome();
-        }
+    
+        Transition(retning.Value);
     }
 
+    public void Transition(Retning direction)
+    {
+        GrafNode? næsteNode = NuværendeLokation.FollowEdge(direction);
+    
+        if (næsteNode is not Lokation næsteLokation)
+        {
+            Console.WriteLine($"Du kan ikke bevæge dig mod '{direction}'.");
+            return;
+        }
+    
+        NuværendeLokation = næsteLokation;
+        NuværendeLokation.Welcome();
+    }
     public void AfslutSpil() => status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => status;
     #endregion

@@ -27,9 +27,9 @@ class Lokation : GrafNode
     public void Welcome()
     {
         Console.WriteLine($"You are now at {name}");
-        HashSet<string> exits = edges.Keys.ToHashSet();
+        HashSet<Retning> exits = edges.Keys.ToHashSet();
         Console.WriteLine("Current exits are:");
-        foreach (string exit in exits)
+        foreach (Retning exit in exits)
         {
             Console.WriteLine($" - {exit}");
         }
@@ -57,11 +57,6 @@ class Lokation : GrafNode
         }
     }
 
-
-    public override Lokation FollowEdge(string direction)
-    {
-        return (Lokation)(base.FollowEdge(direction));
-    }
 
     public void Koordinatsystem()
     {
