@@ -27,7 +27,7 @@ class SkærmTegner
         Console.WriteLine(
             $"""
             | Lysforurening:      {lysforurening,-18} |
-            | Lokation:           {nuværendeLokation.GetName(),-18} |
+            | Lokation:           {nuværendeLokation.Navn,-18} |
             | Opgave:             {opgaveNavn,-18} |
             ––––––––––––––––––––––––––––––––––––––––––––––––
             """
@@ -40,7 +40,7 @@ class SkærmTegner
     {
         for (int række = 0; række < gitterRamme.GetLength(0); række++)
         {
-            Console.Write($"| ·");
+            Console.Write($"|");
             for (int søjle = 0; søjle < gitterRamme.GetLength(1); søjle++)
             {
                 if (spilStyrer.ErSpillerPå(søjle, række))

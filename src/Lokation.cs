@@ -1,66 +1,64 @@
 /// <summary>
 /// Lokation-klassen definerer en lokations layout, genstande, NPCer, osv...
 /// </summary>
-class Lokation : GrafNode
+public class Lokation
 {
-    // A List<Genstand> stores multiple Genstand objects
-    // List<T> is a built in C# collection
-    //
-    // Useful List methods:
-    // .Count  = Returns the number of elements in the List
-    // .Add()  = Adds an element to the List
-    // .Remove() = Removes an element from the List
-    //
-    // If needed List<T> could later be replaced with another collection type such as Dictionary<TKey, TValue>.
+    private Dictionary<Retning, Lokation> edges = new();
     private List<Genstand> items = new List<Genstand>();
 
-    // public Lokation(string name, int x, int) : base(name)
-    // {
-    //     // X = x;
-    //     // Y = y;
-    // }
-    public Lokation(string name): base(name)
+    public string Navn { get; set; }
+
+    public Lokation(string navn)
     {
-        
+        Navn = navn;
     }
-    
+
+    public void AddEdge(Retning direction, Lokation lokation)
+    {
+        edges[direction] = lokation;
+    }
+
+    public Lokation? FollowEdge(Retning direction)
+    {
+        edges.TryGetValue(direction, out Lokation? lokation);
+        return lokation;
+    }
+
     public void Welcome()
     {
-        Console.WriteLine($"You are now at {name}");
-        HashSet<Retning> exits = edges.Keys.ToHashSet();
+        Console.WriteLine($"Du er nu ved {Navn}.");
+
         Console.WriteLine("Current exits are:");
-        foreach (Retning exit in exits)
+        foreach (Retning exit in edges.Keys)
         {
             Console.WriteLine($" - {exit}");
         }
-        ShowItems();
+        ViseItem();
         Koordinatsystem();
     }
 
-    public void AddItem(Genstand item)
+    public void TilføjItem(Genstand item)
     {
         items.Add(item);
     }
-
-    public void ShowItems()
+    
+    public void ViseItem()
     {
         if (items.Count == 0)
         {
-            Console.WriteLine("There are no items here");
+            Console.WriteLine("Der er ingen genstande her.");
             return;
         }
-
-        Console.WriteLine("Items in this location:");
+        Console.WriteLine("Genstande på denne lokation:");
         foreach (Genstand g in items)
         {
             Console.WriteLine($"{g.Navn}: {g.Beskrivelse}");
         }
     }
 
-
     public void Koordinatsystem()
     {
-        int size = 5; // Grid scale
+        int size = 5;
         int[,] array = new int[size, size];
         int limit = size / 2;
         int r = 0;
