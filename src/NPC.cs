@@ -1,40 +1,44 @@
 public class NPC
 {
-    // de private variabler
+    // private variabler
     private string _navn;
     private Event _ev;
 
-    // public methode som giver værdier til de private variabler
+    // public methode/konstruktøren, der tildeler værdier til de private variabler
     public NPC(string navn, Event ev)
     {
-        if (navn != "")
+        if (navn != "") // safeguard
             _navn = navn;
 
-        if (ev != null)
+        if (ev != null) // safeguard
             _ev = ev;
     }
 
-    // public methode som  udløse den npcs event
+    // public methode som  udløser en event
     public void UdløsEvent()
     {
         if (_ev != null)
         {
-            // bestemmer hvilke methode at køre afhængigt af "eventType" parameteren
+            // bestemmer hvilket methode at køre (hvilket slags event at udløse) afhængigt af "eventType"-parameteren
             switch (_ev.eventType)
             {
+                // DialogLæser()
                 case "dialog":
                     _ev.DialogLæser();
                     break;
 
+                // UdløsOpgave()
                 case "opgave":
                     _ev.UdløsOpgave();
                     break;
 
+                // Begge? hvis der er brug for det
                 case "begge":
                     _ev.DialogLæser();
                     _ev.UdløsOpgave();
                     break;
 
+                // default fallback
                 default:
                     break;
             }
