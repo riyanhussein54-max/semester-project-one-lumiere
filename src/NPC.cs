@@ -17,7 +17,7 @@ public class NPC
     // public methode som  udløser en event
     public void UdløsEvent()
     {
-        if (_ev != null)
+        if (_ev != null) // safeguard
         {
             // bestemmer hvilket methode at køre (hvilket slags event at udløse) afhængigt af "eventType"-parameteren
             switch (_ev.eventType)
