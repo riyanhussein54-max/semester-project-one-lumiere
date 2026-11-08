@@ -1,16 +1,26 @@
 public class NPC
 {
-    private string navn;
+    // de private variabler
+    private string _navn;
+    private Event _ev;
 
-    private Event Event
+    // public methode som giver værdier til de private variabler
+    public NPC(string navn, Event ev)
     {
+        if (navn != "")
+            _navn = navn;
 
+        if (ev)
+            _ev = ev;
     }
 
-    public static void UdløsEvent(Event ev)
+    // public methode som  udløse den npcs event
+    public void UdløsEvent()
     {
-
-        return;
+        if (_ev)
+        {
+            _ev.UdløsOpgave();
+        }
     }
 
 }
