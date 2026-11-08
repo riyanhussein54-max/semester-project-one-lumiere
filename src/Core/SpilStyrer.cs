@@ -5,15 +5,10 @@
 class SpilStyrer
 {
     public SpilStatus status = SpilStatus.Aktiv;
-    private readonly int[,] gitter = new int[7, 11];
 
     public SpilStyrer(Lokation node)
     {
         NuværendeLokation = node;
-    }
-
-    public SpilStyrer()
-    {
     }
 
     public int Lysforurening { get; private set; } = 100;
@@ -23,26 +18,55 @@ class SpilStyrer
     // public Lokation NuværendeOpgave { get; private set; }
     // public int[,] SpillerLokation { get; private set; }
 
-    #region Public APIs
-    [Obsolete("String skal udskiftes med enum!")]
-    public void Transition(string direction)
+    /// <summary>
+    /// Skifter direkte til en ny lokation ud fra en retning
+    /// </summary>
+    public bool SkiftLokation(Retning retning)
     {
-        /*
-        Lokation næsteLokation = NuværendeLokation.FollowEdge(direction);
+        Lokation? næste = NuværendeLokation.HentUdgang(retning);
+        if (næste == null)
+            return false;
 
-        if (næsteLokation == null)
-        {
-            Console.WriteLine($"You are confused, and walk in a circle looking for '{direction}'. In the end you give up. 😩");
-        }
-        else
-        {
-            NuværendeLokation = næsteLokation;
-            // NuværendeLokation.Welcome();
-        }
-        */
+        NuværendeLokation = næste;
+        return true;
+    }
+
+    /// <summary>
+    /// Tjekker om et koordinat er inden for den nuværende lokations gitter.
+    /// AKA Bounds-checking.
+    /// Kan være at vi skal lave det på en anden måde ift Bevægelse
+    /// </summary>
+    public bool ErIndenForGitter(int række, int søjle)
+    {
+        int maxRækker = NuværendeLokation.Gitter.GetLength(0);
+        int maxSøjler = NuværendeLokation.Gitter.GetLength(1);
+
+        return række >= 0 && række < maxRækker &&
+               søjle >= 0 && søjle < maxSøjler;
+    }
+
+    /// <summary>
+    /// Kaldes når spilleren træder på et nyt felt.
+    /// Hvis feltet er en dør, så skiftes lokation.
+    /// TODO: Vi skal respawne spilleren, så den får en ny position
+    /// </summary>
+    public bool TjekOgUdførDørSkift(int række, int søjle, out (int Række, int Søjle) nySpillerPosition)
+    {
+        nySpillerPosition = (række, søjle);
+
+        if (!ErIndenForGitter(række, søjle) || NuværendeLokation.Gitter[række, søjle] != FeltType.Dør)
+            return false;
+
+        Lokation? næste = NuværendeLokation.HentUdgangFraKoordinat(række, søjle);
+        if (næste == null)
+            return false;
+
+        // Finder døren i det nye rum der fører tilbage til det rum vi kom fra
+        nySpillerPosition = næste.HentDørKoordinatTil(NuværendeLokation);
+        NuværendeLokation = næste;
+        return true;
     }
 
     public void AfslutSpil() => status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => status;
-    #endregion
 }

@@ -54,7 +54,7 @@ public class Program
                         Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
                         return;
                     }
-                    _spilStyrer.Transition(parametre[0]);
+                    // FJERN_spilStyrer.Transition(parametre[0]);
                     break;
                 case "h":
                 case "help":
