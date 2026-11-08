@@ -10,17 +10,34 @@ public class NPC
         if (navn != "")
             _navn = navn;
 
-        if (ev)
+        if (ev != null)
             _ev = ev;
     }
 
     // public methode som  udløse den npcs event
     public void UdløsEvent()
     {
-        if (_ev)
+        if (_ev != null)
         {
-            _ev.UdløsOpgave();
+            // bestemmer hvilke methode at køre afhængigt af "eventType" parameteren
+            switch (_ev.eventType)
+            {
+                case "dialog":
+                    _ev.DialogLæser();
+                    break;
+
+                case "opgave":
+                    _ev.UdløsOpgave();
+                    break;
+
+                case "begge":
+                    _ev.DialogLæser();
+                    _ev.UdløsOpgave();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
-
 }
