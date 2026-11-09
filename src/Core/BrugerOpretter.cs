@@ -21,7 +21,7 @@ public class BrugerOpretter
             {
                 if (i == valgteMulighed)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write($" > [{muligheder[i]}] ");
                 }
                 else
