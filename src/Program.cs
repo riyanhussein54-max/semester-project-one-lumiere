@@ -37,7 +37,6 @@ public class Program
         {
             ConsoleKey key = Console.ReadKey(true).Key;
 
-            // TODO: Vi skal bruge Escape knappen senere, når der kommer menuer man kan lukke
             switch (key)
             {
                 case ConsoleKey.W:
@@ -60,6 +59,8 @@ public class Program
                     SkærmTegner.SkiftMenuSynlighed();
                     break;
                 case ConsoleKey.Q:
+                case ConsoleKey.Escape:
+                    // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
                     _spilStyrer.AfslutSpil();
                     break;
                 case ConsoleKey.H:
@@ -88,6 +89,7 @@ public class Program
 
     private static void UdskrivKommandoer()
     {
+        Console.Clear();
         Console.WriteLine(
             $"""
 
