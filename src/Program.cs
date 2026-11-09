@@ -39,18 +39,8 @@ public class Program
 
             switch (key)
             {
-<<<<<<< HEAD
-                case "to":
-                    if (parametre.Length != 1)
-                    {
-                        Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
-                        return;
-                    }
-                    // FJERN_spilStyrer.Transition(parametre[0]);
-=======
                 case ConsoleKey.UpArrow:
                     _spilStyrer.BevægSpiller(Retning.North);
->>>>>>> feature/Spillerbevægelse
                     break;
 
                 case ConsoleKey.DownArrow:

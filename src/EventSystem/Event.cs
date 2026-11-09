@@ -6,7 +6,7 @@ public class Event
     private List<string> dialog;
     private Opgave? opgave;
 
-    public Event(Eventtype eventType, List<string> dialog, Opgave? opgave)
+    public Event(EventType eventType, List<string> dialog, Opgave? opgave)
     {
         this.eventType = eventType;
         this.dialog = dialog;

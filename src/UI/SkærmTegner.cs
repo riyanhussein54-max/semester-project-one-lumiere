@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-public class SkærmTegner
-{
-    /// <summary>
-    /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
-    /// </summary>
-    public static void TegnSkærm(
-        int lysforurening,
-        Lokation nuværendeLokation,
-        string opgaveNavn = "Ingen",
-        int spillerRække = 2,
-        int spillerSøjle = 2)
-=======
 /// <summary>
 /// Håndterer tegning af spillets brugerflade, herunder informationer og koordinatsystem.
 /// </summary>
-class SkærmTegner
+public class SkærmTegner
 {
     private static readonly int _bredde = 7, _længde = 11;
     private static readonly int[,] _gitter = new int[_bredde, _længde];
@@ -22,8 +9,7 @@ class SkærmTegner
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
     /// </summary>
-    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, SpilStyrer spilStyrer, string opgaveNavn = "Ingen")
->>>>>>> feature/Spillerbevægelse
+    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, SpilStyrer spilStyrer, string opgaveNavn = "Ingen", int spillerRække = 2, int spillerSøjle = 2 )
     {
         Console.Clear();
 
@@ -50,11 +36,10 @@ class SkærmTegner
             """
         );
 
-<<<<<<< HEAD
-        TegnKoordinatSystem(nuværendeLokation.Gitter, spillerRække, spillerSøjle);
+        TegnKoordinatSystem(nuværendeLokation.Gitter, spillerRække, spillerSøjle,spilStyrer);
     }
 
-    private static void TegnKoordinatSystem(FeltType[,] gitterRamme, int spillerRække, int spillerSøjle)
+    private static void TegnKoordinatSystem(FeltType[,] gitterRamme, SpilStyrer spillerRække, int spillerSøjle)
     {
         for (int række = 0; række < gitterRamme.GetLength(0); række++)
         {
@@ -65,19 +50,6 @@ class SkærmTegner
                 // In case hvis spilleren står på dette koordinat
                 // TODO: Burde måske lave noget kollisiontjek, så man ikke kan gå på en NPC
                 if (række == spillerRække && søjle == spillerSøjle)
-=======
-        TegnKoordinatSystem(_gitter, spilStyrer);
-    }
-
-    private static void TegnKoordinatSystem(int[,] gitterRamme, SpilStyrer spilStyrer)
-    {
-        for (int række = 0; række < gitterRamme.GetLength(0); række++)
-        {
-            Console.Write($"|");
-            for (int søjle = 0; søjle < gitterRamme.GetLength(1); søjle++)
-            {
-                if (spilStyrer.ErSpillerPå(søjle, række))
->>>>>>> feature/Spillerbevægelse
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write(" S");
