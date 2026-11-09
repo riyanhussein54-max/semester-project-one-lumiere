@@ -3,7 +3,7 @@ public enum LokationType
     Hjem,
     Nabo,
     GadeV,
-    GaveØ,
+    GadeØ,
     GadeN,
     Park,
     Bytorv,

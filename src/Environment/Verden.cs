@@ -26,8 +26,14 @@ public class Verden
     /// </summary>
     private void OpretLokationer()
     {
-        Tilføj(new Lokation(LokationType.Hjem, new FeltType[16, 25]));
+        Tilføj(new Lokation(LokationType.Hjem, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.GadeV, new FeltType[7, 11]));
+        Tilføj(new Lokation(LokationType.Park, new FeltType[6, 9]));
+        Tilføj(new Lokation(LokationType.GadeN, new FeltType[7, 11]));
+        Tilføj(new Lokation(LokationType.BobsHus, new FeltType[7, 5]));
+        Tilføj(new Lokation(LokationType.Bytorv, new FeltType[9, 15]));
+        Tilføj(new Lokation(LokationType.GadeØ, new FeltType[7, 10]));
+        Tilføj(new Lokation(LokationType.Nabo, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.Station, new FeltType[11, 6]));
     }
 
@@ -51,6 +57,14 @@ public class Verden
     {
         Forbind(LokationType.Hjem, Retning.Nord, LokationType.GadeV, Retning.Syd);
         Forbind(LokationType.GadeV, Retning.Vest, LokationType.Station, Retning.Øst);
+        Forbind(LokationType.GadeV, Retning.Nord, LokationType.Park, Retning.Syd);
+        Forbind(LokationType.GadeV, Retning.Øst, LokationType.GadeØ, Retning.Vest);
+        Forbind(LokationType.GadeØ, Retning.Syd, LokationType.Nabo, Retning.Nord);
+        Forbind(LokationType.GadeØ, Retning.Nord, LokationType.Bytorv, Retning.Syd);
+        Forbind(LokationType.Park, Retning.Øst, LokationType.Bytorv, Retning.Vest);
+        Forbind(LokationType.Park, Retning.Nord, LokationType.GadeN, Retning.Syd);
+        Forbind(LokationType.GadeN, Retning.Vest, LokationType.BobsHus, Retning.Øst);
+
     }
 
     /// <summary>
