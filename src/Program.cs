@@ -22,32 +22,24 @@ public class Program
         if (BrugerOpretter.Brugertilstand == Brugertilstand.Spiller)
             SpilIntroduktion.UdskrivIntro();
 
-        SkærmTegner.TegnSkærm(
-            _spilStyrer.Lysforurening,
-            _spilStyrer.NuværendeLokation
-        );
+        SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation, _spilStyrer,"");
+        // SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation);
+
         KørSpil();
         AfslutSpil();
     }
 
-    [Obsolete("Dette skal udskiftes med et nyt Movement system!")]
     private static void KørSpil()
     {
         while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
-            Console.Write("\n> ");
-            string? line = Console.ReadLine();
+            Console.Write("\nBrug piletasterne til at bevæge dig, H for hjælpemenu eller Esc for at afslutte: ");
 
-            if (line == null)
-                continue;
+            ConsoleKey key = Console.ReadKey(true).Key;
 
-            // parse line
-            string[] elementer = line.Split(" ");
-            string kommando = elementer[0];
-            string[] parametre = HentParametre(elementer);
-
-            switch (kommando)
+            switch (key)
             {
+<<<<<<< HEAD
                 case "to":
                     if (parametre.Length != 1)
                     {
@@ -55,21 +47,48 @@ public class Program
                         return;
                     }
                     // FJERN_spilStyrer.Transition(parametre[0]);
+=======
+                case ConsoleKey.UpArrow:
+                    _spilStyrer.BevægSpiller(Retning.North);
+>>>>>>> feature/Spillerbevægelse
                     break;
-                case "h":
-                case "help":
+
+                case ConsoleKey.DownArrow:
+                    _spilStyrer.BevægSpiller(Retning.South);
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    _spilStyrer.BevægSpiller(Retning.West);
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    _spilStyrer.BevægSpiller(Retning.East);
+                    break;
+
+                case ConsoleKey.Escape:
+                    _spilStyrer.AfslutSpil();
+                    break;
+
+                case ConsoleKey.H:
                     UdskrivKommandoer();
                     Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
                     Console.ReadKey(true);
                     break;
-                case "q":
-                case "quit":
-                case "exit":
-                    _spilStyrer.AfslutSpil();
-                    break;
+
                 default:
-                    Console.WriteLine($"Ups, jeg forstår ikke kommandoen '{kommando}'");
+                    Console.WriteLine("Ukendt tast");
                     break;
+            }
+
+            if (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
+            {
+                Console.Clear();
+
+                SkærmTegner.TegnSkærm(
+                    _spilStyrer.Lysforurening,
+                    _spilStyrer.NuværendeLokation,
+                    _spilStyrer
+                );
             }
         }
     }
@@ -81,14 +100,15 @@ public class Program
         Console.WriteLine("Spillet er slut.");
         Console.ResetColor();
     }
+
     private static void UdskrivKommandoer()
     {
         Console.WriteLine(
             $"""
             Muligheder:
-            - q, quit, exit    Forlad spil
-            - to               Følg en udgang
-            - h, help          Vis hjælpemenu
+            - esc, quit, exit    Forlad spil
+            - to                 Følg en udgang
+            - h, help            Vis hjælpemenu
             """
         );
     }
@@ -96,10 +116,12 @@ public class Program
     private static string[] HentParametre(string[] input)
     {
         string[] output = new string[input.Length - 1];
+
         for (int i = 0; i < output.Length; i++)
         {
             output[i] = input[i + 1];
         }
+
         return output;
     }
 }

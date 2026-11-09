@@ -13,11 +13,14 @@ class SpilStyrer
 
     public int Lysforurening { get; private set; } = 100;
     public Lokation NuværendeLokation { get; private set; }
-
+    private int spillerX = 0;
+    private int spillerY = 0;
+    
     // TODO: Implementer nedenstående så snart det er muligt
     // public Lokation NuværendeOpgave { get; private set; }
     // public int[,] SpillerLokation { get; private set; }
 
+<<<<<<< HEAD
     /// <summary>
     /// Skifter direkte til en ny lokation ud fra en retning
     /// </summary>
@@ -65,8 +68,71 @@ class SpilStyrer
         nySpillerPosition = næste.HentDørKoordinatTil(NuværendeLokation);
         NuværendeLokation = næste;
         return true;
+=======
+    #region Public APIs
+    
+    public void Transition(string direction)
+    {
+        Retning? retning = direction switch
+        {
+            "north (↑)" => Retning.North,
+            "south (↓)" => Retning.South,
+            "east (→)" => Retning.East,
+            "west (←)" => Retning.West,
+            _ => null
+        };
+    
+        if (retning == null)
+        {
+            Console.WriteLine("Ukendt retning.");
+            return;
+        }
+    
+        Transition(retning.Value);
+>>>>>>> feature/Spillerbevægelse
     }
 
+    public void Transition(Retning direction)
+    {
+        Lokation? næsteLokation = NuværendeLokation.FollowEdge(direction);
+    
+        if (næsteLokation == null)
+        {
+            Console.WriteLine($"Du kan ikke bevæge dig mod {direction}.");
+            return;
+        }
+    
+        NuværendeLokation = næsteLokation;
+        NuværendeLokation.Welcome();
+    }
+
+    public void BevægSpiller(Retning direction)
+    {
+        switch (direction)
+        {
+            case Retning.North:
+                if (spillerY > -3) spillerY--;
+                break;
+    
+            case Retning.South:
+                if (spillerY < 3) spillerY++;
+                break;
+    
+            case Retning.West:
+                if (spillerX > -5) spillerX--;
+                break;
+    
+            case Retning.East:
+                if (spillerX < 5) spillerX++;
+                break;
+        }
+    }
+    
+    public bool ErSpillerPå(int x, int y)
+    {
+        return spillerX == x -5 && spillerY == y -3;
+    }
+    
     public void AfslutSpil() => status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => status;
 }
