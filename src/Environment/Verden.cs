@@ -26,7 +26,7 @@ public class Verden
     /// </summary>
     private void OpretLokationer()
     {
-        Tilføj(new Lokation(LokationType.Hjem, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.Hjem, new FeltType[16, 25]));
         Tilføj(new Lokation(LokationType.GadeV, new FeltType[7, 11]));
         Tilføj(new Lokation(LokationType.Station, new FeltType[11, 6]));
     }

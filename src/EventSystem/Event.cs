@@ -27,7 +27,7 @@ public class Event
         }
         else
         {
-            ConsoleWriteLine("Dette event har ingen opgave.");
+            Console.WriteLine("Dette event har ingen opgave.");
         }
     }
 }

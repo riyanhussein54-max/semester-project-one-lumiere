@@ -20,6 +20,7 @@ public class NPC
         if (_ev != null) // safeguard
         {
             // bestemmer hvilket methode at køre (hvilket slags event at udløse) afhængigt af "eventType"-parameteren
+            /*
             switch (_ev.eventType)
             {
                 // DialogLæser()
@@ -42,6 +43,7 @@ public class NPC
                 default:
                     break;
             }
+             */
         }
     }
 }

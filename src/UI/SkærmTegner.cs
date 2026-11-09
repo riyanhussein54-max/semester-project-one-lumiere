@@ -3,13 +3,11 @@
 /// </summary>
 public class SkærmTegner
 {
-    private static readonly int _bredde = 7, _længde = 11;
-    private static readonly int[,] _gitter = new int[_bredde, _længde];
 
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
     /// </summary>
-    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, SpilStyrer spilStyrer, string opgaveNavn = "Ingen", int spillerRække = 2, int spillerSøjle = 2 )
+    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, SpilStyrer spilStyrer, string opgaveNavn = "Ingen", int spillerRække = 2, int spillerSøjle = 2)
     {
         Console.Clear();
 
@@ -36,10 +34,10 @@ public class SkærmTegner
             """
         );
 
-        TegnKoordinatSystem(nuværendeLokation.Gitter, spillerRække, spillerSøjle,spilStyrer);
+        TegnKoordinatSystem(nuværendeLokation.Gitter, spilStyrer);
     }
 
-    private static void TegnKoordinatSystem(FeltType[,] gitterRamme, SpilStyrer spillerRække, int spillerSøjle)
+    private static void TegnKoordinatSystem(FeltType[,] gitterRamme, SpilStyrer spilStyrer)
     {
         for (int række = 0; række < gitterRamme.GetLength(0); række++)
         {
@@ -49,10 +47,10 @@ public class SkærmTegner
                 // Her tegner spilleren øverst
                 // In case hvis spilleren står på dette koordinat
                 // TODO: Burde måske lave noget kollisiontjek, så man ikke kan gå på en NPC
-                if (række == spillerRække && søjle == spillerSøjle)
+                if (spilStyrer.ErSpillerPå(søjle, række))
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write(" S");
+                    Console.Write($" S");
                     Console.ResetColor();
                     continue;
                 }

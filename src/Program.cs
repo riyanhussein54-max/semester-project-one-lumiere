@@ -22,7 +22,7 @@ public class Program
         if (BrugerOpretter.Brugertilstand == Brugertilstand.Spiller)
             SpilIntroduktion.UdskrivIntro();
 
-        SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation, _spilStyrer,"");
+        SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening, _spilStyrer.NuværendeLokation, _spilStyrer, "");
         // SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation);
 
         KørSpil();
@@ -40,19 +40,19 @@ public class Program
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    _spilStyrer.BevægSpiller(Retning.North);
+                    _spilStyrer.BevægSpiller(Retning.Nord);
                     break;
 
                 case ConsoleKey.DownArrow:
-                    _spilStyrer.BevægSpiller(Retning.South);
-                    break;
-
-                case ConsoleKey.LeftArrow:
-                    _spilStyrer.BevægSpiller(Retning.West);
+                    _spilStyrer.BevægSpiller(Retning.Syd);
                     break;
 
                 case ConsoleKey.RightArrow:
-                    _spilStyrer.BevægSpiller(Retning.East);
+                    _spilStyrer.BevægSpiller(Retning.Øst);
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    _spilStyrer.BevægSpiller(Retning.Vest);
                     break;
 
                 case ConsoleKey.Escape:
