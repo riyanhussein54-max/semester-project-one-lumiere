@@ -1,7 +1,7 @@
 /// <summary>
 /// Repræsenterer spilleren og håndterer spillerens handlinger og interaktioner.
 /// </summary>
-class Spiller
+public class Spiller
 {
     private string _navn;
     private Rygsæk _rygsæk;
@@ -11,9 +11,10 @@ class Spiller
     /// </summary>
     public Spiller(string navn, Rygsæk rygsæk)
     {
-        this._navn = navn;
-        this._rygsæk = rygsæk;
+        _navn = navn;
+        _rygsæk = rygsæk;
     }
+
     /// <summary>
     /// Angiver den retning, spilleren bevæger sig i.
     /// </summary>
@@ -21,35 +22,26 @@ class Spiller
     {
         Console.WriteLine($"{_navn} bevæger sig mod {retning}");
     }
+
     /// <summary>
     /// Håndterer opsamling af en genstand.
     /// </summary>
-    public void SamlGenstandOp(Genstand genstand)
-    {
+    public void SamlGenstandOp(Genstand genstand) { }
 
-    }
-
-    // TODO: Til NPC parameter når det er
-    
     /// <summary>
     /// Håndterer spillerens interaktion med en NPC.
+    //  TODO: Tilføj NPC parameter når det er
     /// </summary>
-    public void InteragerMedNPC()
-    {
-    }
+    public void InteragerMedNPC() { }
+
     /// <summary>
     /// Viser indholdet af spillerens rygsæk.
     /// </summary>
-    public void KiglRygsæk()
-    {
-        _rygsæk.VisIndhold();
-    }
+    public void KiglRygsæk() => _rygsæk.VisIndhold();
+
     /// <summary>
     /// Forsøger at løse en opgave.
     /// </summary>
-    public bool LøsOpgave()
-    {
-        // sConsole.WriteLine(Navn + " løste en opgave!");
-        return true;
-    }
+    public bool LøsOpgave() => true;
+
 }

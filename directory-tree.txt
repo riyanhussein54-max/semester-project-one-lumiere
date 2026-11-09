@@ -1,10 +1,10 @@
 Project:
 - Title: Lumiére
-- Development Age: 9 days, 11 hours
+- Development Age: 11 days, 2 hours
 
 Codebase Size:
-- C# Files: 18
-- Lines of Code: 637
+- C# Files: 21
+- Lines of Code: 753
 
 src/
 ├── Core/
@@ -17,15 +17,22 @@ src/
 │   ├── Lokation.cs
 │   ├── LokationType.cs
 │   ├── Retning.cs
-│   ├── SLETTES_GrafNode.cs
 │   └── Verden.cs
 ├── Items/
 │   ├── Genstand.cs
 │   └── GenstandPool.cs
+├── NPC/
+│   └── NPC.cs
+├── Player/
+│   ├── Rygsæk.cs
+│   └── Spiller.cs
 ├── Program.cs
-├── Rygsæk.cs
-├── Spiller.cs
-├── TypeWriter.cs
+├── Tasks/
+│   ├── Event.cs
+│   ├── EventType.cs
+│   └── Opgave.cs
+├── Tools/
+│   └── TypeWriter.cs
 └── UI/
     ├── SkærmTegner.cs
     └── SpilIntroduktion.cs
