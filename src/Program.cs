@@ -98,7 +98,7 @@ public class Program
             - R                      Skjul Menu
             - Q                      Forlad spil
 
-            Tryk på Esc for at fortsætte...
+            Tryk på en knap for at fortsætte...
             """
         );
     }
