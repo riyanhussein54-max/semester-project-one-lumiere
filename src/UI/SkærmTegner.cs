@@ -3,54 +3,99 @@
 /// </summary>
 public class SkærmTegner
 {
+    private static bool _visControls = true;
+
+    public static void SkiftMenuSynlighed() => _visControls = !_visControls;
 
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
     /// </summary>
-    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, SpilStyrer spilStyrer, string opgaveNavn = "Ingen", int spillerRække = 2, int spillerSøjle = 2)
+    public static void TegnSkærm(SpilStyrer spilStyrer, string opgaveNavn = "Ingen")
     {
         Console.Clear();
+        TegnTopPanel(spilStyrer, opgaveNavn);
+        Console.WriteLine();
+        TegnKoordinatSystem(spilStyrer.NuværendeLokation.Gitter, spilStyrer);
+    }
 
-        switch (BrugerOpretter.Brugertilstand)
+    private static void TegnTopPanel(SpilStyrer spilStyrer, string opgaveNavn)
+    {
+        string lys = $"{spilStyrer.Lysforurening}%";
+        string lokation = spilStyrer.NuværendeLokation.Navn;
+
+        TegnStatusTop();
+        Console.WriteLine("  ┌─── [Symboler] ───┐");
+
+        Console.Write(FormaterStatusLinje("Lysforurening", lys));
+        Console.WriteLine("  │ & = Dig          │");
+
+        Console.Write(FormaterStatusLinje("Lokation", lokation));
+        Console.WriteLine("  │ # = Udgang/Dør   │");
+
+        Console.Write(FormaterStatusLinje("Opgave", opgaveNavn));
+        Console.WriteLine("  │ ¤ = Genstand     │");
+
+        if (_visControls)
         {
-            case Brugertilstand.Dev:
-                Console.Write("–––––––––––––––––––– [");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("Info");
-                Console.ResetColor();
-                Console.WriteLine("] ––––––––––––––––––––");
-                break;
-            case Brugertilstand.Spiller:
-                Console.WriteLine("–––––––––––––––––––– [Info] ––––––––––––––––––––");
-                break;
+            Console.WriteLine("├──────────────────────────────────────────────────┤  │ @ = NPC          │");
+            Console.WriteLine("│ [WASD] Bevæg   [R] Skjul Menu   [H] Hjælp        │  └──────────────────┘");
+            Console.WriteLine("└──────────────────────────────────────────────────┘");
         }
+        else
+        {
+            Console.WriteLine("└──────────────────────────────────────────────────┘  │ @ = NPC          │");
+            Console.WriteLine("                                                      └──────────────────┘");
+        }
+    }
 
-        Console.WriteLine(
-            $"""
-            | Lysforurening:      {lysforurening,-18} |
-            | Lokation:           {nuværendeLokation.Navn,-18} |
-            | Opgave:             {opgaveNavn,-18} |
-            ––––––––––––––––––––––––––––––––––––––––––––––––
-            """
-        );
+    /// <summary>
+    /// Her udregner vi automatisk antallet af punktummer, så linjen altid er præcis 52 tegn bred
+    ///
+    /// Math.Max bruges i tilfældet af at opgave-stringen bliver for lang, som kan crashe spillet
+    /// </summary>
+    private static string FormaterStatusLinje(string label, string værdi)
+    {
+        int indreBredde = 48; // 50 minus 1 mellemrum i hver side
+        int antalPrikker = Math.Max(2, indreBredde - label.Length - værdi.Length - 2);
+        string prikker = new string('.', antalPrikker);
+        return $"│ {label} {prikker} {værdi} │";
+    }
 
-        TegnKoordinatSystem(nuværendeLokation.Gitter, spilStyrer);
+    private static void TegnStatusTop()
+    {
+        if (BrugerOpretter.Brugertilstand == Brugertilstand.Dev)
+        {
+            Console.Write("┌──────────────────── [");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Status");
+            Console.ResetColor();
+            Console.Write("] ────────────────────┐");
+        }
+        else
+        {
+            Console.Write("┌──────────────────── [Status] ────────────────────┐");
+        }
     }
 
     private static void TegnKoordinatSystem(FeltType[,] gitterRamme, SpilStyrer spilStyrer)
     {
-        for (int række = 0; række < gitterRamme.GetLength(0); række++)
+        int rækker = gitterRamme.GetLength(0);
+        int søjler = gitterRamme.GetLength(1);
+
+        // Centrerer gitteret automatisk under Status-boksen (52 tegn bred)
+        int gitterVisuelBredde = søjler * 2;
+        int venstreMargin = Math.Max(2, (52 - gitterVisuelBredde) / 2);
+        string indrykning = new string(' ', venstreMargin);
+
+        for (int række = 0; række < rækker; række++)
         {
-            Console.Write("|");
-            for (int søjle = 0; søjle < gitterRamme.GetLength(1); søjle++)
+            Console.Write(indrykning);
+            for (int søjle = 0; søjle < søjler; søjle++)
             {
-                // Her tegner spilleren øverst
-                // In case hvis spilleren står på dette koordinat
-                // TODO: Burde måske lave noget kollisiontjek, så man ikke kan gå på en NPC
-                if (spilStyrer.ErSpillerPå(søjle, række))
+                if (spilStyrer.ErSpillerPå(række, søjle))
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write($" S");
+                    Console.Write(" &");
                     Console.ResetColor();
                     continue;
                 }
@@ -59,12 +104,12 @@ public class SkærmTegner
                 {
                     case FeltType.Dør:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write(" ▀");
+                        Console.Write(" #");
                         Console.ResetColor();
                         break;
                     case FeltType.Genstand:
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(" ♦");
+                        Console.Write(" ¤");
                         Console.ResetColor();
                         break;
                     case FeltType.NPC:
@@ -83,7 +128,7 @@ public class SkærmTegner
                         break;
                 }
             }
-            Console.WriteLine(" |");
+            Console.WriteLine();
         }
     }
 }

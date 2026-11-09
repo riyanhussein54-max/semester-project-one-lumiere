@@ -4,7 +4,8 @@
 public class Program
 {
     private static Verden _verden = new Verden();
-    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation);
+    private static Spiller _spiller = new Spiller();
+    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation, _spiller);
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
@@ -20,10 +21,11 @@ public class Program
         BrugerOpretter.VælgAdgangsniveau();
 
         if (BrugerOpretter.Brugertilstand == Brugertilstand.Spiller)
+        {
             SpilIntroduktion.UdskrivIntro();
+        }
 
-        SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening, _spilStyrer.NuværendeLokation, _spilStyrer, "");
-        // SkærmTegner.TegnSkærm(_spilStyrer.Lysforurening,_spilStyrer.NuværendeLokation);
+        SkærmTegner.TegnSkærm(_spilStyrer);
 
         KørSpil();
         AfslutSpil();
@@ -33,38 +35,37 @@ public class Program
     {
         while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
-            Console.Write("\nBrug piletasterne til at bevæge dig, H for hjælpemenu eller Esc for at afslutte: ");
-
             ConsoleKey key = Console.ReadKey(true).Key;
 
+            // TODO: Vi skal bruge Escape knappen senere, når der kommer menuer man kan lukke
             switch (key)
             {
+                case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
                     _spilStyrer.BevægSpiller(Retning.Nord);
                     break;
-
+                case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
                     _spilStyrer.BevægSpiller(Retning.Syd);
                     break;
-
+                case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
                     _spilStyrer.BevægSpiller(Retning.Øst);
                     break;
-
+                case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
                     _spilStyrer.BevægSpiller(Retning.Vest);
                     break;
-
-                case ConsoleKey.Escape:
+                case ConsoleKey.R:
+                    SkærmTegner.SkiftMenuSynlighed();
+                    break;
+                case ConsoleKey.Q:
                     _spilStyrer.AfslutSpil();
                     break;
-
                 case ConsoleKey.H:
                     UdskrivKommandoer();
-                    Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
                     Console.ReadKey(true);
                     break;
-
                 default:
                     Console.WriteLine("Ukendt tast");
                     break;
@@ -72,13 +73,7 @@ public class Program
 
             if (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
             {
-                Console.Clear();
-
-                SkærmTegner.TegnSkærm(
-                    _spilStyrer.Lysforurening,
-                    _spilStyrer.NuværendeLokation,
-                    _spilStyrer
-                );
+                SkærmTegner.TegnSkærm(_spilStyrer);
             }
         }
     }
@@ -95,10 +90,13 @@ public class Program
     {
         Console.WriteLine(
             $"""
-            Muligheder:
-            - esc, quit, exit    Forlad spil
-            - to                 Følg en udgang
-            - h, help            Vis hjælpemenu
+
+            - WASD, Piletaster       Bevæg spilleren
+            - H                      Vis hjælpemenu
+            - R                      Skjul Menu
+            - Q                      Forlad spil
+
+            Tryk på Esc for at fortsætte...
             """
         );
     }
