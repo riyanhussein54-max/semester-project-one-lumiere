@@ -3,7 +3,7 @@ import os
 import re
 from datetime import datetime, timezone
 
-OUTPUT_FILE = "directory-tree.txt"
+OUTPUT_FILE = "../directory-tree.txt"
 START_DATE = datetime.fromisoformat("2026-10-29T15:01:00+02:00")
 
 
@@ -94,16 +94,9 @@ def analyze_codebase(root_dir):
                         largest_class_loc = current_class_lines
                         largest_class_name = temp_class_name
 
-    avg_loc = round(total_loc / file_count) if file_count > 0 else 0
-
     return {
         "file_count": file_count,
         "total_loc": total_loc,
-        "avg_loc": avg_loc,
-        "largest_script_name": largest_script_name,
-        "largest_script_loc": largest_script_loc,
-        "largest_class_name": largest_class_name,
-        "largest_class_loc": largest_class_loc,
     }
 
 

@@ -3,8 +3,8 @@
 /// </summary>
 public class Program
 {
-    private static Verden _world = new Verden();
-    private static SpilStyrer _spilStyrer = new SpilStyrer(_world.GetEntry());
+    private static Verden _verden = new Verden();
+    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation);
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
@@ -54,7 +54,7 @@ public class Program
                         Console.WriteLine("Jeg kan ikke helt finde ud af hvor det er for et sted");
                         return;
                     }
-                    _spilStyrer.Transition(parametre[0]);
+                    // FJERN_spilStyrer.Transition(parametre[0]);
                     break;
                 case "h":
                 case "help":

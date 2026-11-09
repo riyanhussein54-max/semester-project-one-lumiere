@@ -1,13 +1,14 @@
-class SkærmTegner
+public class SkærmTegner
 {
-    private static readonly int _bredde = 7, _længde = 11;
-    private static readonly int _playerX = 2, _playerY = 4;
-    private static readonly int[,] _gitter = new int[_bredde, _længde];
-
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
     /// </summary>
-    public static void TegnSkærm(int lysforurening, Lokation nuværendeLokation, string opgaveNavn = "Ingen")
+    public static void TegnSkærm(
+        int lysforurening,
+        Lokation nuværendeLokation,
+        string opgaveNavn = "Ingen",
+        int spillerRække = 2,
+        int spillerSøjle = 2)
     {
         Console.Clear();
 
@@ -28,31 +29,62 @@ class SkærmTegner
         Console.WriteLine(
             $"""
             | Lysforurening:      {lysforurening,-18} |
-            | Lokation:           {nuværendeLokation.GetName(),-18} |
+            | Lokation:           {nuværendeLokation.Navn,-18} |
             | Opgave:             {opgaveNavn,-18} |
             ––––––––––––––––––––––––––––––––––––––––––––––––
             """
         );
 
-        TegnKoordinatSystem(_gitter);
+        TegnKoordinatSystem(nuværendeLokation.Gitter, spillerRække, spillerSøjle);
     }
 
-    private static void TegnKoordinatSystem(int[,] gitterRamme)
+    private static void TegnKoordinatSystem(FeltType[,] gitterRamme, int spillerRække, int spillerSøjle)
     {
         for (int række = 0; række < gitterRamme.GetLength(0); række++)
         {
-            Console.Write($"| ·");
+            Console.Write("|");
             for (int søjle = 0; søjle < gitterRamme.GetLength(1); søjle++)
             {
-                // TODO: Her skal spiller-position kobles på i stedet for faste koordinater
-                if (række == 3 && søjle == 7)
+                // Her tegner spilleren øverst
+                // In case hvis spilleren står på dette koordinat
+                // TODO: Burde måske lave noget kollisiontjek, så man ikke kan gå på en NPC
+                if (række == spillerRække && søjle == spillerSøjle)
                 {
-                    Console.Write($" S");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(" S");
+                    Console.ResetColor();
                     continue;
                 }
-                Console.Write($" ·");
+
+                switch (gitterRamme[række, søjle])
+                {
+                    case FeltType.Dør:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(" ▀");
+                        Console.ResetColor();
+                        break;
+                    case FeltType.Genstand:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(" ♦");
+                        Console.ResetColor();
+                        break;
+                    case FeltType.NPC:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.Write(" @");
+                        Console.ResetColor();
+                        break;
+                    case FeltType.Væg:
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.Write(" #");
+                        Console.ResetColor();
+                        break;
+                    case FeltType.Gulv:
+                    default:
+                        Console.Write(" ·");
+                        break;
+                }
             }
-            Console.WriteLine();
+            Console.WriteLine(" |");
         }
     }
 }
