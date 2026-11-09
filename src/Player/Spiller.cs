@@ -3,45 +3,34 @@
 /// </summary>
 public class Spiller
 {
+    [Obsolete("Find ud af hvad vi skal bruge navnet til. Ellers slet det")]
     private string _navn;
     private Rygsæk _rygsæk;
 
-    /// <summary>
-    /// Opretter en spiller med et navn og en rygsæk.
-    /// </summary>
-    public Spiller(string navn, Rygsæk rygsæk)
+    public int Række { get; private set; }
+    public int Søjle { get; private set; }
+
+    public (int Række, int Søjle) BeregnNæstePosition(Retning retning)
     {
-        _navn = navn;
-        _rygsæk = rygsæk;
+        return retning switch
+        {
+            Retning.Nord => (Række - 1, Søjle),
+            Retning.Syd => (Række + 1, Søjle),
+            Retning.Vest => (Række, Søjle - 1),
+            Retning.Øst => (Række, Søjle + 1),
+            _ => (Række, Søjle)
+        };
     }
 
-    /// <summary>
-    /// Angiver den retning, spilleren bevæger sig i.
-    /// </summary>
-    public void Bevæg(string retning)
+    public void SætPosition(int række, int søjle)
     {
-        Console.WriteLine($"{_navn} bevæger sig mod {retning}");
+        Række = række;
+        Søjle = søjle;
     }
 
-    /// <summary>
-    /// Håndterer opsamling af en genstand.
-    /// </summary>
+    // Skal implementeres:
     public void SamlGenstandOp(Genstand genstand) { }
-
-    /// <summary>
-    /// Håndterer spillerens interaktion med en NPC.
-    //  TODO: Tilføj NPC parameter når det er
-    /// </summary>
-    public void InteragerMedNPC() { }
-
-    /// <summary>
-    /// Viser indholdet af spillerens rygsæk.
-    /// </summary>
+    public void InteragerMedNPC(NPC npc) { }
     public void KiglRygsæk() => _rygsæk.VisIndhold();
-
-    /// <summary>
-    /// Forsøger at løse en opgave.
-    /// </summary>
     public bool LøsOpgave() => true;
-
 }
