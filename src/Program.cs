@@ -102,16 +102,4 @@ public class Program
             """
         );
     }
-
-    private static string[] HentParametre(string[] input)
-    {
-        string[] output = new string[input.Length - 1];
-
-        for (int i = 0; i < output.Length; i++)
-        {
-            output[i] = input[i + 1];
-        }
-
-        return output;
-    }
 }
