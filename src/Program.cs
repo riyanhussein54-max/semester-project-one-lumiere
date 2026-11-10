@@ -65,7 +65,7 @@ public class Program
                 case ConsoleKey.Q:
                 case ConsoleKey.Escape:
                     // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
-                    _spilStyrer.AfslutSpil();
+                    _spilStyrer.SætSpilStatusTilSlut();
                     break;
                 default:
                     Console.WriteLine("Ukendt tast");
