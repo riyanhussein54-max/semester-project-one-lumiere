@@ -14,13 +14,6 @@ public class SpilStyrer
         SætSpillerStartPosition(startLokation);
     }
 
-    private void SætSpillerStartPosition(Lokation startLokation)
-    {
-        int startRække = startLokation.Gitter.GetLength(0) / 2;
-        int startSøjle = startLokation.Gitter.GetLength(1) / 2;
-        Spiller.SætPosition(startRække, startSøjle);
-    }
-
     public int Lysforurening { get; private set; } = 100;
     public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
@@ -55,6 +48,21 @@ public class SpilStyrer
                søjle >= 0 && søjle < maxSøjler;
     }
 
+    public bool ErSpillerPå(int række, int søjle)
+    {
+        return Spiller.Række == række && Spiller.Søjle == søjle;
+    }
+
+    public void SætSpilStatusTilSlut() => status = SpilStatus.Slut;
+    public SpilStatus TjekStatus() => status;
+
+    private void SætSpillerStartPosition(Lokation startLokation)
+    {
+        int startRække = startLokation.Gitter.GetLength(0) / 2;
+        int startSøjle = startLokation.Gitter.GetLength(1) / 2;
+        Spiller.SætPosition(startRække, startSøjle);
+    }
+
     private bool TjekOgUdførDørSkift(int række, int søjle, out (int Række, int Søjle) nySpillerPosition)
     {
         nySpillerPosition = (række, søjle);
@@ -74,12 +82,4 @@ public class SpilStyrer
         NuværendeLokation = næste;
         return true;
     }
-
-    public bool ErSpillerPå(int række, int søjle)
-    {
-        return Spiller.Række == række && Spiller.Søjle == søjle;
-    }
-
-    public void AfslutSpil() => status = SpilStatus.Slut;
-    public SpilStatus TjekStatus() => status;
 }

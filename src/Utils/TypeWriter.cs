@@ -7,15 +7,16 @@ public static class TypeWriter
 
     public static void PrintLine(string text)
     {
-        char[] Letter = text.ToCharArray();
-        for (int i = 0; i < Letter.Length; i++)
-        {
-            Console.Write(Letter[i]);
-            Thread.Sleep(Speed);
-        }
+        PrintBogstaver(text);
         Console.Write("\n");
     }
+
     public static void Print(string text)
+    {
+        PrintBogstaver(text);
+    }
+
+    private static void PrintBogstaver(string text)
     {
         char[] Letter = text.ToCharArray();
         for (int i = 0; i < Letter.Length; i++)
