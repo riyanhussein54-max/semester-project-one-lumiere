@@ -5,13 +5,14 @@ public static class MenuTegner
         Console.Clear();
         Console.WriteLine(
             $"""
-
-            - WASD, Piletaster       Bevæg spilleren
-            - H                      Vis hjælpemenu
-            - R                      Skjul Menu
-            - Q                      Forlad spil
-
-            Tryk på en knap for at fortsætte...
+            ┌──────────────────── [Hjælp] ────────────────────┐
+            │ WASD, Piletaster ______________ Bevæg spilleren │
+            │ H ______________________________ Vis hjælpemenu │
+            │ R __________________________________ Skjul Menu │
+            │ Q ______________________________ Forlad spillet │
+            ├─────────────────────────────────────────────────┤
+            │ Tryk på en valgfri knap for at fortsætte...     │
+            └─────────────────────────────────────────────────┘
             """
         );
     }
