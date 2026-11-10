@@ -58,14 +58,14 @@ public class Program
                 case ConsoleKey.R:
                     SkærmTegner.SkiftMenuSynlighed();
                     break;
+                case ConsoleKey.H:
+                    MenuTegner.VisKommandoMenu();
+                    Console.ReadKey(true);
+                    break;
                 case ConsoleKey.Q:
                 case ConsoleKey.Escape:
                     // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
                     _spilStyrer.AfslutSpil();
-                    break;
-                case ConsoleKey.H:
-                    UdskrivKommandoer();
-                    Console.ReadKey(true);
                     break;
                 default:
                     Console.WriteLine("Ukendt tast");
@@ -85,21 +85,5 @@ public class Program
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Spillet er slut.");
         Console.ResetColor();
-    }
-
-    private static void UdskrivKommandoer()
-    {
-        Console.Clear();
-        Console.WriteLine(
-            $"""
-
-            - WASD, Piletaster       Bevæg spilleren
-            - H                      Vis hjælpemenu
-            - R                      Skjul Menu
-            - Q                      Forlad spil
-
-            Tryk på en knap for at fortsætte...
-            """
-        );
     }
 }
