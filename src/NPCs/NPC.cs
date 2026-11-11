@@ -1,16 +1,21 @@
 public class NPC
 {
-    private string _navn;
+    // private variables/parametre
+    private Person _person;
+    private string _navn => _person.ToString();
     private Event _ev;
+    private (int r, int s) _position { get; set; }
 
-    public NPC(string navn, Event ev)
+    // constructor
+    public NPC(Person person, Event ev, int r, int s)
     {
-        // Safeguarding
-        if (navn != "")
-            _navn = navn;
+        if (person)
+            _person = person;
 
         if (ev != null)
             _ev = ev;
+
+        _position = (r, s);
     }
 
     public void UdløsEvent()
