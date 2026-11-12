@@ -31,7 +31,7 @@ public static class GenstandPool
 
     // Zehra
     public static Genstand RaSkulptur = new(GenstandType.RaSkulptur,"");
-    
+}
     /*
     private static List<Genstand> _genstande =
     [
