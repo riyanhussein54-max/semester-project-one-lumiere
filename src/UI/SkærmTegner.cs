@@ -66,9 +66,7 @@ public class SkærmTegner
         if (BrugerOpretter.Brugertilstand == Brugertilstand.Dev)
         {
             Console.Write("┌──────────────────── [");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("Status");
-            Console.ResetColor();
+            Color.Write("Status", ConsoleColor.Red);
             Console.Write("] ────────────────────┐");
         }
         else
