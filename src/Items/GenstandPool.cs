@@ -1,3 +1,6 @@
+/// <summary>
+/// GenstandPool-klassen opbevarer og udleverer alle spillets genstande.
+/// </summary>
 public static class GenstandPool
 {
     private static List<Genstand> _genstande =
