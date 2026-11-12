@@ -3,12 +3,16 @@
 /// </summary>
 public class Genstand
 {
-    public string Navn { get; private set; }
     public string Beskrivelse { get; private set; }
+    public GenstandType Type { get; private set; }
 
-    public Genstand(string navn, string beskrivelse)
+    public Genstand(GenstandType type, string beskrivelse)
     {
-        Navn = navn;
         Beskrivelse = beskrivelse;
+        Type = type;
     }
+
+    public string Navn => Type.ToString();
+
+    public Genstand Kopier() => new Genstand(Type, Beskrivelse);
 }
