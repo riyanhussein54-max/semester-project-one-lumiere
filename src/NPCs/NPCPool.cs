@@ -1,6 +1,6 @@
 public static class NPCPool
 {
-    private List<NPC> _npcPool = new List<NPC>();
+    private static List<NPC> _npcPool = new List<NPC>();
 
     public static void TilføjNPCTilPool(NPC npc)
     {
