@@ -7,13 +7,10 @@ public class NPC
     private (int r, int s) _position { get; set; }
 
     // constructor
-    public NPC(Person person, Event ev, int r, int s)
+    public NPC(Person person, int r, int s)
     {
         if (person)
             _person = person;
-
-        if (ev != null)
-            _ev = ev;
 
         _position = (r, s);
     }
