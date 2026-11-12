@@ -5,10 +5,12 @@ public class Genstand
 {
     public string Navn { get; private set; }
     public string Beskrivelse { get; private set; }
+    public GenstandType Type { get; private set; }
 
-    public Genstand(string navn, string beskrivelse)
+    public Genstand(string navn, string beskrivelse, GenstandType type)
     {
         Navn = navn;
         Beskrivelse = beskrivelse;
+        Type = type;
     }
 }
