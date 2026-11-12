@@ -1,4 +1,4 @@
-public enum Person
+public enum NPCType
 {
     Zehra,
     Muhsin,
