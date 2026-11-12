@@ -1,17 +1,16 @@
 public class NPC
 {
-    private string _navn;
+    private NPCType _person;
     private Event _ev;
+    private (int r, int s) _position { get; set; }
 
-    public NPC(string navn, Event ev)
+    public NPC(NPCType person, int række, int søjle)
     {
-        // Safeguarding
-        if (navn != "")
-            _navn = navn;
-
-        if (ev != null)
-            _ev = ev;
+        _person = person;
+        _position = (række, søjle);
     }
+
+    public string Navn => _person.ToString();
 
     public void UdløsEvent()
     {
