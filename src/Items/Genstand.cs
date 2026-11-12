@@ -13,4 +13,12 @@ public class Genstand
         Beskrivelse = beskrivelse;
         Type = type;
     }
+    public Genstand Kopier()
+    {
+        return new Genstand(Type, Navn, Beskrivelse);
+    }
+    public override string ToString()
+    {
+        return $"{Navn}:{Beskrivelse}";
+    }
 }
