@@ -18,6 +18,7 @@ public static class MenuTegner
     }
 
     public static void VisRygsækMenu() => throw new NotImplementedException();
+    public static void VisNPCDialogMenu() => throw new NotImplementedException();
     public static void VisOpgaveMenu() => throw new NotImplementedException();
     public static void VisKortMenu() => throw new NotImplementedException();
 }
