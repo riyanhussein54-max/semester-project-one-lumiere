@@ -9,7 +9,7 @@ public class NPC
     // constructor
     public NPC(Person person, int r, int s)
     {
-        if (person)
+        if (person != null)
             _person = person;
 
         _position = (r, s);
