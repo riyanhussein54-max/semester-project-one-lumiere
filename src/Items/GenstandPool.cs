@@ -34,6 +34,9 @@ public static class GenstandPool
         // // Zehra
         // RaSkulptur
     ];
+    /// <summary>
+    /// Henter en kopi af en genstand ud fra dens GenstandType.
+    /// </summary>
     public static Genstand HentGenstand(GenstandType type)
     {
         foreach (Genstand genstand in _genstande)
