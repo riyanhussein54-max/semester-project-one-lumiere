@@ -23,20 +23,18 @@ public class Lokation
 
     // Lavet "Genstand" om til en dictionary så vi kan spawne flere genstande i en lokation
     //public Genstand? Genstand { get; private set; }
-    private Dictionary<(int r, int s), Genstand>? _genstande = new();
+    private Dictionary<(int r, int s), Genstand> _genstande = new();
 
     // NPC dictionary så vi kan spawn flere npcer i en lokation
-    private Dictionary<(int r, int s), NPC>? _npcs = new();
+    private Dictionary<(int r, int s), NPC> _npcs = new();
 
     /// <summary>
     /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
     /// Genstande udskrives med den genstand symbol "¤"
     /// </summary>
-    public void SpawnGenstand(Genstand? genstand, int r, int s)
+    public void SpawnGenstand(Genstand genstand, int r, int s)
     {
-        if (genstand != null)
-            _genstande[(r, s)] = genstand;
-
+        _genstande[(r, s)] = genstand;
         Gitter[r, s] = FeltType.Genstand;
     }
 
