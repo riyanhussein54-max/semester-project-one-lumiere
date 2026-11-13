@@ -77,4 +77,18 @@ public class Verden
         _lokationer[fra].TilføjUdgang(retningFra, _lokationer[til]);
         _lokationer[til].TilføjUdgang(retningTil, _lokationer[fra]);
     }
+
+    /// <summary>
+    /// Spawner NPCs fra NPCPool i specifikke defineret lokationer.
+    ///(Tjek "SpawnNPC" funktionen i "Lokation.cs" for mere info.)
+    /// </summary>
+    private void SpawnNPCer()
+    {
+        _lokationer[LokationType.Park].SpawnNPC(NPCPool.Lucius);
+        _lokationer[LokationType.Station].SpawnNPC(NPCPool.Adam);
+        _lokationer[LokationType.Nabo].SpawnNPC(NPCPool.Zehra);
+        _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Muhsin);
+        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Riyan);
+        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Ivana);
+    }
 }
