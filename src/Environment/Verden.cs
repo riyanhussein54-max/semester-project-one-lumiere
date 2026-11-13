@@ -13,6 +13,8 @@ public class Verden
     {
         OpretLokationer();
         ForbindLokationer();
+        SpawnNPCer();
+
         StartLokation = _lokationer[LokationType.Hjem];
     }
 
