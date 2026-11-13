@@ -9,7 +9,7 @@ public class Lokation
 
     private readonly Dictionary<Retning, Lokation> _udgange = new();
 
-    public Lokation(LokationType lokationType, FeltType[,] gitter, /* Genstand? genstand = null */)
+    public Lokation(LokationType lokationType, FeltType[,] gitter /* Genstand? genstand = null */)
     {
         Type = lokationType;
         Gitter = gitter;
@@ -32,9 +32,11 @@ public class Lokation
     /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
     /// Genstande udskrives med den genstand symbol "¤"
     /// </summary>
-    public void SpawnGenstand(Genstand genstand, int r, int s)
+    public void SpawnGenstand(Genstand? genstand, int r, int s)
     {
-        _genstande[(r, s)] = genstand;
+        if (genstand != null)
+            _genstande[(r, s)] = genstand;
+
         Gitter[r, s] = FeltType.Genstand;
     }
 
