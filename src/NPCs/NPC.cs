@@ -18,25 +18,7 @@ public class NPC
     {
         if (_ev != null)
         {
-            // bestemmer hvilket methode at køre (hvilket slags event at udløse) afhængigt af "eventType"-parameteren
-            /*
-            switch (_ev.eventType)
-            {
-                case "dialog":
-                    _ev.DialogLæser();
-                    break;
-                case "opgave":
-                    _ev.UdløsOpgave();
-                    break;
-                // Begge? hvis der er brug for det
-                case "begge":
-                    _ev.DialogLæser();
-                    _ev.UdløsOpgave();
-                    break;
-                default:
-                    break;
-            }
-             */
+            // TODO: udløse npc events og opgaver
         }
     }
 }
