@@ -42,8 +42,11 @@ public class Lokation
     /// Spawner en eller flere npc(er) i spillet ved angivet koordinater
     /// Genstande udskrives med den genstand symbol "@"
     /// </summary>
-    public void SpawnNPC(NPC npc, int r, int s)
+    public void SpawnNPC(NPC npc)
     {
+        int r = npc.position.r;
+        int s = npc.position.s;
+
         _npcs[(r, s)] = npc;
         Gitter[r, s] = FeltType.NPC;
     }
