@@ -8,5 +8,15 @@ public enum LokationType
     Park,
     Bytorv,
     Station,
-    BobsHus
+    BobsHus,
+
+    // npc specifikke lokationer udefra spilleverden design
+    // TODO: evt bedre navngivning
+    Centrum,
+    TekKontor,
+    TekBygningIndgang,
+    Kælder,
+    ZehrasHjem,
+    IvanaRiyansHjem,
+    SecretRoom
 }
