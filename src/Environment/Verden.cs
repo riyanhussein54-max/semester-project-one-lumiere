@@ -9,11 +9,15 @@ public class Verden
     /// </summary>
     private readonly Dictionary<LokationType, Lokation> _lokationer = new();
 
+    /// <summary>
+    /// Husk at ligge funktioner der skal køres her.
+    /// </summary>
     public Verden()
     {
         OpretLokationer();
         ForbindLokationer();
         SpawnNPCer();
+        SpawnGenstande();
 
         StartLokation = _lokationer[LokationType.Hjem];
     }
@@ -70,6 +74,7 @@ public class Verden
         Forbind(LokationType.Park, Retning.Nord, LokationType.GadeN, Retning.Syd);
         Forbind(LokationType.GadeN, Retning.Vest, LokationType.BobsHus, Retning.Øst);
 
+        // Tek Bygningen ligger nord af bytorvet
         Forbind(LokationType.Bytorv, Retning.Nord, LokationType.TekBygningIndgang, Retning.Syd);
         Forbind(LokationType.TekBygningIndgang, Retning.Øst, LokationType.TekKontor, Retning.Vest);
     }
@@ -97,5 +102,15 @@ public class Verden
         _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Zehra);
         _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Riyan);
         _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Ivana);
+    }
+
+    /// <summary>
+    /// Spawner Genstande fra GenstandPool i specifikke defineret lokationer.
+    ///(Tjek "SpawnGenstand" funktionen i "Lokation.cs" for mere info.)
+    /// </summary>
+    /// TODO få evt genstande fra genstandpool
+    private void SpawnGenstande()
+    {
+        _lokationer[LokationType.Bytorv].SpawnGenstand(new(GenstandType.RaSkulptur, "Ra Skulptur."), 7, 2);
     }
 }
