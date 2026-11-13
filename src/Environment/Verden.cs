@@ -37,6 +37,9 @@ public class Verden
         Tilføj(new Lokation(LokationType.GadeØ, new FeltType[7, 10]));
         Tilføj(new Lokation(LokationType.Nabo, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.Station, new FeltType[11, 6]));
+
+        Tilføj(new Lokation(LokationType.TekBygningIndgang, new FeltType[4, 14]));
+        Tilføj(new Lokation(LokationType.TekKontor, new FeltType[5, 7]));
     }
 
     /// <summary>
@@ -67,6 +70,8 @@ public class Verden
         Forbind(LokationType.Park, Retning.Nord, LokationType.GadeN, Retning.Syd);
         Forbind(LokationType.GadeN, Retning.Vest, LokationType.BobsHus, Retning.Øst);
 
+        Forbind(LokationType.Bytorv, Retning.Nord, LokationType.TekBygningIndgang, Retning.Syd);
+        Forbind(LokationType.TekBygningIndgang, Retning.Øst, LokationType.TekKontor, Retning.Vest);
     }
 
     /// <summary>
@@ -88,8 +93,8 @@ public class Verden
     {
         _lokationer[LokationType.Park].SpawnNPC(NPCPool.Lucius);
         _lokationer[LokationType.Station].SpawnNPC(NPCPool.Adam);
-        _lokationer[LokationType.Nabo].SpawnNPC(NPCPool.Zehra);
-        _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Muhsin);
+        _lokationer[LokationType.TekKontor].SpawnNPC(NPCPool.Muhsin);
+        _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Zehra);
         _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Riyan);
         _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Ivana);
     }
