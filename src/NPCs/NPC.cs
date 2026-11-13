@@ -2,12 +2,14 @@ public class NPC
 {
     private NPCType _person;
     private Event _ev;
-    private (int r, int s) _position { get; set; }
+
+    // npc position er public så npc spawn funktionen kan få fat til den
+    public (int r, int s) position { get; set; }
 
     public NPC(NPCType person, int række, int søjle)
     {
         _person = person;
-        _position = (række, søjle);
+        position = (række, søjle);
     }
 
     public string Navn => _person.ToString();
