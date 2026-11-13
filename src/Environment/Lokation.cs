@@ -19,16 +19,36 @@ public class Lokation
     public LokationType Type { get; private set; }
     public FeltType[,] Gitter { get; private set; }
 
+    /// -------------------- Ivanas ændringer START ----------------------------
 
-    /// Ivanas ændringer START
     // Lavet "Genstand" om til en dictionary så vi kan spawne flere genstande i en lokation
     //public Genstand? Genstand { get; private set; }
     private Dictionary<(int r, int s), Genstand>? _genstande = new();
 
-    // NPC dictionary så der kan spawnes flere npc i en lokation
+    // NPC dictionary så vi kan spawn flere npcer i en lokation
     private Dictionary<(int r, int s), NPC>? _npcs = new();
 
-    /// Ivanas ændringer SLUT
+    /// <summary>
+    /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
+    /// Genstande udskrives med den genstand symbol "¤"
+    /// </summary>
+    public void SpawnGenstand(Genstand genstand, int r, int s)
+    {
+        _genstande[(r, s)] = genstand;
+        Gitter[r, s] = FeltType.Genstand;
+    }
+
+    /// <summary>
+    /// Spawner en eller flere npc(er) i spillet ved angivet koordinater
+    /// Genstande udskrives med den genstand symbol "@"
+    /// </summary>
+    public void SpawnNPC(NPC npc, int r, int s)
+    {
+        _npcs[(r, s)] = npc;
+        Gitter[r, s] = FeltType.NPC;
+    }
+
+    /// -------------------- Ivanas ændringer SLUT ----------------------------
 
     public string Navn
     {
