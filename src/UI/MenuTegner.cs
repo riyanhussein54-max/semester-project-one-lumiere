@@ -40,7 +40,6 @@ public static class MenuTegner
 
         for (int i = 0; i < rækker; i++)
         {
-            // Top borders
             for (int j = 0; j < søjler; j++)
             {
                 string rum = kortLayout[i, j];
@@ -55,8 +54,6 @@ public static class MenuTegner
             }
 
             Console.WriteLine();
-
-            // Room names and horizontal connections
             for (int j = 0; j < søjler; j++)
             {
                 string rum = kortLayout[i, j];
@@ -66,50 +63,33 @@ public static class MenuTegner
                 else
                     Console.Write("             ");
 
-                bool harRumTilHøjre =
-                    j + 1 < søjler &&
-                    rum != "" &&
-                    kortLayout[i, j + 1] != "";
-
+                bool harRumTilHøjre = j + 1 < søjler && rum != "" && kortLayout[i, j + 1] != "";
                 if (j < søjler - 1)
                     Console.Write(harRumTilHøjre ? "──" : "  ");
             }
-
             Console.WriteLine();
-
-            // Bottom borders
             for (int j = 0; j < søjler; j++)
             {
                 string rum = kortLayout[i, j];
-
                 if (rum != "")
                     Console.Write("└───────────┘");
                 else
                     Console.Write("             ");
-
                 if (j < søjler - 1)
                     Console.Write("  ");
             }
-
             Console.WriteLine();
-
-            // Vertical connections
             if (i < rækker - 1)
             {
                 for (int j = 0; j < søjler; j++)
                 {
-                    bool harRumUnder =
-                        kortLayout[i, j] != "" &&
-                        kortLayout[i + 1, j] != "";
-
+                    bool harRumUnder = kortLayout[i, j] != "" && kortLayout[i + 1, j] != "";
                     Console.Write("      ");
                     Console.Write(harRumUnder ? "│" : " ");
                     Console.Write("      ");
-
                     if (j < søjler - 1)
                         Console.Write("  ");
                 }
-
                 Console.WriteLine();
             }
         }
