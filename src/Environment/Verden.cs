@@ -108,9 +108,9 @@ public class Verden
     /// Spawner Genstande fra GenstandPool i specifikke defineret lokationer.
     ///(Tjek "SpawnGenstand" funktionen i "Lokation.cs" for mere info.)
     /// </summary>
-    /// TODO få evt genstande fra genstandpool
     private void SpawnGenstande()
     {
+        /// TODO få evt genstande fra genstandpool
         _lokationer[LokationType.Bytorv].SpawnGenstand(new(GenstandType.RaSkulptur, "Ra Skulptur."), 7, 2);
     }
 }
