@@ -63,7 +63,7 @@ public class Program
                     Console.ReadKey(true);
                     break;
                 case ConsoleKey.I:
-                    MenuTegner.VisRygsækMenu();
+                    MenuTegner.VisRygsækMenu(_spiller);
                     Console.ReadKey(true);
                     break;
                 case ConsoleKey.Q:
