@@ -6,6 +6,7 @@ public class Program
     private static Verden _verden = new Verden();
     private static Spiller _spiller = new Spiller();
     private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation, _spiller);
+    private static Event _testEvent = DialogPool.OpretTestEventAnden();
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
@@ -39,6 +40,15 @@ public class Program
 
             switch (key)
             {
+                // Test for at trigger en dialog
+                case ConsoleKey.T:
+                    Replik[] replikker = _testEvent.HentAktuelDialog(_spilStyrer);
+                    MenuTegner.VisNPCDialogMenu("Zehra", replikker);
+                    break;
+                // Test simulation at spilleren har løst sin nuværende opgave
+                case ConsoleKey.Y:
+                    _spilStyrer.NuværendeOpgave?.MarkerSomFuldført();
+                    break;
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
                     _spilStyrer.BevægSpiller(Retning.Nord);
