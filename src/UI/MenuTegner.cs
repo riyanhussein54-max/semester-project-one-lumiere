@@ -19,6 +19,22 @@ public static class MenuTegner
 
     public static void VisRygsækMenu() => throw new NotImplementedException();
     public static void VisNPCDialogMenu() => throw new NotImplementedException();
-    public static void VisOpgaveMenu() => throw new NotImplementedException();
+    public static void VisOpgaveMenu()
+    {
+        Console.Clear();
+        Console.WriteLine(
+            """
+            ┌──────────────────── [Opgaver] ──────────────────┐
+            │                                                 │
+            │                   DINE OPGAVER                  │
+            │   Her vises dine aktuelle opgaver.              │
+            │                                                 │
+            ├─────────────────────────────────────────────────┤
+            │ Tryk på en valgfri knap for at fortsætte...     │
+            └─────────────────────────────────────────────────┘
+            """
+        );
+        Console.RedKey(true);
+    }
     public static void VisKortMenu() => throw new NotImplementedException();
 }
