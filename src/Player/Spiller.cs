@@ -5,7 +5,8 @@ public class Spiller
 {
     [Obsolete("Find ud af hvad vi skal bruge navnet til. Ellers slet det")]
     private string _navn;
-    private Rygsæk _rygsæk;
+    //private Rygsæk _rygsæk;
+    private Rygsæk _rygsæk = new Rygsæk();
 
     public int Række { get; private set; }
     public int Søjle { get; private set; }
