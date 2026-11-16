@@ -7,6 +7,10 @@ public class Rygsæk
 
     // Skal implementeres:
     public void TilføjGenstand(Genstand genstand) => _genstande.Add(genstand);
+
+    /// <summary>
+    /// Print rygsækkets indhold. Bruges i "MenuTegner.cs" til "VisRygsækMenu"
+    /// </summary>
     public void VisIndhold()
     {
         if (_genstande.Count > 0)
@@ -32,7 +36,13 @@ public class Rygsæk
         }
     }
 
-    private static string FormaterStatusLinjeRygsæk(Genstand g)
+    // TODO: bedre formatterings funktion
+    // evt. kode så hvis linjens tekst er for langt den udskriver resten på den næste linje
+    /// <summary>
+    /// Kopi af FormaterStatusLinje funktionen fra "Skærmtegner".
+    /// Viser genstandens navn og beskrivelse.
+    /// </summary>
+    private static string FormaterRygsækMenuLinje(Genstand g)
     {
         int indreBredde = 51;
         string navn = g.Navn;

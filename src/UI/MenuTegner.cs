@@ -18,6 +18,10 @@ public static class MenuTegner
     }
 
     //public static void VisRygsækMenu() => throw new NotImplementedException();
+    /// <summary>
+    /// Viser spillerens inventory/rygsæks indhold ved at trykke på I-knappen.
+    /// Tjek "VisIndhold()" funktionen i Player/Rygsæk.cs for mere info.
+    /// </summary>
     public static void VisRygsækMenu(Spiller s)
     {
         Console.Clear();
