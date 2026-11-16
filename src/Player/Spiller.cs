@@ -8,6 +8,13 @@ public class Spiller
     //private Rygsæk _rygsæk;
     private Rygsæk _rygsæk = new Rygsæk();
 
+    public Spiller()
+    {
+        // Hurtigt genstand test, kan godt fjernes
+        _rygsæk.TilføjGenstand(new Genstand(GenstandType.RaSkulptur, "En gylden skulptur af den egyptiske gud Ra."));
+        _rygsæk.TilføjGenstand(new Genstand(GenstandType.Radio, "En lille grå radio."));
+    }
+
     public int Række { get; private set; }
     public int Søjle { get; private set; }
 
