@@ -4,7 +4,6 @@ public class SpilIntroduktion
     public static void UdskrivIntro()
     {
         Console.Clear();
-
         Thread.Sleep(500);
 
         TypeWriter.Print("Velkommen til Lumiére.");
