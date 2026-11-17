@@ -9,10 +9,16 @@ public class Verden
     /// </summary>
     private readonly Dictionary<LokationType, Lokation> _lokationer = new();
 
+    /// <summary>
+    /// Husk at ligge funktioner der skal køres her.
+    /// </summary>
     public Verden()
     {
         OpretLokationer();
         ForbindLokationer();
+        SpawnNPCer();
+        SpawnGenstande();
+
         StartLokation = _lokationer[LokationType.Hjem];
     }
 
@@ -35,6 +41,9 @@ public class Verden
         Tilføj(new Lokation(LokationType.GadeØ, new FeltType[7, 10]));
         Tilføj(new Lokation(LokationType.Nabo, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.Station, new FeltType[11, 6]));
+
+        Tilføj(new Lokation(LokationType.TekBygningIndgang, new FeltType[4, 14]));
+        Tilføj(new Lokation(LokationType.TekKontor, new FeltType[5, 7]));
     }
 
     /// <summary>
@@ -65,6 +74,9 @@ public class Verden
         Forbind(LokationType.Park, Retning.Nord, LokationType.GadeN, Retning.Syd);
         Forbind(LokationType.GadeN, Retning.Vest, LokationType.BobsHus, Retning.Øst);
 
+        // Tek Bygningen ligger nord af bytorvet
+        Forbind(LokationType.Bytorv, Retning.Nord, LokationType.TekBygningIndgang, Retning.Syd);
+        Forbind(LokationType.TekBygningIndgang, Retning.Øst, LokationType.TekKontor, Retning.Vest);
     }
 
     /// <summary>
@@ -76,5 +88,29 @@ public class Verden
     {
         _lokationer[fra].TilføjUdgang(retningFra, _lokationer[til]);
         _lokationer[til].TilføjUdgang(retningTil, _lokationer[fra]);
+    }
+
+    /// <summary>
+    /// Spawner NPCs fra NPCPool i specifikke defineret lokationer.
+    ///(Tjek "SpawnNPC" funktionen i "Lokation.cs" for mere info.)
+    /// </summary>
+    private void SpawnNPCer()
+    {
+        _lokationer[LokationType.Park].SpawnNPC(NPCPool.Lucius);
+        _lokationer[LokationType.Station].SpawnNPC(NPCPool.Adam);
+        _lokationer[LokationType.TekKontor].SpawnNPC(NPCPool.Muhsin);
+        _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Zehra);
+        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Riyan);
+        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Ivana);
+    }
+
+    /// <summary>
+    /// Spawner Genstande fra GenstandPool i specifikke defineret lokationer.
+    ///(Tjek "SpawnGenstand" funktionen i "Lokation.cs" for mere info.)
+    /// </summary>
+    private void SpawnGenstande()
+    {
+        /// TODO få evt genstande fra genstandpool
+        _lokationer[LokationType.Bytorv].SpawnGenstand(new(GenstandType.RaSkulptur, "Ra Skulptur."), 7, 2);
     }
 }
