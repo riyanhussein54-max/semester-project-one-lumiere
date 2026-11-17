@@ -81,6 +81,10 @@ public class Program
                     // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
                     _spilStyrer.SætSpilStatusTilSlut();
                     break;
+                case ConsoleKey.M:
+                    MenuTegner.VisKortMenu(_spilStyrer);
+                    Console.ReadKey(true);
+                    break;
                 default:
                     Console.WriteLine("Ukendt tast");
                     break;
