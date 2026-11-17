@@ -34,7 +34,8 @@ public static class MenuTegner
             └─────────────────────────────────────────────────┘
             """
         );
-        Console.RedKey(true);
+        // Tjek hvis spillestyren har en aktiv opgave
+        // Hvis ikke så print "du har ikke nogen nuværende opgaver."
     }
     public static void VisKortMenu() => throw new NotImplementedException();
 }
