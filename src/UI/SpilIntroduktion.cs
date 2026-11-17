@@ -4,11 +4,9 @@ public class SpilIntroduktion
     public static void UdskrivIntro()
     {
         Console.Clear();
-
         Thread.Sleep(500);
 
         TypeWriter.Print("Velkommen til Lumiére.");
-        Color.Write("Hello World", ConsoleColor.Yellow);
         Thread.Sleep(2400);
 
         Console.Clear();
