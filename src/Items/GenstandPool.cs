@@ -26,9 +26,9 @@ public static class GenstandPool
 
     // Byparken
     public static Genstand Gadelamper = new(GenstandType.Gadelamper,"Oplyser veje og stier i parken");
-    public static Genstand ParkLysstyringspanel = new(GenstandType.ParkLysstyringspanel,"Styrer parkens belysning");
+    public static Genstand ParkLysstyringspanel = new(GenstandType.ParkLysstyringspanel,"Styrer parkens belysning.");
 
     // Zehra
-    public static Genstand RaSkulptur = new(GenstandType.RaSkulptur,"En rå skulptur med ukendte egenskaber");
+    public static Genstand RaSkulptur = new(GenstandType.RaSkulptur,"En rå skulptur med ukendte egenskaber.");
     
 }
