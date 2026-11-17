@@ -6,7 +6,7 @@ public class Program
     private static Verden _verden = new Verden();
     private static Spiller _spiller = new Spiller();
     private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation, _spiller);
-    private static Event _testEvent = DialogPool.OpretTestEventAnden();
+    private static Event _testEvent = DialogPool.OpretEventZehra();
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
