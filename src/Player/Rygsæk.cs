@@ -22,7 +22,7 @@ public class Rygsæk
             );
             foreach (Genstand g in _genstande)
             {
-                Console.WriteLine(FormaterStatusLinjeRygsæk(g));
+                Console.WriteLine(FormaterRygsækMenuLinje(g));
             }
         }
         else
