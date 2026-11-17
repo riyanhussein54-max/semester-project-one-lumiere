@@ -9,6 +9,9 @@ public static class MenuTegner
             │ WASD, Piletaster ______________ Bevæg spilleren │
             │ H ______________________________ Vis hjælpemenu │
             │ R __________________________________ Skjul Menu │
+            │ I _________________________________ Åben rygsæk │
+            │ M ________________________________ Åben minimap │
+            │ O _________________________________ Vis opgaver │
             │ Q ______________________________ Forlad spillet │
             ├─────────────────────────────────────────────────┤
             │ Tryk på en valgfri knap for at fortsætte...     │
@@ -17,7 +20,6 @@ public static class MenuTegner
         );
     }
 
-    //public static void VisRygsækMenu() => throw new NotImplementedException();
     /// <summary>
     /// Viser spillerens inventory/rygsæks indhold ved at trykke på I-knappen.
     /// Tjek "VisIndhold()" funktionen i Player/Rygsæk.cs for mere info.
@@ -182,7 +184,6 @@ public static class MenuTegner
 
         return linjer;
     }
-    public static void VisOpgaveMenu() => throw new NotImplementedException();
     
     public static void VisKortMenu(SpilStyrer spilStyrer)
     {
@@ -257,5 +258,23 @@ public static class MenuTegner
                 Console.WriteLine();
             }
         }
+    }
+    public static void VisOpgaveMenu()
+    {
+        Console.Clear();
+        Console.WriteLine(
+            """
+            ┌──────────────────── [Opgaver] ──────────────────┐
+            │                                                 │
+            │                   DINE OPGAVER                  │
+            │   Her vises dine aktuelle opgaver.              │
+            │                                                 │
+            ├─────────────────────────────────────────────────┤
+            │ Tryk på en valgfri knap for at fortsætte...     │
+            └─────────────────────────────────────────────────┘
+            """
+        );
+        // Tjek hvis spillestyren har en aktiv opgave
+        // Hvis ikke så print "du har ikke nogen nuværende opgaver."
     }
 }

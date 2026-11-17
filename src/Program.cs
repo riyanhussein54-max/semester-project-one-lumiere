@@ -76,6 +76,10 @@ public class Program
                     MenuTegner.VisRygsækMenu(_spiller);
                     Console.ReadKey(true);
                     break;
+                case ConsoleKey.O:
+                    MenuTegner.VisOpgaveMenu();
+                    Console.ReadKey(true);
+                    break;
                 case ConsoleKey.Q:
                 case ConsoleKey.Escape:
                     // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
