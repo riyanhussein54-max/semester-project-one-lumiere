@@ -1,8 +1,8 @@
-public class Event
+public class Begivenhed
 {
     private readonly Dictionary<DialogTilstand, Replik[]> _dialoger;
 
-    public Event(Dictionary<DialogTilstand, Replik[]> dialoger, Opgave? opgave = null)
+    public Begivenhed(Dictionary<DialogTilstand, Replik[]> dialoger, Opgave? opgave = null)
     {
         _dialoger = dialoger;
         Opgave = opgave;

@@ -1,6 +1,6 @@
 public static class DialogPool
 {
-    public static Event OpretTestEvent()
+    public static Begivenhed OpretTestBegivenhed()
     {
         Opgave testOpgave = new Opgave(
             titel: "Sluk reklameskiltet",
@@ -29,10 +29,10 @@ public static class DialogPool
             ]
         };
 
-        return new Event(test, testOpgave);
+        return new Begivenhed(test, testOpgave);
     }
 
-    public static Event OpretEventZehra()
+    public static Begivenhed OpretBegivenhedZehra()
     {
         Opgave opgave = new(
             titel: "Grædende pige",
@@ -62,6 +62,6 @@ public static class DialogPool
             ]
         };
 
-        return new Event(dialog, opgave);
+        return new Begivenhed(dialog, opgave);
     }
 }
