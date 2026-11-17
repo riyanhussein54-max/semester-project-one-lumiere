@@ -3,7 +3,8 @@ public static class DialogPool
     public static Event OpretTestEvent()
     {
         Opgave testOpgave = new Opgave(
-            beskrivelse: "Sluk reklameskiltet",
+            titel: "Sluk reklameskiltet",
+            beskrivelse: "",
             lysforureningReduktion: 25
         );
 
@@ -31,14 +32,15 @@ public static class DialogPool
         return new Event(test, testOpgave);
     }
 
-    public static Event OpretTestEventAnden()
+    public static Event OpretEventZehra()
     {
-        Opgave testOpgave = new Opgave(
-            beskrivelse: "Grædende pige",
+        Opgave opgave = new(
+            titel: "Grædende pige",
+            beskrivelse: "Hjælp den grædende pige med at finde hendes sut",
             lysforureningReduktion: 25
         );
 
-        Dictionary<DialogTilstand, Replik[]> test = new()
+        Dictionary<DialogTilstand, Replik[]> dialog = new()
         {
             [DialogTilstand.FørOpgave] =
             [
@@ -60,6 +62,6 @@ public static class DialogPool
             ]
         };
 
-        return new Event(test, testOpgave);
+        return new Event(dialog, opgave);
     }
 }
