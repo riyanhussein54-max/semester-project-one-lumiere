@@ -3,7 +3,10 @@
 /// </summary>
 public enum DialogTilstand
 {
-    IkkeMødt,
+    // TODO: Flyt scriptet under NPC
+    // Navnene skal genovervejes
+    EnAndenPersonsOpgaveErAktiv,
+    FørOpgave,
     OpgaveAktiv,
-    Fuldført
+    OpgaveFuldført,
 }

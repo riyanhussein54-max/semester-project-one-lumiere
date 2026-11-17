@@ -1,16 +1,22 @@
 public class Opgave
 {
-    private string OpgaveBeskrivelse;
-    private bool OpgaveStatus;
-
-    public Opgave(string OpgaveBeskrivelse, bool OpgaveStatus)
+    public Opgave(
+        string titel,
+        string beskrivelse,
+        int lysforureningReduktion = 15,
+        GenstandType? påkrævetGenstand = null)
     {
-        this.OpgaveBeskrivelse = OpgaveBeskrivelse;
-        this.OpgaveStatus = OpgaveStatus;
+        Titel = titel;
+        Beskrivelse = beskrivelse;
+        LysforureningReduktion = lysforureningReduktion;
+        PåkrævetGenstand = påkrævetGenstand;
     }
 
-    public void CheckStatus()
-    {
-        Console.WriteLine("Opgavestatus: " + OpgaveStatus);
-    }
+    public string Titel { get; }
+    public string Beskrivelse { get; }
+    public int LysforureningReduktion { get; }
+    public GenstandType? PåkrævetGenstand { get; }
+    public bool ErFuldført { get; private set; }
+
+    public void MarkerSomFuldført() => ErFuldført = true;
 }

@@ -17,9 +17,7 @@ public class SpilStyrer
     public int Lysforurening { get; private set; } = 100;
     public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
-
-    // TODO: Implementer nedenstående så snart det er muligt
-    // public Lokation NuværendeOpgave { get; private set; }
+    public Opgave? NuværendeOpgave { get; private set; }
 
     public void BevægSpiller(Retning retning)
     {
@@ -55,6 +53,49 @@ public class SpilStyrer
 
     public void SætSpilStatusTilSlut() => status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => status;
+
+    /// <summary>
+    /// Tildeler spilleren en ny opgave KUN hvis der ikke allerede er en aktiv opgave
+    /// </summary>
+    public bool SætNuværendeOpgave(Opgave opgave)
+    {
+        if (NuværendeOpgave != null)
+        {
+            return false;
+        }
+
+        NuværendeOpgave = opgave;
+        return true;
+    }
+
+    /// <summary>
+    /// Afslutter den nuværende opgave, reducerer lysforureningen og tjekker om spillet er vundet.
+    /// </summary>
+    public void FuldførNuværendeOpgave()
+    {
+        if (NuværendeOpgave == null)
+        {
+            return;
+        }
+
+        ReducerLysforurening(NuværendeOpgave.LysforureningReduktion);
+        NuværendeOpgave = null;
+    }
+
+    /// <summary>
+    /// Sænker lysforureningen og sætter spilstatus til Slut, hvis den rammer 0
+    /// </summary>
+    public void ReducerLysforurening(int mængde)
+    {
+        Lysforurening = (Lysforurening - mængde > 0)
+            ? Lysforurening - mængde
+            : 0;
+
+        if (Lysforurening == 0)
+        {
+            SætSpilStatusTilSlut();
+        }
+    }
 
     private void SætSpillerStartPosition(Lokation startLokation)
     {

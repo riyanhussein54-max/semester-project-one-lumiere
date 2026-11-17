@@ -3,8 +3,13 @@
 /// <!summary>
 public enum Følelse
 {
-    Neutral,
     Glad,
-    Sur,
+    Neutral,
     KedAfDet,
+    Tåre,
+    Græder,
+    Sur,
+    MegetSur,
+    Overrasket,
+    Træt
 }
