@@ -30,4 +30,5 @@ public static class GenstandPool
 
     // Zehra
     public static Genstand RaSkulptur = new(GenstandType.RaSkulptur,"En rå skulptur med ukendte egenskaber");
+    
 }
