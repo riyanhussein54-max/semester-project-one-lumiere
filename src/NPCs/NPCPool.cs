@@ -1,23 +1,44 @@
 public static class NPCPool
 {
-    public static NPC Zehra = new NPC(NPCType.Zehra, 1, 1); // Centrum/Bytorv
-    public static NPC Muhsin = new NPC(NPCType.Muhsin, 3, 5); // Tek Kontor
-    public static NPC Ivana = new NPC(NPCType.Ivana, 3, 5); // Hjem
-    public static NPC Riyan = new NPC(NPCType.Riyan, 3, 4); // Hjem
-    public static NPC Lucius = new NPC(NPCType.Lucius, 1, 1); // Park
-    public static NPC Adam = new NPC(NPCType.Adam, 1, 1);
+    public static NPC Zehra = new NPC(
+        NPCType.Zehra,
+        1,
+        1,
+        DialogPool.OpretBegivenhedZehra()
+    );
 
-    // TODO: evt. flere funktioner
-    /*
-    public static void TilføjNPCTilPool(NPC npc)
-    {
-        if (npc != null && !_npcPool.Contains(npc))
-            _npcPool.Add(npc);
-    }
+    public static NPC Muhsin = new NPC(
+        NPCType.Muhsin,
+        3,
+        5,
+        DialogPool.OpretBegivenhedMuhsin()
+    );
 
-    public static void RydNPCPool()
-    {
-        _npcPool.Clear();
-    }
-     */
+    public static NPC Ivana = new NPC(
+        NPCType.Ivana,
+        3,
+        5,
+        DialogPool.OpretBegivenhedIvana()
+    );
+
+    public static NPC Riyan = new NPC(
+        NPCType.Riyan,
+        3,
+        4,
+        DialogPool.OpretBegivenhedRiyan()
+    );
+
+    public static NPC Lucius = new NPC(
+        NPCType.Lucius,
+        1,
+        1,
+        DialogPool.OpretBegivenhedLucius()
+    );
+
+    public static NPC Adam = new NPC(
+        NPCType.Adam,
+        1,
+        1,
+        DialogPool.OpretBegivenhedAdam()
+    );
 }
