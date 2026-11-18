@@ -53,4 +53,17 @@ public class Rygsæk
 
         return $"│ {navn} {prikker} {beskrivelse} │";
     }
+    //nedstående method bruges til opgave, som bruger method til at check om spilleren har de nødvendig genstand
+    // til at løse opgaven.
+    public bool HarGenstand(GenstandType type)
+    {
+        foreach (Genstand genstand in _genstande)
+        {
+            if (genstand.Type == type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
