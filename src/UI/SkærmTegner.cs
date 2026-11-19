@@ -140,23 +140,14 @@ public class SkærmTegner
     
     private static void TegnBeskedBoks(string besked)
     {
-        int indreBredde = 48;
-    
         Console.WriteLine("┌──────────────────────────────────────────────────┐");
     
-        if (besked.Length > indreBredde)
+        foreach (char[] linje in besked.Chunk(48))
         {
-            string linje1 = besked.Substring(0, indreBredde);
-            string linje2 = besked.Substring(indreBredde).PadRight(indreBredde);
-            Console.WriteLine($"│ {linje1} │");
-            Console.WriteLine($"│ {linje2} │");
+            Console.WriteLine($"│ {new string(linje),-48} │");
         }
-        else
-        {
-            Console.WriteLine($"│ {besked.PadRight(indreBredde)} │");
-        }
-    
         Console.WriteLine("└──────────────────────────────────────────────────┘");
     }
+
 
 }
