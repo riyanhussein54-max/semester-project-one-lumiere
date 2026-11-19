@@ -18,11 +18,11 @@ public class SpilStyrer
     public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
-    public string SenesteBesked { get; private set; } = "";
-
+    public string StatusBesked { get; private set; } = "";
+    
     public void BevægSpiller(Retning retning)
     {
-        SenesteBesked = "";
+        StatusBesked = "";
         (int nyRække, int nySøjle) = Spiller.BeregnNæstePosition(retning);
 
         if (!ErIndenForGitter(nyRække, nySøjle))
@@ -130,7 +130,7 @@ public class SpilStyrer
             Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
             if (genstand != null)
             {
-                Spiller.SamlGenstandOp(genstand);
+                Spiller.SamlGenstand(genstand);
                 StatusBesked = $"Du lagde {genstand.Navn} i rygsækken.";
             }
         }

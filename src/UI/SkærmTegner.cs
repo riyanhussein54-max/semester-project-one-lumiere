@@ -17,10 +17,10 @@ public class SkærmTegner
         Console.WriteLine();
         TegnKoordinatSystem(spilStyrer.NuværendeLokation.Gitter, spilStyrer);
 
-        if (!string.IsNullOrEmpty(spilStyrer.SenesteBesked))
+        if (!string.IsNullOrEmpty(spilStyrer.StatusBesked))
             {
                 Console.WriteLine();
-                TegnBeskedBoks(spilStyrer.SenesteBesked);
+                TegnBeskedBoks(spilStyrer.StatusBesked);
             }
     }
 
