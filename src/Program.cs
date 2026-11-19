@@ -6,7 +6,6 @@ public class Program
     private static Verden _verden = new Verden();
     private static Spiller _spiller = new Spiller();
     private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation, _spiller);
-    private static Begivenhed begivenhed = DialogPool.OpretBegivenhedZehra();
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
@@ -44,15 +43,6 @@ public class Program
 
             switch (key)
             {
-                // Test for at trigger en dialog
-                case ConsoleKey.T:
-                    Replik[] replikkerTest = begivenhed.HentAktuelDialog(_spilStyrer);
-                    MenuTegner.VisNPCDialogMenu("Zehra", replikkerTest);
-                    break;
-                // Test simulation at spilleren har løst sin nuværende opgave
-                case ConsoleKey.Y:
-                    _spilStyrer.NuværendeOpgave?.MarkerSomFuldført();
-                    break;
                 case ConsoleKey.E:
                     NPC? npc = _spilStyrer.HentNærliggendeNPC();
                     if (npc?.Begivenhed != null)
