@@ -10,9 +10,10 @@ public class SkærmTegner
     /// <summary>
     /// Opdaterer og tegner hele spilskærmen baseret på spillets aktuelle tilstand
     /// </summary>
-    public static void TegnSkærm(SpilStyrer spilStyrer, string opgaveNavn = "Ingen")
+    public static void TegnSkærm(SpilStyrer spilStyrer)
     {
         Console.Clear();
+        string opgaveNavn = spilStyrer.NuværendeOpgave?.Titel ?? "Ingen";
         TegnTopPanel(spilStyrer, opgaveNavn);
         Console.WriteLine();
         TegnKoordinatSystem(spilStyrer.NuværendeLokation.Gitter, spilStyrer);
