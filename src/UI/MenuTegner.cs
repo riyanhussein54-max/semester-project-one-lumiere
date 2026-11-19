@@ -184,7 +184,7 @@ public static class MenuTegner
 
         return linjer;
     }
-    
+
     public static void VisKortMenu(SpilStyrer spilStyrer)
     {
         Console.Clear();
@@ -224,9 +224,22 @@ public static class MenuTegner
                 string rum = kortLayout[i, j];
 
                 if (rum != "")
-                    Console.Write($"│ {rum,-9} │");
+                {
+                    Console.Write("│ ");
+                    if (rum == spilStyrer.NuværendeLokation.Navn)
+                    {
+                        Color.Write(rum.PadRight(9), ConsoleColor.Red);
+                    }
+                    else
+                    {
+                        Color.Write(rum.PadRight(9), ConsoleColor.White);
+                    }
+                    Console.Write(" │");
+                }
                 else
+                {
                     Console.Write("             ");
+                }
 
                 bool harRumTilHøjre = j + 1 < søjler && rum != "" && kortLayout[i, j + 1] != "";
                 if (j < søjler - 1)
@@ -277,4 +290,5 @@ public static class MenuTegner
         // Tjek hvis spillestyren har en aktiv opgave
         // Hvis ikke så print "du har ikke nogen nuværende opgaver."
     }
+
 }
