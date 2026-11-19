@@ -16,6 +16,12 @@ public class SkærmTegner
         TegnTopPanel(spilStyrer, opgaveNavn);
         Console.WriteLine();
         TegnKoordinatSystem(spilStyrer.NuværendeLokation.Gitter, spilStyrer);
+
+        if (!string.IsNullOrEmpty(spilStyrer.SenesteBesked))
+            {
+                Console.WriteLine();
+                TegnBeskedBoks(spilStyrer.SenesteBesked);
+            }
     }
 
     private static void TegnTopPanel(SpilStyrer spilStyrer, string opgaveNavn)
