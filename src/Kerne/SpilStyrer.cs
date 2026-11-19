@@ -130,8 +130,8 @@ public class SpilStyrer
             Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
             if (genstand != null)
             {
-                Spiller.Rygsæk.TilføjGenstand(genstand);
-                SenesteBesked = $"Du lagde {genstand.Navn} i rygsækken.";
+                Spiller.SamlGenstandOp(genstand);
+                StatusBesked = $"Du lagde {genstand.Navn} i rygsækken.";
             }
         }
     }
