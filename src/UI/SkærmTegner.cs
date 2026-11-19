@@ -17,6 +17,12 @@ public class SkærmTegner
         TegnTopPanel(spilStyrer, opgaveNavn);
         Console.WriteLine();
         TegnKoordinatSystem(spilStyrer.NuværendeLokation.Gitter, spilStyrer);
+
+        if (!string.IsNullOrEmpty(spilStyrer.StatusBesked))
+            {
+                Console.WriteLine();
+                TegnBeskedBoks(spilStyrer.StatusBesked);
+            }
     }
 
     private static void TegnTopPanel(SpilStyrer spilStyrer, string opgaveNavn)
@@ -132,4 +138,17 @@ public class SkærmTegner
             Console.WriteLine();
         }
     }
+    
+    private static void TegnBeskedBoks(string besked)
+    {
+        Console.WriteLine("┌──────────────────────────────────────────────────┐");
+    
+        foreach (char[] linje in besked.Chunk(48))
+        {
+            Console.WriteLine($"│ {new string(linje),-48} │");
+        }
+        Console.WriteLine("└──────────────────────────────────────────────────┘");
+    }
+
+
 }

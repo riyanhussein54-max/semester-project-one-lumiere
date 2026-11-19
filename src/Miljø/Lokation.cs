@@ -3,10 +3,18 @@
 /// </summary>
 public class Lokation
 {
-    // TODO:
-    // - Metode til at fjerne genstande fra gulvet, fx:
-    // --- FjernGenstand(int række, int søjle) => genstand = null;
-
+    public Genstand? SamlGenstand(int r, int s)
+    {
+        if (_genstande.TryGetValue((r, s), out Genstand? fundetGenstand))
+        {
+            _genstande.Remove((r, s));
+            Gitter[r, s] = FeltType.Gulv;
+            return fundetGenstand;
+        }
+    
+        return null;
+    }
+    
     private readonly Dictionary<Retning, Lokation> _udgange = new();
 
     public Lokation(LokationType lokationType, FeltType[,] gitter /* Genstand? genstand = null */)
