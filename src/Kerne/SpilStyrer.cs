@@ -18,9 +18,11 @@ public class SpilStyrer
     public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
+    public string SenesteBesked { get; private set; } = "";
 
     public void BevægSpiller(Retning retning)
     {
+        SenesteBesked = "";
         (int nyRække, int nySøjle) = Spiller.BeregnNæstePosition(retning);
 
         if (!ErIndenForGitter(nyRække, nySøjle))
@@ -35,6 +37,7 @@ public class SpilStyrer
         }
 
         Spiller.SætPosition(nyRække, nySøjle);
+        TjekSamlGenstand(nyRække, nySøjle);
     }
 
     public bool ErIndenForGitter(int række, int søjle)
@@ -42,8 +45,7 @@ public class SpilStyrer
         int maxRækker = NuværendeLokation.Gitter.GetLength(0);
         int maxSøjler = NuværendeLokation.Gitter.GetLength(1);
 
-        return række >= 0 && række < maxRækker &&
-               søjle >= 0 && søjle < maxSøjler;
+        return række >= 0 && række < maxRækker && søjle >= 0 && søjle < maxSøjler;
     }
 
     public bool ErSpillerPå(int række, int søjle)
@@ -87,10 +89,7 @@ public class SpilStyrer
     /// </summary>
     public void ReducerLysforurening(int mængde)
     {
-        Lysforurening = (Lysforurening - mængde > 0)
-            ? Lysforurening - mængde
-            : 0;
-
+        Lysforurening = (Lysforurening - mængde > 0) ? Lysforurening - mængde : 0;
         if (Lysforurening == 0)
         {
             SætSpilStatusTilSlut();
@@ -122,5 +121,18 @@ public class SpilStyrer
         nySpillerPosition = næste.HentDørKoordinatTil(NuværendeLokation);
         NuværendeLokation = næste;
         return true;
+    }
+
+    private void TjekSamlGenstand(int række, int søjle)
+    {
+        if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
+        {
+            Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
+            if (genstand != null)
+            {
+                Spiller.Rygsæk.TilføjGenstand(genstand);
+                SenesteBesked = $"Du lagde {genstand.Navn} i rygsækken.";
+            }
+        }
     }
 }
