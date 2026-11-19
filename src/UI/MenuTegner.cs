@@ -38,3 +38,24 @@ public static class MenuTegner
     }
     public static void VisKortMenu() => throw new NotImplementedException();
 }
+
+{
+    Console.Clear();
+    Console.WriteLine(
+        """
+        ┌──────────────────── [Opgaver] ──────────────────┐
+        │                                                 │
+        │                   DINE OPGAVER                  │
+        │                                                 │
+        │    [] Find genstande i byen                     │
+        │    [] Tal med NPC'er                            │
+        │    [] Hjælp NPC'er med deres opgaver            │
+        ├─────────────────────────────────────────────────┤
+        │ Tryk på en valgfri knap for at fortsætte...     │
+        └─────────────────────────────────────────────────┘
+        """
+    );
+    Console.RedKey(true);
+
+    )
+}
