@@ -46,12 +46,20 @@ public class Program
             {
                 // Test for at trigger en dialog
                 case ConsoleKey.T:
-                    Replik[] replikker = begivenhed.HentAktuelDialog(_spilStyrer);
-                    MenuTegner.VisNPCDialogMenu("Zehra", replikker);
+                    Replik[] replikkerTest = begivenhed.HentAktuelDialog(_spilStyrer);
+                    MenuTegner.VisNPCDialogMenu("Zehra", replikkerTest);
                     break;
                 // Test simulation at spilleren har løst sin nuværende opgave
                 case ConsoleKey.Y:
                     _spilStyrer.NuværendeOpgave?.MarkerSomFuldført();
+                    break;
+                case ConsoleKey.E:
+                    NPC? npc = _spilStyrer.HentNærliggendeNPC();
+                    if (npc?.Begivenhed != null)
+                    {
+                        Replik[] replikker = npc.Begivenhed.HentAktuelDialog(_spilStyrer);
+                        MenuTegner.VisNPCDialogMenu(npc.Navn, replikker);
+                    }
                     break;
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:

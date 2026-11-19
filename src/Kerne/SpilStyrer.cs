@@ -30,6 +30,13 @@ public class SpilStyrer
             return;
         }
 
+        // Dette er vores kollision detectionm, hvis feltet er en NPC, så stopper vi op
+        FeltType målFelt = NuværendeLokation.Gitter[nyRække, nySøjle];
+        if (målFelt == FeltType.NPC || målFelt == FeltType.Væg)
+        {
+            return;
+        }
+
         if (TjekOgUdførDørSkift(nyRække, nySøjle, out (int Række, int Søjle) nyDørPosition))
         {
             Spiller.SætPosition(nyDørPosition.Række, nyDørPosition.Søjle);
@@ -51,6 +58,25 @@ public class SpilStyrer
     public bool ErSpillerPå(int række, int søjle)
     {
         return Spiller.Række == række && Spiller.Søjle == søjle;
+    }
+
+    public NPC? HentNærliggendeNPC()
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            NPC? npc = NuværendeLokation.HentNPCFraKoordinat(tjekRække, tjekSøjle);
+
+            if (npc != null)
+            {
+                return npc;
+            }
+        }
+
+        return null;
     }
 
     public void SætSpilStatusTilSlut() => status = SpilStatus.Slut;

@@ -124,4 +124,9 @@ public class Lokation
     {
         return _udgange.GetValueOrDefault(retning);
     }
+
+    public NPC? HentNPCFraKoordinat(int række, int søjle)
+    {
+        return _npcs.GetValueOrDefault((række, søjle));
+    }
 }
