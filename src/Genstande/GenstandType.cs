@@ -3,32 +3,15 @@
 /// </summary>
 public enum GenstandType
 {
-    // Indgang
-    Sikkerhedsudstyr,
-    Lommelygte,
+    // Centrum
     Sut,
 
-    // Centrum
-    Voltmåler,
-    TermiskKamera,
-    Radio,
-    DiagnostiskTablet,
+    // Elgiganten
+    Elpære,
 
-    // Tek Kontoret
-    Lyskilder,
-    LysStyringsPanel,
+    // Ivanas Hjem
+    Telefon,
 
-    //Kælderen
-    Luxmåler,
-    VarmLedPære,
-    Spektrometer,
-    LedPære,
-    Bevægelsessensor,
-
-    // Byparken
-    Gadelamper,
-    ParkLysstyringspanel,
-
-    // Zehra
-    RaSkulptur
+    // Harald Nyborg
+    Hammer,
 }

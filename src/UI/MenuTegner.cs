@@ -194,12 +194,12 @@ public static class MenuTegner
 
         string[,] kortLayout =
         {
-            { "",        "BobsHus", "GadeN",   "" },
-            { "",        "",        "Park",    "Bytorv" },
-            { "",        "Station", "GadeV",   "GadeØ" },
-            { "",        "",        "Hjem",    "Nabo" }
+            {"", "","", "Kontor","","" },
+            { "","","Elgiganten","Nørregade","Zehras Hjem",""},
+            {"","Lucius Hjem","Vestergade", "Centrum","Østergade","Harald Nyborg"},
+            { "","", "Parkings Plads","Søndergade","Ivanas Hjem","" },
+            { "","","", "Park","",""},
         };
-
         int rækker = kortLayout.GetLength(0);
         int søjler = kortLayout.GetLength(1);
 

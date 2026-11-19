@@ -25,10 +25,6 @@ public class Program
             SpilIntroduktion.UdskrivIntro();
         }
 
-        // Test om statuslinjen udskriver titlen af nuværende aktiv opgave
-        Opgave testOpgave = new Opgave("Hoppehoppen", "Du skal hoppe 100 gange");
-        _spilStyrer.SætNuværendeOpgave(testOpgave);
-
         SkærmTegner.TegnSkærm(_spilStyrer);
 
         KørSpil();

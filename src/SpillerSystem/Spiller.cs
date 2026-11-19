@@ -11,8 +11,8 @@ public class Spiller
     public Spiller()
     {
         // Hurtigt genstand test, kan godt fjernes
-        _rygsæk.TilføjGenstand(new Genstand(GenstandType.RaSkulptur, "En gylden skulptur af den egyptiske gud Ra."));
-        _rygsæk.TilføjGenstand(new Genstand(GenstandType.Radio, "En lille grå radio."));
+        // _rygsæk.TilføjGenstand(new Genstand(GenstandType.RaSkulptur, "En gylden skulptur af den egyptiske gud Ra."));
+        //  _rygsæk.TilføjGenstand(new Genstand(GenstandType.Radio, "En lille grå radio."));
     }
 
     public int Række { get; private set; }
@@ -41,7 +41,7 @@ public class Spiller
     {
         _rygsæk.TilføjGenstand(genstand);
     }
-    
+
     public void InteragerMedNPC(NPC npc) { }
     public void KiglRygsæk() => _rygsæk.VisIndhold();
     public bool LøsOpgave() => true;

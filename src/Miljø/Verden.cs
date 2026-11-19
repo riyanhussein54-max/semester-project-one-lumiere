@@ -19,7 +19,7 @@ public class Verden
         SpawnNPCer();
         SpawnGenstande();
 
-        StartLokation = _lokationer[LokationType.Hjem];
+        StartLokation = _lokationer[LokationType.Centrum];
     }
 
     /// <summary>
@@ -32,18 +32,19 @@ public class Verden
     /// </summary>
     private void OpretLokationer()
     {
-        Tilføj(new Lokation(LokationType.Hjem, new FeltType[5, 7]));
-        Tilføj(new Lokation(LokationType.GadeV, new FeltType[7, 11]));
-        Tilføj(new Lokation(LokationType.Park, new FeltType[6, 9]));
-        Tilføj(new Lokation(LokationType.GadeN, new FeltType[7, 11]));
-        Tilføj(new Lokation(LokationType.BobsHus, new FeltType[7, 5]));
-        Tilføj(new Lokation(LokationType.Bytorv, new FeltType[9, 15]));
-        Tilføj(new Lokation(LokationType.GadeØ, new FeltType[7, 10]));
-        Tilføj(new Lokation(LokationType.Nabo, new FeltType[5, 7]));
-        Tilføj(new Lokation(LokationType.Station, new FeltType[11, 6]));
-
-        Tilføj(new Lokation(LokationType.TekBygningIndgang, new FeltType[4, 14]));
-        Tilføj(new Lokation(LokationType.TekKontor, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.Centrum, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.NørreGade, new FeltType[7, 11]));
+        Tilføj(new Lokation(LokationType.VesterGade, new FeltType[6, 9]));
+        Tilføj(new Lokation(LokationType.ØsterGade, new FeltType[7, 11]));
+        Tilføj(new Lokation(LokationType.SønderGade, new FeltType[7, 5]));
+        Tilføj(new Lokation(LokationType.ZehrasHjem, new FeltType[9, 15]));
+        Tilføj(new Lokation(LokationType.Kontor, new FeltType[7, 10]));
+        Tilføj(new Lokation(LokationType.LuciusHjem, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.ParkingsPlads, new FeltType[11, 6]));
+        Tilføj(new Lokation(LokationType.Park, new FeltType[11, 6]));
+        Tilføj(new Lokation(LokationType.IvanasHjem, new FeltType[4, 14]));
+        Tilføj(new Lokation(LokationType.HaraldNyborg, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.Elgiganten, new FeltType[5, 7]));
     }
 
     /// <summary>
@@ -64,19 +65,22 @@ public class Verden
     /// </summary>
     private void ForbindLokationer()
     {
-        Forbind(LokationType.Hjem, Retning.Nord, LokationType.GadeV, Retning.Syd);
-        Forbind(LokationType.GadeV, Retning.Vest, LokationType.Station, Retning.Øst);
-        Forbind(LokationType.GadeV, Retning.Nord, LokationType.Park, Retning.Syd);
-        Forbind(LokationType.GadeV, Retning.Øst, LokationType.GadeØ, Retning.Vest);
-        Forbind(LokationType.GadeØ, Retning.Syd, LokationType.Nabo, Retning.Nord);
-        Forbind(LokationType.GadeØ, Retning.Nord, LokationType.Bytorv, Retning.Syd);
-        Forbind(LokationType.Park, Retning.Øst, LokationType.Bytorv, Retning.Vest);
-        Forbind(LokationType.Park, Retning.Nord, LokationType.GadeN, Retning.Syd);
-        Forbind(LokationType.GadeN, Retning.Vest, LokationType.BobsHus, Retning.Øst);
-
-        // Tek Bygningen ligger nord af bytorvet
-        Forbind(LokationType.Bytorv, Retning.Nord, LokationType.TekBygningIndgang, Retning.Syd);
-        Forbind(LokationType.TekBygningIndgang, Retning.Øst, LokationType.TekKontor, Retning.Vest);
+        Forbind(LokationType.Centrum, Retning.Nord, LokationType.NørreGade, Retning.Syd);
+        Forbind(LokationType.Centrum, Retning.Vest, LokationType.VesterGade, Retning.Øst);
+        Forbind(LokationType.Centrum, Retning.Øst, LokationType.ØsterGade, Retning.Vest);
+        Forbind(LokationType.Centrum, Retning.Syd, LokationType.SønderGade, Retning.Nord);
+        //starter med zone 1
+        Forbind(LokationType.NørreGade, Retning.Nord, LokationType.Kontor, Retning.Syd);
+        Forbind(LokationType.NørreGade, Retning.Øst, LokationType.ZehrasHjem, Retning.Vest);
+        Forbind(LokationType.NørreGade, Retning.Vest, LokationType.Elgiganten, Retning.Øst);
+        //zone 2
+        Forbind(LokationType.VesterGade, Retning.Vest, LokationType.LuciusHjem, Retning.Øst);
+        Forbind(LokationType.VesterGade, Retning.Syd, LokationType.ParkingsPlads, Retning.Nord);
+        Forbind(LokationType.ParkingsPlads, Retning.Øst, LokationType.SønderGade, Retning.Vest);
+        //zone S
+        Forbind(LokationType.SønderGade, Retning.Syd, LokationType.Park, Retning.Nord);
+        Forbind(LokationType.ØsterGade, Retning.Øst, LokationType.HaraldNyborg, Retning.Vest);
+        Forbind(LokationType.ØsterGade, Retning.Syd, LokationType.IvanasHjem, Retning.Nord);
     }
 
     /// <summary>
@@ -96,12 +100,12 @@ public class Verden
     /// </summary>
     private void SpawnNPCer()
     {
-        _lokationer[LokationType.Park].SpawnNPC(NPCPool.Lucius);
-        _lokationer[LokationType.Station].SpawnNPC(NPCPool.Adam);
-        _lokationer[LokationType.TekKontor].SpawnNPC(NPCPool.Muhsin);
-        _lokationer[LokationType.Bytorv].SpawnNPC(NPCPool.Zehra);
-        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Riyan);
-        _lokationer[LokationType.Hjem].SpawnNPC(NPCPool.Ivana);
+        _lokationer[LokationType.Park].SpawnNPC(NPCPool.Adam);
+        _lokationer[LokationType.Centrum].SpawnNPC(NPCPool.Ivana);
+        _lokationer[LokationType.Kontor].SpawnNPC(NPCPool.Muhsin);
+        _lokationer[LokationType.ZehrasHjem].SpawnNPC(NPCPool.Zehra);
+        _lokationer[LokationType.IvanasHjem].SpawnNPC(NPCPool.Riyan);
+        _lokationer[LokationType.LuciusHjem].SpawnNPC(NPCPool.Lucius);
     }
 
     /// <summary>
@@ -111,6 +115,11 @@ public class Verden
     private void SpawnGenstande()
     {
         /// TODO få evt genstande fra genstandpool
-        _lokationer[LokationType.Bytorv].SpawnGenstand(new(GenstandType.RaSkulptur, "Ra Skulptur."), 7, 2);
+        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Sut"), 7, 2);
+        _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "Elpære"), 7, 2);
+        _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Riyan Telefon"), 7, 2);
+        _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Hammer"), 7, 2);
+
+
     }
 }
