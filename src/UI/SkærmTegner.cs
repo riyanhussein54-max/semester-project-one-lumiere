@@ -137,4 +137,26 @@ public class SkærmTegner
             Console.WriteLine();
         }
     }
+    
+    private static void TegnBeskedBoks(string besked)
+    {
+        int indreBredde = 48;
+    
+        Console.WriteLine("┌──────────────────────────────────────────────────┐");
+    
+        if (besked.Length > indreBredde)
+        {
+            string linje1 = besked.Substring(0, indreBredde);
+            string linje2 = besked.Substring(indreBredde).PadRight(indreBredde);
+            Console.WriteLine($"│ {linje1} │");
+            Console.WriteLine($"│ {linje2} │");
+        }
+        else
+        {
+            Console.WriteLine($"│ {besked.PadRight(indreBredde)} │");
+        }
+    
+        Console.WriteLine("└──────────────────────────────────────────────────┘");
+    }
+
 }
