@@ -37,7 +37,11 @@ public class Spiller
     }
 
     // Skal implementeres:
-    public void SamlGenstandOp(Genstand genstand) { }
+    public void SamlGenstand(Genstand genstand)
+    {
+        _rygsæk.TilføjGenstand(genstand);
+    }
+    
     public void InteragerMedNPC(NPC npc) { }
     public void KiglRygsæk() => _rygsæk.VisIndhold();
     public bool LøsOpgave() => true;
