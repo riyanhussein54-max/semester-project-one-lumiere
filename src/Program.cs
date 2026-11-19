@@ -64,6 +64,7 @@ public class Program
                     break;
                     case ConsoleKey.O:
                     MenuTegner.VisOpgaveMenu();
+                    Console.ReadKey(true);
                     break;
                 case ConsoleKey.Q:
                 case ConsoleKey.Escape:
