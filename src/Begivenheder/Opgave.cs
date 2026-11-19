@@ -3,8 +3,8 @@ public class Opgave
     public Opgave(
         string titel,
         string beskrivelse,
-        int lysforureningReduktion = 15,
-        GenstandType? påkrævetGenstand = null)
+    int lysforureningReduktion = 15,
+    GenstandType? påkrævetGenstand = null)
     {
         Titel = titel;
         Beskrivelse = beskrivelse;
@@ -19,4 +19,12 @@ public class Opgave
     public bool ErFuldført { get; private set; }
 
     public void MarkerSomFuldført() => ErFuldført = true;
+    public bool HarGenstandtilOpgave(Rygsæk rygsæk)
+    {
+        if (PåkrævetGenstand == null)
+        {
+            return true;
+        }
+        return rygsæk.HarGenstand(PåkrævetGenstand.Value);
+    }
 }
