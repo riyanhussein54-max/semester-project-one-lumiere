@@ -115,10 +115,10 @@ public class Verden
     private void SpawnGenstande()
     {
         /// TODO få evt genstande fra genstandpool
-        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Sut"), 7, 2);
-        _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "Elpære"), 7, 2);
-        _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Riyan Telefon"), 7, 2);
-        _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Hammer"), 7, 2);
+        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Sut"), 1, 1);
+        _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "Elpære"), 2, 2);
+        _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Riyan Telefon"), 2, 10);
+        _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Hammer"), 2, 4);
 
 
     }

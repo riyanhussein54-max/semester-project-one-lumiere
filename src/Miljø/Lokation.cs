@@ -42,8 +42,15 @@ public class Lokation
     /// </summary>
     public void SpawnGenstand(Genstand genstand, int r, int s)
     {
-        _genstande[(r, s)] = genstand;
-        Gitter[r, s] = FeltType.Genstand;
+        try
+        {
+            _genstande[(r, s)] = genstand;
+            Gitter[r, s] = FeltType.Genstand;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            throw new ArgumentOutOfRangeException($"Kunne ikke placere {genstand.Navn} på ({r}, {s}) i {Type}, da koordinatet er uden for gittert");
+        }
     }
 
     /// <summary>
