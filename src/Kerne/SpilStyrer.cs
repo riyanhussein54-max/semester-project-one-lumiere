@@ -19,7 +19,7 @@ public class SpilStyrer
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
     public string StatusBesked { get; private set; } = "";
-    
+
     public void BevægSpiller(Retning retning)
     {
         StatusBesked = "";
@@ -131,6 +131,7 @@ public class SpilStyrer
             if (genstand != null)
             {
                 Spiller.SamlGenstand(genstand);
+                // TODO: Flyttes in i SkærmTegner.cs
                 StatusBesked = $"Du lagde {genstand.Navn} i rygsækken.";
             }
         }
