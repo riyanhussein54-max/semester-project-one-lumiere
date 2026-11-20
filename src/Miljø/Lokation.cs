@@ -11,10 +11,10 @@ public class Lokation
             Gitter[r, s] = FeltType.Gulv;
             return fundetGenstand;
         }
-    
+
         return null;
     }
-    
+
     private readonly Dictionary<Retning, Lokation> _udgange = new();
 
     public Lokation(LokationType lokationType, FeltType[,] gitter /* Genstand? genstand = null */)
@@ -70,7 +70,7 @@ public class Lokation
 
     public string Navn
     {
-        // FIX: Find en løsning som formatter navnet korrekt (evt. med switch-expression)
+        // TODO: Find en løsning som formatter navnet korrekt (evt. med switch-expression)
         get => Type.ToString();
     }
 

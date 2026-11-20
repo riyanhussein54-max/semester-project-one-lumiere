@@ -27,24 +27,26 @@ public class Verden
     /// </summary>
     public Lokation StartLokation { get; }
 
+    public Lokation HentLokation(LokationType type) => _lokationer[type];
+
     /// <summary>
     /// Opret alle lokationer her. Dette kan betegnes som en "LokationsPool".
     /// </summary>
     private void OpretLokationer()
     {
-        Tilføj(new Lokation(LokationType.Centrum, new FeltType[5, 7]));
-        Tilføj(new Lokation(LokationType.NørreGade, new FeltType[7, 11]));
-        Tilføj(new Lokation(LokationType.VesterGade, new FeltType[6, 9]));
-        Tilføj(new Lokation(LokationType.ØsterGade, new FeltType[7, 11]));
-        Tilføj(new Lokation(LokationType.SønderGade, new FeltType[7, 5]));
-        Tilføj(new Lokation(LokationType.ZehrasHjem, new FeltType[9, 15]));
-        Tilføj(new Lokation(LokationType.Kontor, new FeltType[7, 10]));
-        Tilføj(new Lokation(LokationType.LuciusHjem, new FeltType[5, 7]));
-        Tilføj(new Lokation(LokationType.ParkingsPlads, new FeltType[11, 6]));
-        Tilføj(new Lokation(LokationType.Park, new FeltType[11, 6]));
-        Tilføj(new Lokation(LokationType.IvanasHjem, new FeltType[4, 14]));
-        Tilføj(new Lokation(LokationType.HaraldNyborg, new FeltType[5, 7]));
-        Tilføj(new Lokation(LokationType.Elgiganten, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.Centrum, new FeltType[11, 11]));
+        Tilføj(new Lokation(LokationType.NørreGade, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.VesterGade, new FeltType[5, 9]));
+        Tilføj(new Lokation(LokationType.ØsterGade, new FeltType[5, 9]));
+        Tilføj(new Lokation(LokationType.SønderGade, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.ZehrasHjem, new FeltType[7, 8]));
+        Tilføj(new Lokation(LokationType.Kontor, new FeltType[4, 9]));
+        Tilføj(new Lokation(LokationType.LuciusHjem, new FeltType[7, 8]));
+        Tilføj(new Lokation(LokationType.ParkingsPlads, new FeltType[9, 10]));
+        Tilføj(new Lokation(LokationType.Park, new FeltType[8, 8]));
+        Tilføj(new Lokation(LokationType.IvanasHjem, new FeltType[7, 8]));
+        Tilføj(new Lokation(LokationType.HaraldNyborg, new FeltType[9, 8]));
+        Tilføj(new Lokation(LokationType.Elgiganten, new FeltType[8, 9]));
     }
 
     /// <summary>
@@ -114,12 +116,11 @@ public class Verden
     /// </summary>
     private void SpawnGenstande()
     {
-        /// TODO få evt genstande fra genstandpool
-        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Sut"), 1, 1);
-        _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "Elpære"), 2, 2);
-        _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Riyan Telefon"), 2, 10);
-        _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Hammer"), 2, 4);
-
-
+        // TODO: få evt genstande fra genstandpool
+        // ! Vi angiver koordinater på genstandene her, men for NPCer er det anderledes? Det gør det svært at balancer det
+        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Farven er lyserød"), 1, 1);
+        _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "PHILIPS LED-pære"), 2, 2);
+        _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Samsung Galaxy A"), 2, 4);
+        _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Den slår hårdt"), 2, 4);
     }
 }

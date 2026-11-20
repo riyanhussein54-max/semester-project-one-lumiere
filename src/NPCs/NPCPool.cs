@@ -1,34 +1,34 @@
 public static class NPCPool
 {
-    public static NPC Zehra = new NPC(
+    public static NPC Zehra = new(
         NPCType.Zehra,
         1,
         1,
         DialogPool.OpretBegivenhedZehra()
     );
 
-    public static NPC Muhsin = new NPC(
+    public static NPC Muhsin = new(
         NPCType.Muhsin,
-        3,
-        5,
+        1,
+        6,
         DialogPool.OpretBegivenhedMuhsin()
     );
 
-    public static NPC Ivana = new NPC(
+    public static NPC Ivana = new(
         NPCType.Ivana,
         3,
         5,
         DialogPool.OpretBegivenhedIvana()
     );
 
-    public static NPC Riyan = new NPC(
+    public static NPC Riyan = new(
         NPCType.Riyan,
         3,
         4,
         DialogPool.OpretBegivenhedRiyan()
     );
 
-    public static NPC Lucius = new NPC(
+    public static NPC Lucius = new(
         NPCType.Lucius,
         1,
         1,
