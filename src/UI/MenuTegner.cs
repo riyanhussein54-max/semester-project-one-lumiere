@@ -23,7 +23,6 @@ public static class MenuTegner
 
     /// <summary>
     /// Viser spillerens inventory/rygsæks indhold ved at trykke på I-knappen.
-    /// Tjek "VisIndhold()" funktionen i Player/Rygsæk.cs for mere info.
     /// </summary>
     public static void VisRygsækMenu(Spiller spiller)
     {
@@ -53,7 +52,7 @@ public static class MenuTegner
 
     private static string FormaterRygsækLinje(Genstand genstand)
     {
-        int indreBredde = 50;
+        int indreBredde = 48;
         int antalPrikker = Math.Max(2, indreBredde - genstand.Navn.Length - genstand.Beskrivelse.Length - 2);
         string prikker = new string('.', antalPrikker);
 
