@@ -325,21 +325,41 @@ public static class MenuTegner
         _ => type.ToString()
     };
 
-    public static void VisOpgaveMenu()
+    public static void VisOpgaveMenu(SpilStyrer spilStyrer)
     {
         Console.Clear();
-        Console.WriteLine(
-            """
-            ┌──────────────────── [Opgaver] ──────────────────┐
-            │                                                 │
-            │                   DINE OPGAVER                  │
-            │   Her vises dine aktuelle opgaver.              │
-            │                                                 │
-            ├─────────────────────────────────────────────────┤
-            │ Tryk på en valgfri knap for at fortsætte...     │
-            └─────────────────────────────────────────────────┘
-            """
-        );
+        if (spilStyrer.NuværendeOpgave == null)
+        {
+            Console.WriteLine(
+                """
+                ┌──────────────────── [Opgaver] ──────────────────┐
+                │                                                 │
+                │                   DINE OPGAVER                  │
+                │            Ingen aktuelle opgaver.              │
+                │                                                 │
+                ├─────────────────────────────────────────────────┤
+                │ Tryk på en valgfri knap for at fortsætte...     │
+                └─────────────────────────────────────────────────┘
+                """
+            );
+        }
+        if (spilStyrer.NuværendeOpgave != null)
+        {
+            Console.WriteLine(
+               $"""
+                ┌──────────────────── [Opgaver] ──────────────────┐
+                │                                                 │
+                │                   DINE OPGAVER                  │
+                │     {spilStyrer.NuværendeOpgave.Beskrivelse}    │
+                │                                                 │
+                ├─────────────────────────────────────────────────┤
+                │ Tryk på en valgfri knap for at fortsætte...     │
+                └─────────────────────────────────────────────────┘
+                """
+            );
+        }
+
+
         // Tjek hvis spillestyren har en aktiv opgave
         // Hvis ikke så print "du har ikke nogen nuværende opgaver."
     }

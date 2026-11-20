@@ -75,7 +75,7 @@ public class Program
                     Console.ReadKey(true);
                     break;
                 case ConsoleKey.O:
-                    MenuTegner.VisOpgaveMenu();
+                    MenuTegner.VisOpgaveMenu(_spilStyrer);
                     Console.ReadKey(true);
                     break;
                 case ConsoleKey.Q:
