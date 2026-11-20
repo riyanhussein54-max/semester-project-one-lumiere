@@ -4,7 +4,7 @@
 /// </summary>
 public class SpilStyrer
 {
-    public SpilStatus status = SpilStatus.Aktiv;
+    public SpilStatus Status = SpilStatus.Aktiv;
 
     public SpilStyrer(Lokation startLokation, Spiller spiller)
     {
@@ -18,11 +18,11 @@ public class SpilStyrer
     public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
-    public string StatusBesked { get; private set; } = "";
+    public Genstand? SenestOpsamletGenstand { get; private set; }
 
     public void BevægSpiller(Retning retning)
     {
-        StatusBesked = "";
+        SenestOpsamletGenstand = null;
         (int nyRække, int nySøjle) = Spiller.BeregnNæstePosition(retning);
 
         if (!ErIndenForGitter(nyRække, nySøjle))
@@ -79,8 +79,8 @@ public class SpilStyrer
         return null;
     }
 
-    public void SætSpilStatusTilSlut() => status = SpilStatus.Slut;
-    public SpilStatus TjekStatus() => status;
+    public void SætSpilStatusTilSlut() => Status = SpilStatus.Slut;
+    public SpilStatus TjekStatus() => Status;
 
     /// <summary>
     /// Tildeler spilleren en ny opgave KUN hvis der ikke allerede er en aktiv opgave
@@ -157,8 +157,7 @@ public class SpilStyrer
             if (genstand != null)
             {
                 Spiller.SamlGenstand(genstand);
-                // TODO: Flyttes in i SkærmTegner.cs
-                StatusBesked = $"Du lagde {genstand.Navn} i rygsækken.";
+                SenestOpsamletGenstand = genstand;
             }
         }
     }
