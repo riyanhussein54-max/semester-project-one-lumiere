@@ -19,6 +19,7 @@ public class SpilStyrer
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
     public Genstand? SenestOpsamletGenstand { get; private set; }
+    public Tidscyklus NuværendeTid { get; private set; } = Tidscyklus.Morgen;
 
     public void BevægSpiller(Retning retning)
     {
@@ -159,6 +160,31 @@ public class SpilStyrer
                 Spiller.SamlGenstand(genstand);
                 SenestOpsamletGenstand = genstand;
             }
+        }
+    }
+
+    public void TidenFremad()
+    {
+        switch (NuværendeTid)
+        {
+            case Tidscyklus.Morgen:
+                NuværendeTid = Tidscyklus.Formiddag;
+                break;
+            case Tidscyklus.Formiddag:
+                NuværendeTid = Tidscyklus.Middag;
+                break;
+            case Tidscyklus.Middag:
+                NuværendeTid = Tidscyklus.Eftermiddag;
+                break;
+            case Tidscyklus.Eftermiddag:
+                NuværendeTid = Tidscyklus.Aften;
+                break;
+            case Tidscyklus.Aften:
+                NuværendeTid = Tidscyklus.Nat;
+                break;
+            default:
+                NuværendeTid = Tidscyklus.Morgen;
+                break;
         }
     }
 }
