@@ -7,11 +7,12 @@ public static class MenuTegner
             $"""
             ┌──────────────────── [Hjælp] ────────────────────┐
             │ WASD, Piletaster ______________ Bevæg spilleren │
-            │ H ______________________________ Vis hjælpemenu │
-            │ R __________________________________ Skjul Menu │
+            │ E ___________________________ Interager med NPC │
             │ I _________________________________ Åben rygsæk │
             │ M ________________________________ Åben minimap │
             │ O _________________________________ Vis opgaver │
+            │ H ______________________________ Vis hjælpemenu │
+            │ R __________________________________ Skjul Menu │
             │ Q ______________________________ Forlad spillet │
             ├─────────────────────────────────────────────────┤
             │ Tryk på en valgfri knap for at fortsætte...     │
