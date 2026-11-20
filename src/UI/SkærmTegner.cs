@@ -29,10 +29,12 @@ public class SkærmTegner
     {
         string lys = $"{spilStyrer.Lysforurening}%";
         string lokation = spilStyrer.NuværendeLokation.Navn;
+        string tid = spilStyrer.NuværendeTid.ToString();
 
         TegnStatusTop();
         Console.WriteLine("  ┌─── [Symboler] ───┐");
 
+        Console.Write(FormaterStatusLinje("Tid", tid));
         Console.Write(FormaterStatusLinje("Lysforurening", lys));
         Console.WriteLine("  │ & = Dig          │");
 
