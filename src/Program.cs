@@ -84,7 +84,7 @@ public class Program
                     _spilStyrer.SætSpilStatusTilSlut();
                     break;
                 case ConsoleKey.M:
-                    MenuTegner.VisKortMenu(_spilStyrer);
+                    MenuTegner.VisKortMenu(_spilStyrer, _verden);
                     Console.ReadKey(true);
                     break;
                 default:
