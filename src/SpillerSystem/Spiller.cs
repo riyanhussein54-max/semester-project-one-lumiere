@@ -3,20 +3,14 @@
 /// </summary>
 public class Spiller
 {
-    [Obsolete("Find ud af hvad vi skal bruge navnet til. Ellers slet det")]
-    private string _navn;
-    //private Rygsæk _rygsæk;
     private Rygsæk _rygsæk = new Rygsæk();
 
-    public Spiller()
-    {
-        // Hurtigt genstand test, kan godt fjernes
-        // _rygsæk.TilføjGenstand(new Genstand(GenstandType.RaSkulptur, "En gylden skulptur af den egyptiske gud Ra."));
-        //  _rygsæk.TilføjGenstand(new Genstand(GenstandType.Radio, "En lille grå radio."));
-    }
+    public Spiller() { }
 
     public int Række { get; private set; }
     public int Søjle { get; private set; }
+
+    public IReadOnlyList<Genstand> HentRygsækIndhold() => _rygsæk.Genstande;
 
     public (int Række, int Søjle) BeregnNæstePosition(Retning retning)
     {
@@ -43,6 +37,5 @@ public class Spiller
     }
 
     public void InteragerMedNPC(NPC npc) { }
-    public void KiglRygsæk() => _rygsæk.VisIndhold();
     public bool LøsOpgave() => true;
 }

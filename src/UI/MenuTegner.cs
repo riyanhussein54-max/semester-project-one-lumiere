@@ -24,24 +24,39 @@ public static class MenuTegner
     /// Viser spillerens inventory/rygsæks indhold ved at trykke på I-knappen.
     /// Tjek "VisIndhold()" funktionen i Player/Rygsæk.cs for mere info.
     /// </summary>
-    public static void VisRygsækMenu(Spiller s)
+    public static void VisRygsækMenu(Spiller spiller)
     {
         Console.Clear();
-        Console.WriteLine(
-            $"""
-            ┌──────────────────── [Rygsæk] ────────────────────┐
-            """
-        );
+        IReadOnlyList<Genstand> genstande = spiller.HentRygsækIndhold();
 
-        s.KiglRygsæk();
+        Console.WriteLine("┌──────────────────── [Rygsæk] ────────────────────┐");
 
-        Console.WriteLine(
-            $"""
-            ├──────────────────────────────────────────────────┤
-            │ Tryk på en valgfri knap for at fortsætte...      │
-            └──────────────────────────────────────────────────┘
-            """
-        );
+        if (genstande.Count > 0)
+        {
+            Console.WriteLine("│ Genstande ______________________________________ │");
+            for (int i = 0; i < genstande.Count; i++)
+            {
+                Genstand genstand = genstande[i];
+                Console.WriteLine(FormaterRygsækLinje(genstand));
+            }
+        }
+        else
+        {
+            Console.WriteLine("│                Rygsækken er tom.                 │");
+        }
+
+        Console.WriteLine("├──────────────────────────────────────────────────┤");
+        Console.WriteLine("│ Tryk på en valgfri knap for at fortsætte...      │");
+        Console.WriteLine("└──────────────────────────────────────────────────┘");
+    }
+
+    private static string FormaterRygsækLinje(Genstand genstand)
+    {
+        int indreBredde = 50;
+        int antalPrikker = Math.Max(2, indreBredde - genstand.Navn.Length - genstand.Beskrivelse.Length - 2);
+        string prikker = new string('.', antalPrikker);
+
+        return $"│ {genstand.Navn} {prikker} {genstand.Beskrivelse} │";
     }
 
     /// <summary>
@@ -185,93 +200,130 @@ public static class MenuTegner
         return linjer;
     }
 
-    public static void VisKortMenu(SpilStyrer spilStyrer)
+    public static void VisKortMenu(SpilStyrer spilStyrer, Verden verden)
     {
         Console.Clear();
-        Console.WriteLine("[minimap]");
-        Console.WriteLine("Din nuværende lokation: " + spilStyrer.NuværendeLokation.Navn);
-        Console.WriteLine("--------------------");
-
-        string[,] kortLayout =
+        LokationType?[,] kortLayout =
         {
-            {"", "","", "Kontor","","" },
-            { "","","Elgiganten","Nørregade","Zehras Hjem",""},
-            {"","Lucius Hjem","Vestergade", "Centrum","Østergade","Harald Nyborg"},
-            { "","", "Parkings Plads","Søndergade","Ivanas Hjem","" },
-            { "","","", "Park","",""},
+            { null,                 null,                      null,                        LokationType.Kontor,     null,                    null },
+            { null,                 null,                      LokationType.Elgiganten,     LokationType.NørreGade,  LokationType.ZehrasHjem, null },
+            { null,                 LokationType.LuciusHjem,   LokationType.VesterGade,     LokationType.Centrum,    LokationType.ØsterGade,  LokationType.HaraldNyborg },
+            { null,                 null,                      LokationType.ParkingsPlads,  LokationType.SønderGade, LokationType.IvanasHjem, null },
+            { null,                 null,                      null,                        LokationType.Park,       null,                    null },
         };
+
         int rækker = kortLayout.GetLength(0);
         int søjler = kortLayout.GetLength(1);
+        const string tomBoks = "                 ";
+        const ConsoleColor aktivFarve = ConsoleColor.Green;
 
         for (int i = 0; i < rækker; i++)
         {
             for (int j = 0; j < søjler; j++)
             {
-                string rum = kortLayout[i, j];
-
-                if (rum != "")
-                    Console.Write("┌───────────┐");
-                else
-                    Console.Write("             ");
-
-                if (j < søjler - 1)
-                    Console.Write("  ");
-            }
-
-            Console.WriteLine();
-            for (int j = 0; j < søjler; j++)
-            {
-                string rum = kortLayout[i, j];
-
-                if (rum != "")
+                LokationType? type = kortLayout[i, j];
+                if (type != null)
                 {
-                    Console.Write("│ ");
-                    if (rum == spilStyrer.NuværendeLokation.Navn)
-                    {
-                        Color.Write(rum.PadRight(9), ConsoleColor.Red);
-                    }
-                    else
-                    {
-                        Color.Write(rum.PadRight(9), ConsoleColor.White);
-                    }
-                    Console.Write(" │");
+                    bool erHer = type == spilStyrer.NuværendeLokation.Type;
+                    Color.Write("┌───────────────┐", erHer ? aktivFarve : ConsoleColor.White);
                 }
                 else
                 {
-                    Console.Write("             ");
+                    Console.Write(tomBoks);
                 }
 
-                bool harRumTilHøjre = j + 1 < søjler && rum != "" && kortLayout[i, j + 1] != "";
                 if (j < søjler - 1)
-                    Console.Write(harRumTilHøjre ? "──" : "  ");
+                {
+                    Console.Write("  ");
+                }
             }
             Console.WriteLine();
+
             for (int j = 0; j < søjler; j++)
             {
-                string rum = kortLayout[i, j];
-                if (rum != "")
-                    Console.Write("└───────────┘");
+                LokationType? type = kortLayout[i, j];
+
+                if (type != null)
+                {
+                    Lokation lok = verden.HentLokation(type.Value);
+                    string visningsNavn = FormaterLokationsNavn(type.Value);
+                    bool erHer = type == spilStyrer.NuværendeLokation.Type;
+
+                    Color.Write($"│ {visningsNavn.PadRight(13)} │", erHer ? aktivFarve : ConsoleColor.White);
+
+                    if (j < søjler - 1)
+                    {
+                        bool harØstUdgang = lok.HentUdgang(Retning.Øst) != null;
+                        Console.Write(harØstUdgang ? "──" : "  ");
+                    }
+                }
                 else
-                    Console.Write("             ");
-                if (j < søjler - 1)
-                    Console.Write("  ");
+                {
+                    Console.Write(tomBoks);
+                    if (j < søjler - 1)
+                    {
+                        Console.Write("  ");
+                    }
+                }
             }
             Console.WriteLine();
+
+            for (int j = 0; j < søjler; j++)
+            {
+                LokationType? type = kortLayout[i, j];
+                if (type != null)
+                {
+                    bool erHer = type == spilStyrer.NuværendeLokation.Type;
+                    Color.Write("└───────────────┘", erHer ? aktivFarve : ConsoleColor.White);
+                }
+                else
+                {
+                    Console.Write(tomBoks);
+                }
+
+                if (j < søjler - 1)
+                {
+                    Console.Write("  ");
+                }
+            }
+            Console.WriteLine();
+
             if (i < rækker - 1)
             {
                 for (int j = 0; j < søjler; j++)
                 {
-                    bool harRumUnder = kortLayout[i, j] != "" && kortLayout[i + 1, j] != "";
-                    Console.Write("      ");
-                    Console.Write(harRumUnder ? "│" : " ");
-                    Console.Write("      ");
+                    LokationType? type = kortLayout[i, j];
+                    bool harSydUdgang = type != null && verden.HentLokation(type.Value).HentUdgang(Retning.Syd) != null;
+
+                    Console.Write(harSydUdgang ? "        │        " : tomBoks);
                     if (j < søjler - 1)
+                    {
                         Console.Write("  ");
+                    }
                 }
                 Console.WriteLine();
             }
         }
+
+        Console.Write("\nDu er her: ");
+        Color.WriteLine($"■ {FormaterLokationsNavn(spilStyrer.NuværendeLokation.Type)}", aktivFarve);
+        Console.WriteLine("Tryk på en valgfri tast for at vende tilbage...");
     }
+
+    private static string FormaterLokationsNavn(LokationType type) => type switch
+    {
+        LokationType.NørreGade => "Nørregade",
+        LokationType.VesterGade => "Vestergade",
+        LokationType.ØsterGade => "Østergade",
+        LokationType.SønderGade => "Søndergade",
+        LokationType.ZehrasHjem => "Zehras Hjem",
+        LokationType.LuciusHjem => "Lucius Hjem",
+        LokationType.IvanasHjem => "Ivanas Hjem",
+        LokationType.ParkingsPlads => "P-plads",
+        LokationType.HaraldNyborg => "Harald Nyborg",
+        _ => type.ToString()
+    };
+
     public static void VisOpgaveMenu()
     {
         Console.Clear();
@@ -290,5 +342,4 @@ public static class MenuTegner
         // Tjek hvis spillestyren har en aktiv opgave
         // Hvis ikke så print "du har ikke nogen nuværende opgaver."
     }
-
 }
