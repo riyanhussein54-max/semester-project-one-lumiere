@@ -7,6 +7,9 @@ public class Lokation
     {
         if (_genstande.TryGetValue((r, s), out Genstand? fundetGenstand))
         {
+            if (fundetGenstand.Samles != true)
+                return null;
+
             _genstande.Remove((r, s));
             Gitter[r, s] = FeltType.Gulv;
             return fundetGenstand;
@@ -40,8 +43,11 @@ public class Lokation
     /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
     /// Genstande udskrives med den genstand symbol "¤"
     /// </summary>
-    public void SpawnGenstand(Genstand genstand, int r, int s)
+    public void SpawnGenstand(Genstand genstand /*, int r, int s*/)
     {
+        int r = genstand.Position.række;
+        int s = genstand.Position.søjle;
+
         try
         {
             _genstande[(r, s)] = genstand;
@@ -59,11 +65,18 @@ public class Lokation
     /// </summary>
     public void SpawnNPC(NPC npc)
     {
-        int række = npc.Position.række;
-        int søjle = npc.Position.søjle;
+        int r = npc.Position.række;
+        int s = npc.Position.søjle;
 
-        _npcs[(række, søjle)] = npc;
-        Gitter[række, søjle] = FeltType.NPC;
+        try
+        {
+            _npcs[(r, s)] = npc;
+            Gitter[r, s] = FeltType.NPC;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            throw new ArgumentOutOfRangeException($"Kunne ikke placere {npc.Navn} på ({r}, {s}) i {Type}, da koordinatet er uden for gittert");
+        }
     }
 
     /// -------------------- Ivanas ændringer SLUT ----------------------------
