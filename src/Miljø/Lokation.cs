@@ -68,11 +68,20 @@ public class Lokation
 
     /// -------------------- Ivanas ændringer SLUT ----------------------------
 
-    public string Navn
+    public string Navn => Type switch
     {
-        // TODO: Find en løsning som formatter navnet korrekt (evt. med switch-expression)
-        get => Type.ToString();
-    }
+        LokationType.NørreGade => "Nørregade",
+        LokationType.VesterGade => "Vestergade",
+        LokationType.ØsterGade => "Østergade",
+        LokationType.SønderGade => "Søndergade",
+        LokationType.ZehrasHjem => "Zehras Hjem",
+        LokationType.LuciusHjem => "Lucius Hjem",
+        LokationType.IvanasHjem => "Ivanas Hjem",
+        LokationType.ParkingsPlads => "P-plads",
+        LokationType.HaraldNyborg => "Harald Nyborg",
+        LokationType.Park => "parken",
+        _ => Type.ToString()
+    };
 
     /// <summary>
     /// Tilføjer en udgang til lokationen.
