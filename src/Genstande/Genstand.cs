@@ -5,14 +5,15 @@ public class Genstand
 {
     public string Beskrivelse { get; private set; }
     public GenstandType Type { get; private set; }
+    public (int række, int søjle) Position { get; set; }
 
-    public Genstand(GenstandType type, string beskrivelse)
+    public Genstand(GenstandType type, int række, int søjle, string beskrivelse)
     {
         Beskrivelse = beskrivelse;
+        Position = (række, søjle);
         Type = type;
     }
 
     public string Navn => Type.ToString();
-
-    public Genstand Kopier() => new Genstand(Type, Beskrivelse);
+    public Genstand Kopier() => new Genstand(Type, Position.række, Position.søjle, Beskrivelse);
 }
