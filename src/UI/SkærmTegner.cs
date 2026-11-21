@@ -21,7 +21,7 @@ public class SkærmTegner
         if (spilStyrer.SenestOpsamletGenstand != null)
         {
             Console.WriteLine();
-            TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn} i rygsækken.");
+            TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn.ToLower()} i rygsækken.");
         }
     }
 
