@@ -168,11 +168,9 @@ public class SpilStyrer
 
             if (genstand != null)
             {
-                // Samle ikke faste genstande (fx. gade lamper)
+                // Samle ikke faste genstande (fx gade lamper)
                 if (!genstand.Samles)
-                {
                     return false;
-                }
 
                 Spiller.SamlGenstand(genstand);
                 SenestOpsamletGenstand = genstand;
@@ -195,9 +193,28 @@ public class SpilStyrer
             (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
             Genstand? genstand = NuværendeLokation.HentGenstandFraKoordinat(tjekRække, tjekSøjle);
 
+            bool harHammer = false;
+            foreach (Genstand genstandIRygsæk in Spiller.HentRygsækIndhold())
+            {
+                if (genstandIRygsæk.Navn == "Hammer")
+                {
+                    harHammer = true;
+                    break;
+                }
+            }
+
             if (genstand != null && !genstand.Samles)
             {
-                SenesteInteraktionsBesked = $"Du kigger på en {genstand.Navn.ToLower()}.";
+                if (genstand.Type == GenstandType.GadeLampe && harHammer)
+                {
+                    NuværendeLokation.FjernGenstand(tjekRække, tjekSøjle);
+                    SenesteInteraktionsBesked = "Du smadrer gadelampen med din hammer! Viva la vandalisme.";
+                }
+                else
+                {
+                    SenesteInteraktionsBesked = $"Du kigger på en {genstand.Navn.ToLower()}.";
+                }
+
                 return;
             }
         }

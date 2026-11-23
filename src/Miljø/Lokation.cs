@@ -21,6 +21,19 @@ public class Lokation
         return null;
     }
 
+    public Genstand? FjernGenstand(int r, int s)
+    {
+        if (_genstande.TryGetValue((r, s), out Genstand? genstand))
+        {
+            _genstande.Remove((r, s));
+            Gitter[r, s] = FeltType.Gulv;
+
+            return genstand;
+        }
+
+        return null;
+    }
+
     private readonly Dictionary<Retning, Lokation> _udgange = new();
 
     public Lokation(LokationType lokationType, FeltType[,] gitter /* Genstand? genstand = null */)
