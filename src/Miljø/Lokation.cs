@@ -152,4 +152,9 @@ public class Lokation
     {
         return _npcs.GetValueOrDefault((række, søjle));
     }
+
+    public Genstand? HentGenstandFraKoordinat(int række, int søjle)
+    {
+        return _genstande.GetValueOrDefault((række, søjle));
+    }
 }

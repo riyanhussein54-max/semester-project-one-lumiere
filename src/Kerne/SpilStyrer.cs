@@ -19,6 +19,7 @@ public class SpilStyrer
     public Spiller Spiller { get; private set; }
     public Opgave? NuværendeOpgave { get; private set; }
     public Genstand? SenestOpsamletGenstand { get; private set; }
+    public string? SenesteInteraktionsBesked { get; set; }
 
     public void BevægSpiller(Retning retning)
     {
@@ -50,6 +51,7 @@ public class SpilStyrer
         }
 
         Spiller.SætPosition(nyRække, nySøjle);
+        SenesteInteraktionsBesked = null; // FLYT IKKE LINJEN ELLERS GÅ DET I STYKKER :D
         TjekSamlGenstand(nyRække, nySøjle);
     }
 
@@ -175,5 +177,23 @@ public class SpilStyrer
         }
 
         return true;
+    }
+
+    public void InteragerMedFastGenstand()
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            Genstand? genstand = NuværendeLokation.HentGenstandFraKoordinat(tjekRække, tjekSøjle);
+
+            if (genstand != null && !genstand.Samles)
+            {
+                SenesteInteraktionsBesked = $"Du kigger på en {genstand.Navn.ToLower()}.";
+                return;
+            }
+        }
     }
 }

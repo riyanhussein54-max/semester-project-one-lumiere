@@ -23,6 +23,12 @@ public class SkærmTegner
             Console.WriteLine();
             TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn.ToLower()} i rygsækken.");
         }
+
+        if (spilStyrer.SenesteInteraktionsBesked != null)
+        {
+            Console.WriteLine();
+            TegnBeskedBoks(spilStyrer.SenesteInteraktionsBesked);
+        }
     }
 
     private static void TegnTopPanel(SpilStyrer spilStyrer, string opgaveNavn)
@@ -139,7 +145,7 @@ public class SkærmTegner
         }
     }
 
-    private static void TegnBeskedBoks(string besked)
+    public static void TegnBeskedBoks(string besked)
     {
         Console.WriteLine("┌──────────────────────────────────────────────────┐");
 
