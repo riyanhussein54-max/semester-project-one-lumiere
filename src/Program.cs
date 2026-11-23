@@ -80,8 +80,10 @@ public class Program
                     break;
                 case ConsoleKey.Q:
                 case ConsoleKey.Escape:
-                    // TODO: Lav en "Confirm to Quit"-prompt før man afslutter spillet
-                    _spilStyrer.SætSpilStatusTilSlut();
+                    if (MenuTegner.VisBekræftAfslutningMenu())
+                    {
+                        _spilStyrer.SætSpilStatusTilSlut();
+                    }
                     break;
                 case ConsoleKey.M:
                     MenuTegner.VisKortMenu(_spilStyrer, _verden);

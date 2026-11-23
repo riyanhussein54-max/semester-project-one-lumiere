@@ -20,6 +20,32 @@ public static class MenuTegner
             """
         );
     }
+    public static bool VisBekræftAfslutningMenu()
+    {
+        Console.Clear();
+        Console.WriteLine(
+            """
+             ┌───────────── [Afslut spillet] ────────────────┐
+             │                                               │
+             │  Er du sikker på at du vil afslutte spillet?  │
+             │                                               │
+             │              [J] Ja     [N] Nej               │
+             └───────────────────────────────────────────────┘
+             """
+        );
+        while (true)
+        {
+            ConsoleKey key = Console.ReadKey(true).Key;
+            if (key == ConsoleKey.J)
+            {
+                return true;
+            }
+            if (key == ConsoleKey.N)
+            {
+                return false;
+            }
+        }
+    }
 
     /// <summary>
     /// Viser spillerens inventory/rygsæks indhold ved at trykke på I-knappen.
