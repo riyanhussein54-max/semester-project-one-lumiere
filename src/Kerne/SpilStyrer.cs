@@ -30,9 +30,15 @@ public class SpilStyrer
             return;
         }
 
-        // Dette er vores kollision detectionm, hvis feltet er en NPC, så stopper vi op
+        // Dette er vores kollision detection, hvis feltet er en NPC, så stopper vi op
         FeltType målFelt = NuværendeLokation.Gitter[nyRække, nySøjle];
         if (målFelt == FeltType.NPC || målFelt == FeltType.Væg)
+        {
+            return;
+        }
+
+        // Kollision til faste genstande
+        if (målFelt == FeltType.Genstand && NuværendeLokation.SamlGenstand(nyRække, nySøjle, true) == null)
         {
             return;
         }
@@ -149,16 +155,25 @@ public class SpilStyrer
         return true;
     }
 
-    private void TjekSamlGenstand(int række, int søjle)
+    private bool TjekSamlGenstand(int række, int søjle)
     {
         if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
         {
             Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
+
             if (genstand != null)
             {
+
+                if (!genstand.Samles)
+                {
+                    return false;
+                }
+
                 Spiller.SamlGenstand(genstand);
                 SenestOpsamletGenstand = genstand;
             }
         }
+
+        return true;
     }
 }

@@ -3,12 +3,15 @@
 /// </summary>
 public class Lokation
 {
-    public Genstand? SamlGenstand(int r, int s)
+    public Genstand? SamlGenstand(int r, int s, bool samles = false)
     {
         if (_genstande.TryGetValue((r, s), out Genstand? fundetGenstand))
         {
             if (fundetGenstand.Samles != true)
                 return null;
+
+            if (samles)
+                return fundetGenstand;
 
             _genstande.Remove((r, s));
             Gitter[r, s] = FeltType.Gulv;
