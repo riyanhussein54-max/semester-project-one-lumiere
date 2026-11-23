@@ -13,7 +13,7 @@ public class Genstand
         Beskrivelse = beskrivelse;
         Position = (række, søjle);
         Type = type;
-        Samles = samles || false;
+        Samles = samles;
     }
 
     public string Navn => Type.ToString();
