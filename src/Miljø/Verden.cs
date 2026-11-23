@@ -121,10 +121,10 @@ public class Verden
         _lokationer[LokationType.IvanasHjem].SpawnGenstand(GenstandPool.Telefon);
         _lokationer[LokationType.HaraldNyborg].SpawnGenstand(GenstandPool.Hammer);
 
-        _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLampeA);
-        _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLampeB);
-        _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLampeC);
-        _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLampeD);
+        for (int g = 0; g < GenstandPool.GadeLamper.Length; g++)
+        {
+            _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLamper[g]);
+        }
 
         // TODO: få evt genstande fra genstandpool
         // ! Vi angiver koordinater på genstandene her, men for NPCer er det anderledes? Det gør det svært at balancer det

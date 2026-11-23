@@ -16,10 +16,17 @@ public static class GenstandPool
     public static Genstand Hammer = new(GenstandType.Hammer, 2, 4, "Den slår hårdt.");
 
     // Park
-    public static Genstand GadeLampeA = new(GenstandType.GadeLampe, 0, 1, "The street lamp is evil and must be punished.", false);
-    public static Genstand GadeLampeB = new(GenstandType.GadeLampe, 0, 6, "The street lamp is evil and must be punished.", false);
-    public static Genstand GadeLampeC = new(GenstandType.GadeLampe, 2, 0, "The street lamp is evil and must be punished.", false);
-    public static Genstand GadeLampeD = new(GenstandType.GadeLampe, 5, 0, "The street lamp is evil and must be punished.", false);
+    public static Genstand[] GadeLamper =
+    {
+        new(GenstandType.GadeLampe, 0, 1, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 0, 6, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 2, 0, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 5, 0, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 7, 1, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 7, 6, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 5, 7, "The street lamp is evil and must be punished.", false),
+        new(GenstandType.GadeLampe, 2, 7, "The street lamp is evil and must be punished.", false),
+    };
 
     /*
     // Indgang
