@@ -33,7 +33,7 @@ public class SkærmTegner
         if (spilStyrer.SenestOplåsteLokationer.Count > 0)
         {
             Console.WriteLine();
-            string navne = string.Join(", ", spilStyrer.SenestOplåsteLokationer.Select(l => l.Navn));
+            string navne = string.Join(", ", spilStyrer.SenestOplåsteLokationer.Select(lokation => lokation.Navn));
             TegnBeskedBoks($"Du låste op for: {navne}!");
         }
     }
@@ -58,7 +58,7 @@ public class SkærmTegner
         if (_visControls)
         {
             Console.WriteLine("├──────────────────────────────────────────────────┤  │ @ = NPC          │");
-            Console.WriteLine("│ [WASD] Bevæg   [R] Skjul Menu   [H] Hjælp        │  └──────────────────┘");
+            Console.WriteLine("│ [WASD] Bevæg   [M] Minimap   [H] Hjælp           │  └──────────────────┘");
             Console.WriteLine("└──────────────────────────────────────────────────┘");
         }
         else
