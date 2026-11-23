@@ -15,15 +15,11 @@ public static class DialogPool
             [DialogTilstand.FørOpgave] =
             [
                 new Replik("Godmorgen, mit navn er Ivana.", Følelse.Neutral),
-                new Replik("Jeg er her for at hjælpe dig igang.", Følelse.KedAfDet),
-                new Replik("Som du ved er byen præget af lysforurening.", Følelse.Overrasket),
-                new Replik("Jeg beder dig nu om at hjælpe 5 personer i byen.", Følelse.KedAfDet),
-                new Replik("Du kan finde rundt i byen ved at trykke [M]. Den giver dig et oversigtskort.", Følelse.Neutral),
+                new Replik("Jeg er her for at hjælpe dig i gang med dit eventyr.", Følelse.KedAfDet),
+                new Replik("Som du ved er vores by præget af lysforurening.", Følelse.Overrasket),
+                new Replik("Jeg beder dig nu om at hjælpe 5 personer, som er mest udsat for lysforurening.", Følelse.KedAfDet),
+                new Replik("Tryk [M] for at åbne minimapet. Den kan hjælpe dig med at finde rundt i byen.", Følelse.Neutral),
                 new Replik("Held og lykke.", Følelse.KedAfDet),
-            ],
-            [DialogTilstand.OpgaveAktiv] =
-            [
-
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
