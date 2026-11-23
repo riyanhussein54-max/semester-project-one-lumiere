@@ -1,3 +1,4 @@
+using semester_project_one_lumiere.src.Værktøjer;
 /// <summary>
 /// SpilStyren holder styr på spillets kontekst og andet relavant info.
 /// Derudover har den også styr på spillets flow, regler og tilstand.
@@ -146,6 +147,8 @@ public class SpilStyrer
 
         nySpillerPosition = næste.HentDørKoordinatTil(NuværendeLokation);
         NuværendeLokation = næste;
+        Console.WriteLine("[DEBUG] Prøver at afspille musik for centret...");
+        LydManager.SpilBaggrundsMusik("mall.wav");
         return true;
     }
 
