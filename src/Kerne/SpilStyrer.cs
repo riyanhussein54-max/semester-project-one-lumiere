@@ -157,6 +157,9 @@ public class SpilStyrer
         return true;
     }
 
+    /// <summary>
+    /// Samler ikke-faste genstande når spilleren træder på dem
+    /// </summary>
     private bool TjekSamlGenstand(int række, int søjle)
     {
         if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
@@ -165,7 +168,7 @@ public class SpilStyrer
 
             if (genstand != null)
             {
-
+                // Samle ikke faste genstande (fx. gade lamper)
                 if (!genstand.Samles)
                 {
                     return false;
@@ -179,6 +182,9 @@ public class SpilStyrer
         return true;
     }
 
+    /// <summary>
+    /// Giver andre interageringsmuligheder til faste genstande
+    /// </summary>
     public void InteragerMedFastGenstand()
     {
         Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
