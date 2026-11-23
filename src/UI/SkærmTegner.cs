@@ -23,6 +23,19 @@ public class SkærmTegner
             Console.WriteLine();
             TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn} i rygsækken.");
         }
+
+        if (spilStyrer.LåstDørLokation != null)
+        {
+            Console.WriteLine();
+            TegnBeskedBoks($"Døren til {spilStyrer.LåstDørLokation.Navn} er låst.");
+        }
+
+        if (spilStyrer.SenestOplåsteLokationer.Count > 0)
+        {
+            Console.WriteLine();
+            string navne = string.Join(", ", spilStyrer.SenestOplåsteLokationer.Select(l => l.Navn));
+            TegnBeskedBoks($"Du låste op for: {navne}!");
+        }
     }
 
     private static void TegnTopPanel(SpilStyrer spilStyrer, string opgaveNavn)

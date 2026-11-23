@@ -42,11 +42,21 @@ public class Begivenhed
         if (spilStyrer.NuværendeOpgave == null)
         {
             spilStyrer.SætNuværendeOpgave(Opgave);
+
+            // Hvis opgaven løses blot ved at snakke med NPCen, så fuldføre vi den med det samme
+            if (Opgave.LøsesVedSamtale)
+            {
+                Opgave.MarkerSomFuldført();
+                ErOpgaveFærdig = true;
+                spilStyrer.FuldførNuværendeOpgave();
+            }
+
             return _dialoger[DialogTilstand.FørOpgave];
         }
 
-        if (Opgave.ErFuldført)
+        if (Opgave.ErFuldført || (Opgave.PåkrævetGenstand != null && Opgave.HarGenstandTilOpgave(spilStyrer.Spiller)))
         {
+            Opgave.MarkerSomFuldført();
             ErOpgaveFærdig = true;
             spilStyrer.FuldførNuværendeOpgave();
             return _dialoger[DialogTilstand.OpgaveFuldført];

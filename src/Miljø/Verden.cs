@@ -16,10 +16,23 @@ public class Verden
     {
         OpretLokationer();
         ForbindLokationer();
+        LåsLokationer();
         SpawnNPCer();
         SpawnGenstande();
 
         StartLokation = _lokationer[LokationType.Centrum];
+    }
+
+    private void LåsLokationer()
+    {
+        _lokationer[LokationType.NørreGade].ErLåst = true;
+        _lokationer[LokationType.VesterGade].ErLåst = true;
+        _lokationer[LokationType.ØsterGade].ErLåst = true;
+        _lokationer[LokationType.SønderGade].ErLåst = true;
+        _lokationer[LokationType.Kontor].ErLåst = true;
+        _lokationer[LokationType.Elgiganten].ErLåst = true;
+        _lokationer[LokationType.HaraldNyborg].ErLåst = true;
+        _lokationer[LokationType.ParkingsPlads].ErLåst = true;
     }
 
     /// <summary>
@@ -35,12 +48,12 @@ public class Verden
     private void OpretLokationer()
     {
         Tilføj(new Lokation(LokationType.Centrum, new FeltType[11, 11]));
-        Tilføj(new Lokation(LokationType.NørreGade, new FeltType[5, 7]));
+        Tilføj(new Lokation(LokationType.NørreGade, new FeltType[5, 9]));
         Tilføj(new Lokation(LokationType.VesterGade, new FeltType[5, 9]));
         Tilføj(new Lokation(LokationType.ØsterGade, new FeltType[5, 9]));
         Tilføj(new Lokation(LokationType.SønderGade, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.ZehrasHjem, new FeltType[7, 8]));
-        Tilføj(new Lokation(LokationType.Kontor, new FeltType[4, 9]));
+        Tilføj(new Lokation(LokationType.Kontor, new FeltType[5, 7]));
         Tilføj(new Lokation(LokationType.LuciusHjem, new FeltType[7, 8]));
         Tilføj(new Lokation(LokationType.ParkingsPlads, new FeltType[9, 10]));
         Tilføj(new Lokation(LokationType.Park, new FeltType[8, 8]));
@@ -118,7 +131,7 @@ public class Verden
     {
         // TODO: få evt genstande fra genstandpool
         // ! Vi angiver koordinater på genstandene her, men for NPCer er det anderledes? Det gør det svært at balancer det
-        _lokationer[LokationType.Centrum].SpawnGenstand(new(GenstandType.Sut, "Farven er lyserød"), 1, 1);
+        _lokationer[LokationType.NørreGade].SpawnGenstand(new(GenstandType.Sut, "Farven er lyserød"), 1, 1);
         _lokationer[LokationType.Elgiganten].SpawnGenstand(new(GenstandType.Elpære, "PHILIPS LED-pære"), 2, 2);
         _lokationer[LokationType.IvanasHjem].SpawnGenstand(new(GenstandType.Telefon, "Samsung Galaxy A"), 2, 4);
         _lokationer[LokationType.HaraldNyborg].SpawnGenstand(new(GenstandType.Hammer, "Den slår hårdt"), 2, 4);

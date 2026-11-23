@@ -6,23 +6,31 @@ public class SpilStyrer
 {
     public SpilStatus Status = SpilStatus.Aktiv;
 
-    public SpilStyrer(Lokation startLokation, Spiller spiller)
+    private readonly Verden _verden;
+
+    public SpilStyrer(Verden verden, Spiller spiller)
     {
-        NuværendeLokation = startLokation;
+        _verden = verden;
+        NuværendeLokation = _verden.StartLokation;
         Spiller = spiller;
 
-        SætSpillerStartPosition(startLokation);
+        SætSpillerStartPosition(NuværendeLokation);
     }
 
     public int Lysforurening { get; private set; } = 100;
-    public Lokation NuværendeLokation { get; private set; }
     public Spiller Spiller { get; private set; }
-    public Opgave? NuværendeOpgave { get; private set; }
+    public Lokation NuværendeLokation { get; private set; }
     public Genstand? SenestOpsamletGenstand { get; private set; }
+    public Lokation? LåstDørLokation { get; private set; }
+    public List<Lokation> SenestOplåsteLokationer { get; } = new();
+    public Opgave? NuværendeOpgave { get; private set; }
 
     public void BevægSpiller(Retning retning)
     {
         SenestOpsamletGenstand = null;
+        LåstDørLokation = null;
+        SenestOplåsteLokationer.Clear();
+
         (int nyRække, int nySøjle) = Spiller.BeregnNæstePosition(retning);
 
         if (!ErIndenForGitter(nyRække, nySøjle))
@@ -106,6 +114,13 @@ public class SpilStyrer
             return;
         }
 
+        foreach (LokationType lokationType in NuværendeOpgave.LåsOpLokationer)
+        {
+            Lokation lokationDerÅbnes = _verden.HentLokation(lokationType);
+            lokationDerÅbnes.ErLåst = false;
+            SenestOplåsteLokationer.Add(lokationDerÅbnes);
+        }
+
         ReducerLysforurening(NuværendeOpgave.LysforureningReduktion);
         NuværendeOpgave = null;
     }
@@ -142,6 +157,13 @@ public class SpilStyrer
         if (næste == null)
         {
             return false;
+        }
+
+        if (næste.ErLåst)
+        {
+            LåstDørLokation = næste;
+            nySpillerPosition = (Spiller.Række, Spiller.Søjle);
+            return true; // gør så spilleren ikke går ind i dørfeltet
         }
 
         nySpillerPosition = næste.HentDørKoordinatTil(NuværendeLokation);

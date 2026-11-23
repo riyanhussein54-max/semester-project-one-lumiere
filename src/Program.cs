@@ -5,7 +5,7 @@ public class Program
 {
     private static Verden _verden = new Verden();
     private static Spiller _spiller = new Spiller();
-    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden.StartLokation, _spiller);
+    private static SpilStyrer _spilStyrer = new SpilStyrer(_verden, _spiller);
 
     /// <summary>
     /// 1. Spørger brugeren om de er en Spiller eller Dev
@@ -40,6 +40,7 @@ public class Program
             switch (key)
             {
                 case ConsoleKey.E:
+                case ConsoleKey.Enter:
                     NPC? npc = _spilStyrer.HentNærliggendeNPC();
                     if (npc?.Begivenhed != null)
                     {

@@ -5,8 +5,6 @@ public class Spiller
 {
     private Rygsæk _rygsæk = new Rygsæk();
 
-    public Spiller() { }
-
     public int Række { get; private set; }
     public int Søjle { get; private set; }
 
@@ -23,6 +21,8 @@ public class Spiller
             _ => (Række, Søjle)
         };
     }
+
+    public bool HarGenstand(GenstandType type) => _rygsæk.HarGenstand(type);
 
     public void SætPosition(int række, int søjle)
     {

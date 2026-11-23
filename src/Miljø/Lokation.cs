@@ -26,6 +26,7 @@ public class Lokation
 
     public LokationType Type { get; private set; }
     public FeltType[,] Gitter { get; private set; }
+    public bool ErLåst { get; set; } = false;
 
     /// -------------------- Ivanas ændringer START ----------------------------
 

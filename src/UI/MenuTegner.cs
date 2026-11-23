@@ -101,13 +101,7 @@ public static class MenuTegner
                 // X = 16 (lige efter portræt-væggen)
                 // Y = 2 + linjeIndex8
                 Console.SetCursorPosition(16, 2 + linjeIndex);
-
-                string prefix = (linjeIndex == 0) ? "\"" : " ";
-                string suffix = (linjeIndex == tekstLinjer.Count - 1)
-                    ? "\""
-                    : "";
-
-                TypeWriter.PrintLine($"{prefix}{tekstLinjer[linjeIndex]}{suffix}");
+                TypeWriter.PrintLine($"{tekstLinjer[linjeIndex]}");
             }
 
             // Flytter cursoren ned under boksen og vent på Enter

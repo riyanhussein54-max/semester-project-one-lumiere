@@ -2,15 +2,15 @@ public static class NPCPool
 {
     public static NPC Zehra = new(
         NPCType.Zehra,
-        1,
-        1,
+        3,
+        5,
         DialogPool.OpretBegivenhedZehra()
     );
 
     public static NPC Muhsin = new(
         NPCType.Muhsin,
         1,
-        6,
+        3,
         DialogPool.OpretBegivenhedMuhsin()
     );
 
