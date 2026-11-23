@@ -1,10 +1,10 @@
 Project:
 - Title: Lumiére
-- Development Age: 21 days, 12 hours
+- Development Age: 25 days, 9 hours
 
 Codebase Size:
 - C# Files: 29
-- Lines of Code: 1,692
+- Lines of Code: 1,786
 
 src/
 ├── Begivenheder/
