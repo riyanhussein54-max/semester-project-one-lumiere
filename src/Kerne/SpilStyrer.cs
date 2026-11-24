@@ -42,13 +42,7 @@ public class SpilStyrer
 
         // Dette er vores kollision detection, hvis feltet er en NPC, så stopper vi op
         FeltType målFelt = NuværendeLokation.Gitter[nyRække, nySøjle];
-        if (målFelt == FeltType.NPC || målFelt == FeltType.Væg)
-        {
-            return;
-        }
-
-        // Kollision til faste genstande
-        if (målFelt == FeltType.Genstand && NuværendeLokation.SamlGenstand(nyRække, nySøjle, true) == null)
+        if (målFelt == FeltType.NPC || målFelt == FeltType.Væg || målFelt == FeltType.Objekt)
         {
             return;
         }
