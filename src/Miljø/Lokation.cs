@@ -80,7 +80,7 @@ public class Lokation
         LokationType.IvanasHjem => "Ivanas Hjem",
         LokationType.ParkingsPlads => "P-plads",
         LokationType.HaraldNyborg => "Harald Nyborg",
-        LokationType.Park => "parken",
+        LokationType.Park => "Parken",
         _ => Type.ToString()
     };
 
