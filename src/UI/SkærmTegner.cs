@@ -34,7 +34,7 @@ public class SkærmTegner
         TegnStatusTop();
         Console.WriteLine("  ┌─── [Symboler] ───┐");
 
-        Console.Write(FormaterStatusLinje("Tid", tid));
+        Console.WriteLine(FormaterStatusLinje("Tid", tid));
         Console.Write(FormaterStatusLinje("Lysforurening", lys));
         Console.WriteLine("  │ & = Dig          │");
 
