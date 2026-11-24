@@ -13,7 +13,7 @@ public static class MenuTegner
             │ O ________________________________ Åben opgaver │
             │ H _____________________________ Åben hjælpemenu │
             │ R _____________________________ Skjul hjælpebar │
-            │ Q ______________________________ Forlad spillet │
+            │ Q, Esc _________________________ Forlad spillet │
             ├─────────────────────────────────────────────────┤
             │ Tryk på en valgfri knap for at fortsætte...     │
             └─────────────────────────────────────────────────┘
