@@ -24,7 +24,7 @@ public class SpilStyrer
     public Lokation? LåstDørLokation { get; private set; }
     public List<Lokation> SenestOplåsteLokationer { get; } = new();
     public Opgave? NuværendeOpgave { get; private set; }
-    public Tidscyklus NuværendeTid { get; private set; } = Tidscyklus.Morgen;
+    public TidspunktPåDagen NuværendeTid { get; private set; } = TidspunktPåDagen.Morgen;
     public string? SenesteInteraktionsBesked { get; set; }
 
     public void BevægSpiller(Retning retning)
@@ -61,7 +61,6 @@ public class SpilStyrer
 
         Spiller.SætPosition(nyRække, nySøjle);
         SenesteInteraktionsBesked = null; // FLYT IKKE LINJEN ELLERS GÅ DET I STYKKER :D
-        TjekSamlGenstand(nyRække, nySøjle);
     }
 
     public bool ErIndenForGitter(int række, int søjle)
@@ -181,90 +180,27 @@ public class SpilStyrer
         return true;
     }
 
-    /// <summary>
-    /// Samler ikke-faste genstande når spilleren træder på dem
-    /// </summary>
-    private bool TjekSamlGenstand(int række, int søjle)
-    {
-        if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
-        {
-            Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
-
-            if (genstand != null)
-            {
-                // Samle ikke faste genstande (fx gade lamper)
-                if (!genstand.Samles)
-                    return false;
-
-                Spiller.SamlGenstand(genstand);
-                SenestOpsamletGenstand = genstand;
-            }
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// Giver andre interageringsmuligheder til faste genstande
-    /// </summary>
-    public void InteragerMedFastGenstand()
-    {
-        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
-
-        for (int i = 0; i < retninger.Length; i++)
-        {
-            Retning retning = retninger[i];
-            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
-            Genstand? genstand = NuværendeLokation.HentGenstandFraKoordinat(tjekRække, tjekSøjle);
-
-            bool harHammer = false;
-            foreach (Genstand genstandIRygsæk in Spiller.HentRygsækIndhold())
-            {
-                if (genstandIRygsæk.Navn == "Hammer")
-                {
-                    harHammer = true;
-                    break;
-                }
-            }
-
-            if (genstand != null && !genstand.Samles)
-            {
-                if (genstand.Type == GenstandType.GadeLampe && harHammer)
-                {
-                    NuværendeLokation.FjernGenstand(tjekRække, tjekSøjle);
-                    SenesteInteraktionsBesked = "Du smadrer gadelampen med din hammer! Viva la vandalisme.";
-                }
-                else
-                {
-                    SenesteInteraktionsBesked = $"Du kigger på en {genstand.Navn.ToLower()}.";
-                }
-
-                return;
-            }
-        }
-    }
-
     public void TidenFremad()
     {
         switch (NuværendeTid)
         {
-            case Tidscyklus.Morgen:
-                NuværendeTid = Tidscyklus.Formiddag;
+            case TidspunktPåDagen.Morgen:
+                NuværendeTid = TidspunktPåDagen.Formiddag;
                 break;
-            case Tidscyklus.Formiddag:
-                NuværendeTid = Tidscyklus.Middag;
+            case TidspunktPåDagen.Formiddag:
+                NuværendeTid = TidspunktPåDagen.Middag;
                 break;
-            case Tidscyklus.Middag:
-                NuværendeTid = Tidscyklus.Eftermiddag;
+            case TidspunktPåDagen.Middag:
+                NuværendeTid = TidspunktPåDagen.Eftermiddag;
                 break;
-            case Tidscyklus.Eftermiddag:
-                NuværendeTid = Tidscyklus.Aften;
+            case TidspunktPåDagen.Eftermiddag:
+                NuværendeTid = TidspunktPåDagen.Aften;
                 break;
-            case Tidscyklus.Aften:
-                NuværendeTid = Tidscyklus.Nat;
+            case TidspunktPåDagen.Aften:
+                NuværendeTid = TidspunktPåDagen.Nat;
                 break;
             default:
-                NuværendeTid = Tidscyklus.Morgen;
+                NuværendeTid = TidspunktPåDagen.Morgen;
                 break;
         }
     }

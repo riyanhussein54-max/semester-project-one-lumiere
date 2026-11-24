@@ -40,7 +40,6 @@ public static class DialogPool
             titel: "Grædende pige",
             beskrivelse: "Hjælp den grædende pige med at finde sin sut",
             lysforureningReduktion: 15,
-            påkrævetGenstand: GenstandType.Sut,
             låsOpLokationer: [LokationType.Kontor, LokationType.Elgiganten]
         );
 

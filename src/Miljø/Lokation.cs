@@ -7,9 +7,6 @@ public class Lokation
     {
         if (_genstande.TryGetValue((r, s), out Genstand? fundetGenstand))
         {
-            if (fundetGenstand.Samles != true)
-                return null;
-
             if (samles)
                 return fundetGenstand;
 
@@ -36,22 +33,19 @@ public class Lokation
 
     private readonly Dictionary<Retning, Lokation> _udgange = new();
 
-    public Lokation(LokationType lokationType, FeltType[,] gitter /* Genstand? genstand = null */)
+    public Lokation(LokationType lokationType, FeltType[,] gitter)
     {
         Type = lokationType;
         Gitter = gitter;
-        //Genstand = genstand;
     }
 
     public LokationType Type { get; private set; }
     public FeltType[,] Gitter { get; private set; }
     public bool ErLåst { get; set; } = false;
 
-    /// -------------------- Ivanas ændringer START ----------------------------
-
     // Lavet "Genstand" om til en dictionary så vi kan spawne flere genstande i en lokation
-    //public Genstand? Genstand { get; private set; }
     private Dictionary<(int r, int s), Genstand> _genstande = new();
+    private Dictionary<(int r, int s), Objekt> _objekter = new();
 
     // NPC dictionary så vi kan spawn flere npcer i en lokation
     private Dictionary<(int r, int s), NPC> _npcs = new();
@@ -73,6 +67,26 @@ public class Lokation
         catch (IndexOutOfRangeException)
         {
             throw new ArgumentOutOfRangeException($"Kunne ikke placere {genstand.Navn} på ({r}, {s}) i {Type}, da koordinatet er uden for gittert");
+        }
+    }
+
+    /// <summary>
+    /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
+    /// Genstande udskrives med den genstand symbol "¤"
+    /// </summary>
+    public void SpawnObjekt(Objekt objekt)
+    {
+        int r = objekt.Position.række;
+        int s = objekt.Position.søjle;
+
+        try
+        {
+            _objekter[(r, s)] = objekt;
+            Gitter[r, s] = FeltType.Objekt;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            throw new ArgumentOutOfRangeException($"Kunne ikke placere {objekt.Navn} på ({r}, {s}) i {Type}, da koordinatet er uden for gittert");
         }
     }
 

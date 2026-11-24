@@ -3,18 +3,7 @@
 /// </summary>
 public enum GenstandType
 {
-    // Centrum
-    Sut,
-
-    // Elgiganten
     Elpære,
-
-    // Ivanas Hjem
     Telefon,
-
-    // Harald Nyborg
     Hammer,
-
-    // Park
-    GadeLampe,
 }

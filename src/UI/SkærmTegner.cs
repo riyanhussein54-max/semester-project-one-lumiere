@@ -140,6 +140,11 @@ public class SkærmTegner
                         Console.Write(" ¤");
                         Console.ResetColor();
                         break;
+                    case FeltType.Objekt:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write(" %");
+                        Console.ResetColor();
+                        break;
                     case FeltType.NPC:
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.Write(" @");

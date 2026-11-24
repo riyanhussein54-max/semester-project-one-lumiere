@@ -1,4 +1,4 @@
-public enum Tidscyklus
+public enum TidspunktPåDagen
 {
     Morgen,
     Formiddag,

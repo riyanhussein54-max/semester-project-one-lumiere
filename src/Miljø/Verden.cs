@@ -19,6 +19,7 @@ public class Verden
         LåsLokationer();
         SpawnNPCer();
         SpawnGenstande();
+        SpawnObjekter();
 
         StartLokation = _lokationer[LokationType.Centrum];
     }
@@ -129,14 +130,15 @@ public class Verden
     /// </summary>
     private void SpawnGenstande()
     {
-        _lokationer[LokationType.NørreGade].SpawnGenstand(GenstandPool.Sut);
         _lokationer[LokationType.Elgiganten].SpawnGenstand(GenstandPool.Elpære);
         _lokationer[LokationType.IvanasHjem].SpawnGenstand(GenstandPool.Telefon);
         _lokationer[LokationType.HaraldNyborg].SpawnGenstand(GenstandPool.Hammer);
+    }
 
-        for (int g = 0; g < GenstandPool.GadeLamper.Length; g++)
-        {
-            _lokationer[LokationType.Park].SpawnGenstand(GenstandPool.GadeLamper[g]);
-        }
+    private void SpawnObjekter()
+    {
+        _lokationer[LokationType.ZehrasHjem].SpawnObjekt(ObjektPool.Lysdæmperkontakt);
+        _lokationer[LokationType.LuciusHjem].SpawnObjekt(ObjektPool.Lampe);
+        _lokationer[LokationType.Park].SpawnObjekt(ObjektPool.GadeLampe);
     }
 }

@@ -47,8 +47,6 @@ public class Program
                         Replik[] replikker = npc.Begivenhed.HentAktuelDialog(_spilStyrer);
                         MenuTegner.VisNPCDialogMenu(npc.Navn, replikker);
                     }
-
-                    _spilStyrer.InteragerMedFastGenstand();
                     break;
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
