@@ -109,6 +109,7 @@ public class SpilStyrer
 
         ReducerLysforurening(NuværendeOpgave.LysforureningReduktion);
         NuværendeOpgave = null;
+        TidenFremad();
     }
 
     /// <summary>
