@@ -129,7 +129,7 @@ public class Verden
     /// </summary>
     private void SpawnGenstande()
     {
-        _lokationer[LokationType.Centrum].SpawnGenstand(GenstandPool.Sut);
+        _lokationer[LokationType.NørreGade].SpawnGenstand(GenstandPool.Sut);
         _lokationer[LokationType.Elgiganten].SpawnGenstand(GenstandPool.Elpære);
         _lokationer[LokationType.IvanasHjem].SpawnGenstand(GenstandPool.Telefon);
         _lokationer[LokationType.HaraldNyborg].SpawnGenstand(GenstandPool.Hammer);
