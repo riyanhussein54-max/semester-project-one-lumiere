@@ -41,6 +41,7 @@ public static class DialogPool
             beskrivelse: "Hjælp den grædende pige med at finde sin sut",
             lysforureningReduktion: 15,
             låsOpLokationer: [LokationType.Kontor, LokationType.Elgiganten]
+            fagbeskrivelse: ""
         );
 
         Dictionary<DialogTilstand, Replik[]> dialog = new()

@@ -7,7 +7,8 @@ public class Opgave
         GenstandType? påkrævetGenstand = null,
         LokationType[]? låsOpLokationer = null,
         bool løsesVedSamtale = false,
-        Genstand? opgavePremie = null)
+        Genstand? opgavePremie = null,
+        string fagbeskrivelse = "")
     {
         Titel = titel;
         Beskrivelse = beskrivelse;
@@ -16,10 +17,12 @@ public class Opgave
         LåsOpLokationer = låsOpLokationer ?? [];
         LøsesVedSamtale = løsesVedSamtale;
         OpgavePremie = opgavePremie;
+        Fagbeskrivelse = fagbeskrivelse;
     }
 
     public string Titel { get; }
     public string Beskrivelse { get; }
+    public string Fagbeskrivelse { get; }
     public int LysforureningReduktion { get; }
     public GenstandType? PåkrævetGenstand { get; }
     public LokationType[] LåsOpLokationer { get; }
