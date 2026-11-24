@@ -25,6 +25,7 @@ public class SpilStyrer
     public List<Lokation> SenestOplåsteLokationer { get; } = new();
     public Opgave? NuværendeOpgave { get; private set; }
     public Tidscyklus NuværendeTid { get; private set; } = Tidscyklus.Morgen;
+    public string? SenesteInteraktionsBesked { get; set; }
 
     public void BevægSpiller(Retning retning)
     {
@@ -39,9 +40,15 @@ public class SpilStyrer
             return;
         }
 
-        // Dette er vores kollision detectionm, hvis feltet er en NPC, så stopper vi op
+        // Dette er vores kollision detection, hvis feltet er en NPC, så stopper vi op
         FeltType målFelt = NuværendeLokation.Gitter[nyRække, nySøjle];
         if (målFelt == FeltType.NPC || målFelt == FeltType.Væg)
+        {
+            return;
+        }
+
+        // Kollision til faste genstande
+        if (målFelt == FeltType.Genstand && NuværendeLokation.SamlGenstand(nyRække, nySøjle, true) == null)
         {
             return;
         }
@@ -53,6 +60,7 @@ public class SpilStyrer
         }
 
         Spiller.SætPosition(nyRække, nySøjle);
+        SenesteInteraktionsBesked = null; // FLYT IKKE LINJEN ELLERS GÅ DET I STYKKER :D
         TjekSamlGenstand(nyRække, nySøjle);
     }
 
@@ -173,15 +181,65 @@ public class SpilStyrer
         return true;
     }
 
-    private void TjekSamlGenstand(int række, int søjle)
+    /// <summary>
+    /// Samler ikke-faste genstande når spilleren træder på dem
+    /// </summary>
+    private bool TjekSamlGenstand(int række, int søjle)
     {
         if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
         {
             Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
+
             if (genstand != null)
             {
+                // Samle ikke faste genstande (fx gade lamper)
+                if (!genstand.Samles)
+                    return false;
+
                 Spiller.SamlGenstand(genstand);
                 SenestOpsamletGenstand = genstand;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Giver andre interageringsmuligheder til faste genstande
+    /// </summary>
+    public void InteragerMedFastGenstand()
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            Genstand? genstand = NuværendeLokation.HentGenstandFraKoordinat(tjekRække, tjekSøjle);
+
+            bool harHammer = false;
+            foreach (Genstand genstandIRygsæk in Spiller.HentRygsækIndhold())
+            {
+                if (genstandIRygsæk.Navn == "Hammer")
+                {
+                    harHammer = true;
+                    break;
+                }
+            }
+
+            if (genstand != null && !genstand.Samles)
+            {
+                if (genstand.Type == GenstandType.GadeLampe && harHammer)
+                {
+                    NuværendeLokation.FjernGenstand(tjekRække, tjekSøjle);
+                    SenesteInteraktionsBesked = "Du smadrer gadelampen med din hammer! Viva la vandalisme.";
+                }
+                else
+                {
+                    SenesteInteraktionsBesked = $"Du kigger på en {genstand.Navn.ToLower()}.";
+                }
+
+                return;
             }
         }
     }

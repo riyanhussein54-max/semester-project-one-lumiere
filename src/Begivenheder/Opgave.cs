@@ -6,7 +6,8 @@ public class Opgave
         int lysforureningReduktion = 15,
         GenstandType? påkrævetGenstand = null,
         LokationType[]? låsOpLokationer = null,
-        bool løsesVedSamtale = false)
+        bool løsesVedSamtale = false,
+        Genstand? opgavePremie = null)
     {
         Titel = titel;
         Beskrivelse = beskrivelse;
@@ -14,6 +15,7 @@ public class Opgave
         PåkrævetGenstand = påkrævetGenstand;
         LåsOpLokationer = låsOpLokationer ?? [];
         LøsesVedSamtale = løsesVedSamtale;
+        OpgavePremie = opgavePremie;
     }
 
     public string Titel { get; }
@@ -23,6 +25,7 @@ public class Opgave
     public LokationType[] LåsOpLokationer { get; }
     public bool ErFuldført { get; private set; }
     public bool LøsesVedSamtale { get; }
+    public Genstand? OpgavePremie { get; }
 
     public void MarkerSomFuldført() => ErFuldført = true;
 

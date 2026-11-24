@@ -142,7 +142,8 @@ public static class DialogPool
         Opgave testOpgave = new Opgave(
             titel: "Uangivet",
             beskrivelse: "",
-            lysforureningReduktion: 0
+            lysforureningReduktion: 0,
+            opgavePremie: GenstandPool.Telefon
         );
 
         Dictionary<DialogTilstand, Replik[]> test = new()

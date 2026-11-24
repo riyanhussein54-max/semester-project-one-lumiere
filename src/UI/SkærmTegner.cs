@@ -21,7 +21,13 @@ public class SkærmTegner
         if (spilStyrer.SenestOpsamletGenstand != null)
         {
             Console.WriteLine();
-            TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn} i rygsækken.");
+            TegnBeskedBoks($"Du lagde {spilStyrer.SenestOpsamletGenstand.Navn.ToLower()} i rygsækken.");
+        }
+
+        if (spilStyrer.SenesteInteraktionsBesked != null)
+        {
+            Console.WriteLine();
+            TegnBeskedBoks(spilStyrer.SenesteInteraktionsBesked);
         }
 
         if (spilStyrer.LåstDørLokation != null)
@@ -154,7 +160,7 @@ public class SkærmTegner
         }
     }
 
-    private static void TegnBeskedBoks(string besked)
+    public static void TegnBeskedBoks(string besked)
     {
         Console.WriteLine("┌──────────────────────────────────────────────────┐");
 
