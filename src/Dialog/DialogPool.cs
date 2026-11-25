@@ -49,13 +49,14 @@ public static class DialogPool
         {
             [DialogTilstand.FørOpgave] =
             [
-                new Replik("Jeg er meget ked af det.", Følelse.KedAfDet),
-                new Replik("Please find mig min sut", Følelse.Græder)
+                new Replik("Det er alt for lyst inde på mit værelse.", Følelse.KedAfDet),
+                new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
+                new Replik("Please skru ned for lysniveauet", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveAktiv] =
             [
-                new Replik("Jeg har altså stadig ikke fået min sut.", Følelse.Tåre),
-                new Replik("Please jeg har brug for min sut.", Følelse.Græder)
+                new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
+                new Replik("Please skru ned for lysniveauet", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
