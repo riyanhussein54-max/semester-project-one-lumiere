@@ -24,10 +24,10 @@ public class Opgave
     public string Beskrivelse { get; }
     public string Fagbeskrivelse { get; }
     public int LysforureningReduktion { get; }
-    public GenstandType? PåkrævetGenstand { get; }
-    public LokationType[] LåsOpLokationer { get; }
     public bool ErFuldført { get; private set; }
     public bool LøsesVedSamtale { get; }
+    public LokationType[] LåsOpLokationer { get; }
+    public GenstandType? PåkrævetGenstand { get; }
     public Genstand? OpgavePremie { get; }
 
     public void MarkerSomFuldført() => ErFuldført = true;
