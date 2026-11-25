@@ -108,6 +108,26 @@ public class SpilStyrer
         return null;
     }
 
+    public T? HentNærliggende<T>() where T : class
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            T type = default;
+            // type = NuværendeLokation.HentFraKoordinat(tjekRække, tjekSøjle);
+
+            if (type != null)
+            {
+                return type;
+            }
+        }
+
+        return null;
+    }
+
     public void SætSpilStatusTilSlut() => Status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => Status;
 
