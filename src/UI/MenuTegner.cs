@@ -321,6 +321,29 @@ public static class MenuTegner
     public static void VisOpgaveMenu(SpilStyrer spilStyrer)
     {
         Console.Clear();
+
+        int maxLength = 49;
+
+        string opgaveTitel = spilStyrer.NuværendeOpgave?.Titel ?? "";
+        string formattedTitle = opgaveTitel.PadLeft((maxLength + opgaveTitel.Length) / 2).PadRight(maxLength);
+
+        string opgaveBeskrivelse = spilStyrer.NuværendeOpgave?.Beskrivelse ?? "Ingen aktuelle opgaver.";
+        string formattedBeskrivelse = opgaveBeskrivelse.PadLeft((maxLength + opgaveBeskrivelse.Length) / 2).PadRight(maxLength);
+
+        Console.WriteLine(
+            $"""
+            ┌──────────────────── [Opgave] ───────────────────┐
+            │                                                 │
+            │{formattedTitle}│
+            │{formattedBeskrivelse}│
+            │                                                 │
+            ├─────────────────────────────────────────────────┤
+            │ Tryk på en valgfri knap for at fortsætte...     │
+            └─────────────────────────────────────────────────┘
+            """
+        );
+
+        /*
         if (spilStyrer.NuværendeOpgave == null)
         {
             Console.WriteLine(
@@ -351,9 +374,6 @@ public static class MenuTegner
                 """
             );
         }
-
-
-        // Tjek hvis spillestyren har en aktiv opgave
-        // Hvis ikke så print "du har ikke nogen nuværende opgaver."
+         */
     }
 }
