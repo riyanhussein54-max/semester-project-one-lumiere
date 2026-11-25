@@ -89,6 +89,25 @@ public class SpilStyrer
         return null;
     }
 
+    public Objekt? HentNærliggendeObjekt()
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            Objekt? objekt = NuværendeLokation.HentObjektFraKoordinat(tjekRække, tjekSøjle);
+
+            if (objekt != null)
+            {
+                return objekt;
+            }
+        }
+
+        return null;
+    }
+
     public void SætSpilStatusTilSlut() => Status = SpilStatus.Slut;
     public SpilStatus TjekStatus() => Status;
 
