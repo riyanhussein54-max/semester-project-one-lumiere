@@ -51,12 +51,12 @@ public static class DialogPool
             [
                 new Replik("Det er alt for lyst inde på mit værelse.", Følelse.KedAfDet),
                 new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
-                new Replik("Please skru ned for lysniveauet", Følelse.KedAfDet)
+                new Replik("Please skru ned for lysniveauet.", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveAktiv] =
             [
                 new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
-                new Replik("Please skru ned for lysniveauet", Følelse.KedAfDet)
+                new Replik("Please skru ned for lysniveauet.", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
@@ -112,7 +112,7 @@ public static class DialogPool
         Opgave opgave = new Opgave(
             titel: "Lektielæsning",
             beskrivelse: "Tænd lampen inde på Lucius værelse",
-            lysforureningReduktion: 0,
+            lysforureningReduktion: 15,
             påkrævetObjekt: ObjektType.LuciusLampe,
             låsOpLokationer: [LokationType.ØsterGade]
         );
@@ -121,15 +121,17 @@ public static class DialogPool
         {
             [DialogTilstand.FørOpgave] =
             [
-                new Replik("Hej!", Følelse.KedAfDet),
+                new Replik("Der er alt for mørkt herinde...", Følelse.KedAfDet),
+                new Replik("Jeg kan ikke se en skid.", Følelse.Sur),
+                new Replik("Tænd for mit lys.", Følelse.MegetSur),
             ],
             [DialogTilstand.OpgaveAktiv] =
             [
-                new Replik("Dette er en test", Følelse.KedAfDet)
+                new Replik("Tænd for mit lys.", Følelse.MegetSur),
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
-                new Replik("2 + 2 = 5", Følelse.Glad)
+                new Replik("Tak bro!", Følelse.Glad),
             ],
             [DialogTilstand.EnAndenPersonsOpgaveErAktiv] =
             [

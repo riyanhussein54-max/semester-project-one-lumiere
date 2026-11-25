@@ -10,8 +10,8 @@ public class ObjektPool
 
     public static Objekt Lampe = new(
         type: ObjektType.LuciusLampe,
-        række: 1,
-        søjle: 1,
+        række: 0,
+        søjle: 0,
         opgaverGiver: NPCType.Lucius,
         handlingsTekst: "Sluk for lampen"
     );
