@@ -40,6 +40,7 @@ public static class DialogPool
             titel: "Grædende pige",
             beskrivelse: "Hjælp den grædende pige med at finde sin sut",
             lysforureningReduktion: 15,
+            påkrævetObjekt: ObjektType.LysdæmperKontakt,
             låsOpLokationer: [LokationType.Kontor, LokationType.Elgiganten],
             fagbeskrivelse: ""
         );
@@ -111,6 +112,7 @@ public static class DialogPool
             titel: "Lektielæsning",
             beskrivelse: "Tænd lampen inde på Lucius værelse",
             lysforureningReduktion: 0,
+            påkrævetObjekt: ObjektType.LuciusLampe,
             låsOpLokationer: [LokationType.ØsterGade]
         );
 
@@ -174,7 +176,8 @@ public static class DialogPool
         Opgave opgave = new Opgave(
             titel: "Uangivet",
             beskrivelse: "",
-            lysforureningReduktion: 0
+            lysforureningReduktion: 0,
+            påkrævetObjekt: ObjektType.Lygtepæl
         );
 
         Dictionary<DialogTilstand, Replik[]> dialog = new()
