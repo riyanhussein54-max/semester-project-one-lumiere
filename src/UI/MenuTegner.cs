@@ -219,7 +219,9 @@ public static class MenuTegner
                 if (type != null)
                 {
                     bool erHer = type == spilStyrer.NuværendeLokation.Type;
-                    Color.Write("┌───────────────┐", erHer ? aktivFarve : ConsoleColor.White);
+                    bool erLåst = verden.HentLokation(type.Value).ErLåst;
+                    ConsoleColor farve = erHer ? aktivFarve: erLåst ? ConsoleColor.Gray : ConsoleColor.White;
+                    Color.Write("┌───────────────┐", farve);
                 }
                 else
                 {
@@ -242,8 +244,9 @@ public static class MenuTegner
                     Lokation lok = verden.HentLokation(type.Value);
                     string visningsNavn = FormaterLokationsNavn(type.Value);
                     bool erHer = type == spilStyrer.NuværendeLokation.Type;
-
-                    Color.Write($"│ {visningsNavn.PadRight(13)} │", erHer ? aktivFarve : ConsoleColor.White);
+                    bool erLåst = lok.ErLåst;
+                    ConsoleColor farve = erHer ? aktivFarve: erLåst ? ConsoleColor.Gray : ConsoleColor.White;
+                    Color.Write($"│ {visningsNavn.PadRight(13)} │", farve);
 
                     if (j < søjler - 1)
                     {
@@ -268,7 +271,9 @@ public static class MenuTegner
                 if (type != null)
                 {
                     bool erHer = type == spilStyrer.NuværendeLokation.Type;
-                    Color.Write("└───────────────┘", erHer ? aktivFarve : ConsoleColor.White);
+                    bool erLåst = verden.HentLokation(type.Value).ErLåst;
+                    ConsoleColor farve = erHer ? aktivFarve: erLåst ? ConsoleColor.Gray : ConsoleColor.White;
+                    Color.Write("└───────────────┘", farve);
                 }
                 else
                 {
