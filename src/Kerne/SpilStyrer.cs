@@ -55,6 +55,7 @@ public class SpilStyrer
 
         Spiller.SætPosition(nyRække, nySøjle);
         SenesteInteraktionsBesked = null; // FLYT IKKE LINJEN ELLERS GÅ DET I STYKKER :D
+        TjekSamlGenstand(nyRække, nySøjle);
     }
 
     public bool ErIndenForGitter(int række, int søjle)
@@ -87,6 +88,24 @@ public class SpilStyrer
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Samler ikke-faste genstande når spilleren træder på dem
+    /// </summary>
+    private bool TjekSamlGenstand(int række, int søjle)
+    {
+        if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
+        {
+            Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
+            if (genstand != null)
+            {
+                Spiller.SamlGenstand(genstand);
+                SenestOpsamletGenstand = genstand;
+            }
+        }
+
+        return true;
     }
 
     public Objekt? HentNærliggendeObjekt()
