@@ -318,6 +318,9 @@ public static class MenuTegner
         _ => type.ToString()
     };
 
+    /// <summary>
+    /// Viser detaljer om spillerens aktiv opgave
+    /// </summary>
     public static void VisOpgaveMenu(SpilStyrer spilStyrer)
     {
         Console.Clear();
