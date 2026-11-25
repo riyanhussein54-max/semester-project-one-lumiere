@@ -46,6 +46,15 @@ public class Program
                     {
                         Replik[] replikker = npc.Begivenhed.HentAktuelDialog(_spilStyrer);
                         MenuTegner.VisNPCDialogMenu(npc.Navn, replikker);
+                        break;
+                    }
+                    Objekt? objekt = _spilStyrer.HentNærliggendeObjekt();
+                    if (objekt != null && _spilStyrer.KanInteragereMedObjekt(objekt))
+                    {
+                        if (SkærmTegner.TegnObjektInteraktionBoks(objekt))
+                        {
+                            _spilStyrer.InteragerMedObjekt(objekt);
+                        }
                     }
                     break;
                 case ConsoleKey.W:
