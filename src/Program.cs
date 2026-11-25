@@ -35,9 +35,9 @@ public class Program
     {
         while (_spilStyrer.TjekStatus() == SpilStatus.Aktiv)
         {
-            ConsoleKey key = Console.ReadKey(true).Key;
+            ConsoleKey tast = Console.ReadKey(true).Key;
 
-            switch (key)
+            switch (tast)
             {
                 case ConsoleKey.E:
                 case ConsoleKey.Enter:

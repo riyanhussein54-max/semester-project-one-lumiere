@@ -66,7 +66,7 @@ public class SkærmTegner
         if (_visControls)
         {
             Console.WriteLine("├──────────────────────────────────────────────────┤  │ @ = NPC          │");
-            Console.WriteLine("│ [WASD] Bevæg   [M] Minimap   [H] Hjælp           │  └──────────────────┘");
+            Console.WriteLine("│ [WASD] Bevæg   [E] Interager   [H] Hjælp         │  └──────────────────┘");
             Console.WriteLine("└──────────────────────────────────────────────────┘");
         }
         else
@@ -165,14 +165,62 @@ public class SkærmTegner
         }
     }
 
-    public static void TegnBeskedBoks(string besked)
+    private static void TegnBeskedBoks(string besked)
     {
         Console.WriteLine("┌──────────────────────────────────────────────────┐");
-
+        // FIX: Er det nødvendigt med char array?
         foreach (char[] linje in besked.Chunk(48))
         {
             Console.WriteLine($"│ {new string(linje),-48} │");
         }
         Console.WriteLine("└──────────────────────────────────────────────────┘");
+    }
+
+    public static bool TegnObjektInteraktionBoks(Objekt objekt)
+    {
+        // 0 = Handling og 1 = Annuller
+        int valgtIndex = 0;
+        int venstreBredde = Math.Max(19, objekt.Navn.Length + 4);
+        int højreBredde = Math.Max(21, objekt.HandlingsTekst.Length + 7);
+
+        string venstreStreg = new string('─', venstreBredde);
+        string højreStreg = new string('─', højreBredde);
+        string venstreMellemrum = new string(' ', venstreBredde + 1);
+
+        int startY = Console.CursorTop + 1;
+
+        while (true)
+        {
+            Console.SetCursorPosition(0, startY);
+
+            string markør0 = valgtIndex == 0 ? ">" : " ";
+            string markør1 = valgtIndex == 1 ? ">" : " ";
+
+            string linje0 = $" {markør0}  {objekt.HandlingsTekst}".PadRight(højreBredde);
+            string linje1 = $" {markør1}  Annuller".PadRight(højreBredde);
+
+            Console.WriteLine($"┌{venstreStreg}┬{højreStreg}┐");
+            Console.WriteLine($"│ {objekt.Navn.PadRight(venstreBredde - 1)}│{linje0}│");
+            Console.WriteLine($"└{venstreStreg}┤{linje1}│");
+            Console.WriteLine($"{venstreMellemrum}└{højreStreg}┘");
+
+            ConsoleKey tast = Console.ReadKey(true).Key;
+            switch (tast)
+            {
+                case ConsoleKey.UpArrow:
+                case ConsoleKey.W:
+                    valgtIndex = 0;
+                    break;
+                case ConsoleKey.DownArrow:
+                case ConsoleKey.S:
+                    valgtIndex = 1;
+                    break;
+                case ConsoleKey.Enter:
+                case ConsoleKey.E:
+                    return valgtIndex == 0;
+                case ConsoleKey.Escape:
+                    return false;
+            }
+        }
     }
 }
