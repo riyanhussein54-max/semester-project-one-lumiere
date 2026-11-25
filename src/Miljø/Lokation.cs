@@ -3,6 +3,36 @@
 /// </summary>
 public class Lokation
 {
+    private Dictionary<(int r, int s), Genstand> _genstande = new();
+    private Dictionary<(int r, int s), Objekt> _objekter = new();
+    private Dictionary<(int r, int s), NPC> _npcs = new();
+    private readonly Dictionary<Retning, Lokation> _udgange = new();
+
+    public Lokation(LokationType lokationType, FeltType[,] gitter)
+    {
+        Type = lokationType;
+        Gitter = gitter;
+    }
+
+    public LokationType Type { get; private set; }
+    public FeltType[,] Gitter { get; private set; }
+    public bool ErLåst { get; set; } = false;
+
+    public string Navn => Type switch
+    {
+        LokationType.NørreGade => "Nørregade",
+        LokationType.VesterGade => "Vestergade",
+        LokationType.ØsterGade => "Østergade",
+        LokationType.SønderGade => "Søndergade",
+        LokationType.ZehrasHjem => "Zehras Hjem",
+        LokationType.LuciusHjem => "Lucius Hjem",
+        LokationType.IvanasHjem => "Ivanas Hjem",
+        LokationType.ParkingsPlads => "P-plads",
+        LokationType.HaraldNyborg => "Harald Nyborg",
+        LokationType.Park => "Parken",
+        _ => Type.ToString()
+    };
+
     public Genstand? SamlGenstand(int r, int s, bool samles = false)
     {
         if (_genstande.TryGetValue((r, s), out Genstand? fundetGenstand))
@@ -30,25 +60,6 @@ public class Lokation
 
         return null;
     }
-
-    private readonly Dictionary<Retning, Lokation> _udgange = new();
-
-    public Lokation(LokationType lokationType, FeltType[,] gitter)
-    {
-        Type = lokationType;
-        Gitter = gitter;
-    }
-
-    public LokationType Type { get; private set; }
-    public FeltType[,] Gitter { get; private set; }
-    public bool ErLåst { get; set; } = false;
-
-    // Lavet "Genstand" om til en dictionary så vi kan spawne flere genstande i en lokation
-    private Dictionary<(int r, int s), Genstand> _genstande = new();
-    private Dictionary<(int r, int s), Objekt> _objekter = new();
-
-    // NPC dictionary så vi kan spawn flere npcer i en lokation
-    private Dictionary<(int r, int s), NPC> _npcs = new();
 
     /// <summary>
     /// Spawner en eller flere genstand(e) i spillet ved angivet koordinater
@@ -110,23 +121,6 @@ public class Lokation
         }
     }
 
-    /// -------------------- Ivanas ændringer SLUT ----------------------------
-
-    public string Navn => Type switch
-    {
-        LokationType.NørreGade => "Nørregade",
-        LokationType.VesterGade => "Vestergade",
-        LokationType.ØsterGade => "Østergade",
-        LokationType.SønderGade => "Søndergade",
-        LokationType.ZehrasHjem => "Zehras Hjem",
-        LokationType.LuciusHjem => "Lucius Hjem",
-        LokationType.IvanasHjem => "Ivanas Hjem",
-        LokationType.ParkingsPlads => "P-plads",
-        LokationType.HaraldNyborg => "Harald Nyborg",
-        LokationType.Park => "Parken",
-        _ => Type.ToString()
-    };
-
     /// <summary>
     /// Tilføjer en udgang til lokationen.
     /// Den retning der vælges er lokationens placering ift. destinationen.
@@ -180,18 +174,8 @@ public class Lokation
         return (Gitter.GetLength(0) / 2, Gitter.GetLength(1) / 2);
     }
 
-    public Lokation? HentUdgang(Retning retning)
-    {
-        return _udgange.GetValueOrDefault(retning);
-    }
-
-    public NPC? HentNPCFraKoordinat(int række, int søjle)
-    {
-        return _npcs.GetValueOrDefault((række, søjle));
-    }
-
-    public Genstand? HentGenstandFraKoordinat(int række, int søjle)
-    {
-        return _genstande.GetValueOrDefault((række, søjle));
-    }
+    public Lokation? HentUdgang(Retning retning) => _udgange.GetValueOrDefault(retning);
+    public Genstand? HentGenstandFraKoordinat(int række, int søjle) => _genstande.GetValueOrDefault((række, søjle));
+    public Objekt? HentObjektFraKoordinat(int række, int søjle) => _objekter.GetValueOrDefault((række, søjle));
+    public NPC? HentNPCFraKoordinat(int række, int søjle) => _npcs.GetValueOrDefault((række, søjle));
 }
