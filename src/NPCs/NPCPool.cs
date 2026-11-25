@@ -1,44 +1,44 @@
 public static class NPCPool
 {
     public static NPC Zehra = new(
-        NPCType.Zehra,
-        3,
-        5,
-        DialogPool.OpretBegivenhedZehra()
+        person: NPCType.Zehra,
+        række: 3,
+        søjle: 5,
+        begivenhed: DialogPool.OpretBegivenhedZehra()
     );
 
     public static NPC Muhsin = new(
-        NPCType.Muhsin,
-        1,
-        3,
-        DialogPool.OpretBegivenhedMuhsin()
+        person: NPCType.Muhsin,
+        række: 1,
+        søjle: 3,
+        begivenhed: DialogPool.OpretBegivenhedMuhsin()
     );
 
     public static NPC Ivana = new(
-        NPCType.Ivana,
-        3,
-        5,
-        DialogPool.OpretBegivenhedIvana()
+        person: NPCType.Ivana,
+        række: 3,
+        søjle: 5,
+        begivenhed: DialogPool.OpretBegivenhedIvana()
     );
 
     public static NPC Riyan = new(
-        NPCType.Riyan,
-        3,
-        4,
-        DialogPool.OpretBegivenhedRiyan()
+        person: NPCType.Riyan,
+        række: 3,
+        søjle: 4,
+        begivenhed: DialogPool.OpretBegivenhedRiyan()
     );
 
     public static NPC Lucius = new(
-        NPCType.Lucius,
-        1,
-        1,
-        DialogPool.OpretBegivenhedLucius()
+        person: NPCType.Lucius,
+        række: 1,
+        søjle: 1,
+        begivenhed: DialogPool.OpretBegivenhedLucius()
     );
 
     public static NPC Adam = new NPC(
-        NPCType.Adam,
-        1,
-        1,
-        DialogPool.OpretBegivenhedAdam()
+        person: NPCType.Adam,
+        række: 1,
+        søjle: 1,
+        begivenhed: DialogPool.OpretBegivenhedAdam()
     );
 }
