@@ -179,6 +179,40 @@ public class SpilStyrer
         }
     }
 
+    // TODO: Overvej at flytte til spiller klasse!
+    public bool KanInteragereMedObjekt(Objekt objekt)
+    {
+        if (objekt.ErBrugt)
+        {
+            SenesteInteraktionsBesked = $"Du har allerede brugt {objekt.Navn}.";
+            return false;
+        }
+
+        if (NuværendeOpgave == null || NuværendeOpgave.PåkrævetObjekt != objekt.Type)
+        {
+            SenesteInteraktionsBesked = $"Snak med {objekt.OpgaveGiver} først.";
+            return false;
+        }
+
+        return true;
+    }
+
+    // TODO: Overvej at flytte til spiller klasse!
+    public void InteragerMedObjekt(Objekt objekt)
+    {
+        if (objekt.PåkrævetGenstand != null && !Spiller.HarGenstand(objekt.PåkrævetGenstand.Value))
+        {
+            SenesteInteraktionsBesked = $"Du mangler en {objekt.PåkrævetGenstand.Value.ToString().ToLower()} for at gøre dette.";
+            return;
+        }
+
+        objekt.MarkerSomBrugt();
+        if (NuværendeOpgave != null && NuværendeOpgave.PåkrævetObjekt == objekt.Type)
+        {
+            NuværendeOpgave.MarkerSomFuldført();
+        }
+    }
+
     private void SætSpillerStartPosition(Lokation startLokation)
     {
         int startRække = startLokation.Gitter.GetLength(0) / 2;
