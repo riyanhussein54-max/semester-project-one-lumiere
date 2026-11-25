@@ -11,9 +11,6 @@ public class Begivenhed
     public Opgave? Opgave { get; }
     public bool ErOpgaveFærdig { get; private set; }
 
-    public void DialogLæser() { }
-    public void UdløsOpgave() { }
-
     /// <summary>
     /// Bestemmer hvilken DialogTilstand NPCen er og håndterer opgave-tildeling samt fuldførelse
     /// og returnerer de replikker som MenuTegner skal vise
@@ -54,7 +51,7 @@ public class Begivenhed
             return _dialoger[DialogTilstand.FørOpgave];
         }
 
-        if (Opgave.ErFuldført || (Opgave.PåkrævetGenstand != null && Opgave.HarGenstandTilOpgave(spilStyrer.Spiller)))
+        if (Opgave.ErFuldført || Opgave.HarGenstandTilOpgave(spilStyrer.Spiller))
         {
             Opgave.MarkerSomFuldført();
             ErOpgaveFærdig = true;

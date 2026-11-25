@@ -5,6 +5,7 @@ public class Opgave
         string beskrivelse,
         int lysforureningReduktion = 15,
         GenstandType? påkrævetGenstand = null,
+        ObjektType? påkrævetObjekt = null,
         LokationType[]? låsOpLokationer = null,
         bool løsesVedSamtale = false,
         Genstand? opgavePremie = null,
@@ -14,6 +15,7 @@ public class Opgave
         Beskrivelse = beskrivelse;
         LysforureningReduktion = lysforureningReduktion;
         PåkrævetGenstand = påkrævetGenstand;
+        PåkrævetObjekt = påkrævetObjekt;
         LåsOpLokationer = låsOpLokationer ?? [];
         LøsesVedSamtale = løsesVedSamtale;
         OpgavePremie = opgavePremie;
@@ -27,6 +29,7 @@ public class Opgave
     public bool ErFuldført { get; private set; }
     public bool LøsesVedSamtale { get; }
     public LokationType[] LåsOpLokationer { get; }
+    public ObjektType? PåkrævetObjekt { get; }
     public GenstandType? PåkrævetGenstand { get; }
     public Genstand? OpgavePremie { get; }
 
@@ -36,7 +39,7 @@ public class Opgave
     {
         if (PåkrævetGenstand == null)
         {
-            return true;
+            return false;
         }
 
         return spiller.HarGenstand(PåkrævetGenstand.Value);
