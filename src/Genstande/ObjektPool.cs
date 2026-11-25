@@ -1,6 +1,6 @@
 public class ObjektPool
 {
-    public static Objekt LysdæmperKontakt = new(
+    public static readonly Objekt LysdæmperKontakt = new(
         type: ObjektType.LysdæmperKontakt,
         række: 0,
         søjle: 7,
@@ -8,7 +8,7 @@ public class ObjektPool
         handlingsTekst: "Skru ned for lyset"
     );
 
-    public static Objekt Lampe = new(
+    public static readonly Objekt Lampe = new(
         type: ObjektType.LuciusLampe,
         række: 0,
         søjle: 0,
@@ -16,7 +16,7 @@ public class ObjektPool
         handlingsTekst: "Sluk for lampen"
     );
 
-    public static Objekt Lygtepæl = new(
+    public static readonly Objekt Lygtepæl = new(
         type: ObjektType.Lygtepæl,
         række: 1,
         søjle: 1,
