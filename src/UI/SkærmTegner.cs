@@ -63,11 +63,6 @@ public class SkærmTegner
 
         if (_visControls)
         {
-<<<<<<< HEAD
-            Console.WriteLine("├──────────────────────────────────────────────────┤  │ @ = NPC          │");
-            Console.WriteLine("│ [WASD] Bevæg   [E] Interager   [H] Hjælp         │  └──────────────────┘");
-            Console.WriteLine("└──────────────────────────────────────────────────┘");
-=======
             Console.WriteLine(
                 $"""
                 ├──────────────────────────────────────────────────┤
@@ -75,7 +70,6 @@ public class SkærmTegner
                 └──────────────────────────────────────────────────┘
                 """
             );
->>>>>>> improvement/Symbolboks
         }
         else
         {
