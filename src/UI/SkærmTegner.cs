@@ -51,28 +51,35 @@ public class SkærmTegner
         string tid = spilStyrer.NuværendeTid.ToString();
 
         TegnStatusTop();
-        Console.WriteLine("  ┌─── [Symboler] ───┐");
-
-        Console.WriteLine(FormaterStatusLinje("Tid", tid));
+        Console.WriteLine("");
+        Console.Write(FormaterStatusLinje("Tid", tid));
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Lysforurening", lys));
-        Console.WriteLine("  │ & = Dig          │");
-
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Lokation", lokation));
-        Console.WriteLine("  │ # = Udgang/Dør   │");
-
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Opgave", opgaveNavn));
-        Console.WriteLine("  │ ¤ = Genstand     │");
+        Console.WriteLine("");
 
         if (_visControls)
         {
+<<<<<<< HEAD
             Console.WriteLine("├──────────────────────────────────────────────────┤  │ @ = NPC          │");
             Console.WriteLine("│ [WASD] Bevæg   [E] Interager   [H] Hjælp         │  └──────────────────┘");
             Console.WriteLine("└──────────────────────────────────────────────────┘");
+=======
+            Console.WriteLine(
+                $"""
+                ├──────────────────────────────────────────────────┤
+                │ [WASD] Bevæg   [M] Minimap   [H] Hjælp           │
+                └──────────────────────────────────────────────────┘
+                """
+            );
+>>>>>>> improvement/Symbolboks
         }
         else
         {
-            Console.WriteLine("└──────────────────────────────────────────────────┘  │ @ = NPC          │");
-            Console.WriteLine("                                                      └──────────────────┘");
+            Console.WriteLine("└──────────────────────────────────────────────────┘");
         }
     }
 
