@@ -7,9 +7,9 @@ public static class MenuTegner
             $"""
             ┌──────────────────── [Hjælp] ────────────────────┐ ┌─── [Symboler] ───┐
             │ WASD, Piletaster ______________ Bevæg spilleren │ │ & = Dig          │
-            │ E, Enter ____________________ Interager med NPC │ │ # = Udgang/Dør   │
+            │ E, Enter ____________________ Interager med NPC │ │ # = Indgang      │
             │ M ________________________________ Åben minimap │ │ ¤ = Genstand     │
-            │ I _________________________________ Åben rygsæk │ │ @ = NPC          │
+            │ I _________________________________ Åben rygsæk │ │ % = Objekt       │
             │ O ________________________________ Åben opgaver │ │ @ = NPC          │
             │ H _____________________________ Åben hjælpemenu │ └──────────────────┘
             │ R _____________________________ Skjul hjælpebar │
@@ -127,6 +127,11 @@ public static class MenuTegner
                 "   o     o   ",
                 "    ─────    "
             ),
+            Følelse.Smirk => (
+                "             ",
+                "   —     o   ",
+                "    ─────┘   "
+            ),
             Følelse.KedAfDet => (
                 "   ,     ,   ",
                 "   o     o   ",
@@ -203,11 +208,11 @@ public static class MenuTegner
         Console.Clear();
         LokationType?[,] kortLayout =
         {
-            { null,                 null,                      null,                        LokationType.Kontor,     null,                    null },
-            { null,                 null,                      LokationType.Elgiganten,     LokationType.NørreGade,  LokationType.ZehrasHjem, null },
-            { null,                 LokationType.LuciusHjem,   LokationType.VesterGade,     LokationType.Centrum,    LokationType.ØsterGade,  LokationType.HaraldNyborg },
-            { null,                 null,                      LokationType.ParkingsPlads,  LokationType.SønderGade, LokationType.IvanasHjem, null },
-            { null,                 null,                      null,                        LokationType.Park,       null,                    null },
+            { null,   null,                      null,                        LokationType.Kontor,     null,                    null },
+            { null,   null,                      LokationType.Elgiganten,     LokationType.NørreGade,  LokationType.ZehrasHjem, null },
+            { null,   LokationType.LuciusHjem,   LokationType.VesterGade,     LokationType.Centrum,    LokationType.ØsterGade,  LokationType.HaraldNyborg },
+            { null,   null,                      LokationType.ParkingsPlads,  LokationType.SønderGade, LokationType.IvanasHjem, null },
+            { null,   null,                      null,                        LokationType.Park,       null,                    null },
         };
 
         int rækker = kortLayout.GetLength(0);

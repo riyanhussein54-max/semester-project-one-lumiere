@@ -7,6 +7,7 @@ public enum Følelse
     Neutral,
     KedAfDet,
     Tåre,
+    Smirk,
     Græder,
     Sur,
     MegetSur,

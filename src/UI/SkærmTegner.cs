@@ -33,7 +33,7 @@ public class SkærmTegner
         if (spilStyrer.LåstDørLokation != null)
         {
             Console.WriteLine();
-            TegnBeskedBoks($"Døren til {spilStyrer.LåstDørLokation.Navn} er låst.");
+            TegnBeskedBoks($"Indgangen til {spilStyrer.LåstDørLokation.Navn} er låst.");
         }
 
         if (spilStyrer.SenestOplåsteLokationer.Count > 0)
