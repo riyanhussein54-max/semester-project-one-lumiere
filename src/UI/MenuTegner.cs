@@ -29,6 +29,12 @@ public static class MenuTegner
         Console.Clear();
         IReadOnlyList<Genstand> genstande = spiller.HentRygsækIndhold();
 
+        int maxLength = 50;
+
+        // Default besked hvis rygsækken er tom
+        string besked = "Rygsækken er tom.";
+        string fillerSpace = besked.PadLeft((maxLength + besked.Length) / 2).PadRight(maxLength);
+
         Console.WriteLine("┌──────────────────── [Rygsæk] ────────────────────┐");
 
         if (genstande.Count > 0)
@@ -36,27 +42,19 @@ public static class MenuTegner
             Console.WriteLine("│ Genstande ______________________________________ │");
             for (int i = 0; i < genstande.Count; i++)
             {
-                Genstand genstand = genstande[i];
-                Console.WriteLine(FormaterRygsækLinje(genstand));
+                int newFiller = Math.Max(2, maxLength - genstande[i].Navn.Length - genstande[i].Beskrivelse.Length - 2);
+                fillerSpace = new string('.', newFiller);
+                Console.WriteLine($"│{fillerSpace}│");
             }
         }
         else
         {
-            Console.WriteLine("│                Rygsækken er tom.                 │");
+            Console.WriteLine($"│{fillerSpace}│");
         }
 
         Console.WriteLine("├──────────────────────────────────────────────────┤");
         Console.WriteLine("│ Tryk på en valgfri knap for at fortsætte...      │");
         Console.WriteLine("└──────────────────────────────────────────────────┘");
-    }
-
-    private static string FormaterRygsækLinje(Genstand genstand)
-    {
-        int indreBredde = 48;
-        int antalPrikker = Math.Max(2, indreBredde - genstand.Navn.Length - genstand.Beskrivelse.Length - 2);
-        string prikker = new string('.', antalPrikker);
-
-        return $"│ {genstand.Navn} {prikker} {genstand.Beskrivelse} │";
     }
 
     /// <summary>
@@ -329,9 +327,35 @@ public static class MenuTegner
         _ => type.ToString()
     };
 
+    /// <summary>
+    /// Viser detaljer om spillerens aktiv opgave
+    /// </summary>
     public static void VisOpgaveMenu(SpilStyrer spilStyrer)
     {
         Console.Clear();
+
+        int maxLength = 49;
+
+        string opgaveTitel = spilStyrer.NuværendeOpgave?.Titel ?? "";
+        string formattedTitle = opgaveTitel.PadLeft((maxLength + opgaveTitel.Length) / 2).PadRight(maxLength);
+
+        string opgaveBeskrivelse = spilStyrer.NuværendeOpgave?.Beskrivelse ?? "Ingen aktuelle opgaver.";
+        string formattedBeskrivelse = opgaveBeskrivelse.PadLeft((maxLength + opgaveBeskrivelse.Length) / 2).PadRight(maxLength);
+
+        Console.WriteLine(
+            $"""
+            ┌──────────────────── [Opgave] ───────────────────┐
+            │                                                 │
+            │{formattedTitle}│
+            │{formattedBeskrivelse}│
+            │                                                 │
+            ├─────────────────────────────────────────────────┤
+            │ Tryk på en valgfri knap for at fortsætte...     │
+            └─────────────────────────────────────────────────┘
+            """
+        );
+
+        /*
         if (spilStyrer.NuværendeOpgave == null)
         {
             Console.WriteLine(
@@ -362,9 +386,6 @@ public static class MenuTegner
                 """
             );
         }
-
-
-        // Tjek hvis spillestyren har en aktiv opgave
-        // Hvis ikke så print "du har ikke nogen nuværende opgaver."
+         */
     }
 }
