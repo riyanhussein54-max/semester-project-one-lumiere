@@ -37,13 +37,16 @@ public class Program
         {
             ConsoleKey tast = Console.ReadKey(true).Key;
 
+<<<<<<< HEAD
             switch (tast)
+=======
             while (Console.KeyAvailable)
             {
                 Console.ReadKey(true);
             }
 
             switch (key)
+>>>>>>> feature/auto-bevægelse
             {
                 case ConsoleKey.E:
                 case ConsoleKey.Enter:
