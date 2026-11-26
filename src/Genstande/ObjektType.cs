@@ -1,6 +1,6 @@
 public enum ObjektType
 {
-    Lysdæmperkontakt,
-    Lampe,
-    GadeLampe,
+    LysdæmperKontakt,
+    LuciusLampe,
+    Lygtepæl,
 }

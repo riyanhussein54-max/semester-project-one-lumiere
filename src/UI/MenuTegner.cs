@@ -94,14 +94,20 @@ public static class MenuTegner
 
             // Her opdeller vi replikken i linjer på maks 48 tegn (52 - 4) og skriver dem inde i boksen med TypeWriter
             List<string> tekstLinjer = OpdelTekstILinjer(replik.Tekst, maxBredde: 48);
+            int normalHastighed = TypeWriter.Hastighed;
 
             for (int linjeIndex = 0; linjeIndex < tekstLinjer.Count; linjeIndex++)
             {
-                // X = 16 (lige efter portræt-væggen)
-                // Y = 2 + linjeIndex8
                 Console.SetCursorPosition(16, 2 + linjeIndex);
-                TypeWriter.PrintLine($"{tekstLinjer[linjeIndex]}");
+                bool blevSkippet = TypeWriter.PrintLine(tekstLinjer[linjeIndex]);
+
+                if (blevSkippet)
+                {
+                    TypeWriter.Hastighed = 0;
+                }
             }
+
+            TypeWriter.Hastighed = normalHastighed;
 
             // Flytter cursoren ned under boksen og vent på Enter
             Console.SetCursorPosition(0, 8);

@@ -3,26 +3,27 @@ public class SpilIntroduktion
     // NOTE: Eventuelt udskriv brugerens navn når vi skriver "Held og lykke".
     public static void UdskrivIntro()
     {
-        Console.Clear();
-        Thread.Sleep(500);
+        string[] introLinjer =
+        [
+            "Velkommen til Lumiére.",
+            "En by hvor lyset aldrig slukker.",
+            "Dette har fysiske og mentale konsekvenser for de lokale.",
+            "Du er den eneste der kan redde byen.",
+            "Held og lykke."
+        ];
 
-        TypeWriter.Print("Velkommen til Lumiére.");
-        Thread.Sleep(2400);
+        int pauseMellemLinjerMs = 1800;
 
-        Console.Clear();
-        TypeWriter.Print("En by hvor lyset aldrig slukker.");
-        Thread.Sleep(2600);
+        for (int i = 0; i < introLinjer.Length; i++)
+        {
+            string linje = introLinjer[i];
+            Console.Clear();
+            bool blevSkippet = TypeWriter.Print(linje);
 
-        Console.Clear();
-        TypeWriter.Print("Dette har fysiske og mentale konsekvenser for de lokale.");
-        Thread.Sleep(3400);
-
-        Console.Clear();
-        TypeWriter.Print("Du er den eneste der kan redde byen.");
-        Thread.Sleep(2400);
-
-        Console.Clear();
-        TypeWriter.Print("Held og lykke.");
-        Thread.Sleep(2000);
+            if (!blevSkippet)
+            {
+                Thread.Sleep(pauseMellemLinjerMs);
+            }
+        }
     }
 }

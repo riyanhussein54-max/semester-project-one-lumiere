@@ -55,6 +55,7 @@ public class SpilStyrer
 
         Spiller.SætPosition(nyRække, nySøjle);
         SenesteInteraktionsBesked = null; // FLYT IKKE LINJEN ELLERS GÅ DET I STYKKER :D
+        TjekSamlGenstand(nyRække, nySøjle);
     }
 
     public bool ErIndenForGitter(int række, int søjle)
@@ -83,6 +84,63 @@ public class SpilStyrer
             if (npc != null)
             {
                 return npc;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Samler ikke-faste genstande når spilleren træder på dem
+    /// </summary>
+    private bool TjekSamlGenstand(int række, int søjle)
+    {
+        if (NuværendeLokation.Gitter[række, søjle] == FeltType.Genstand)
+        {
+            Genstand? genstand = NuværendeLokation.SamlGenstand(række, søjle);
+            if (genstand != null)
+            {
+                Spiller.SamlGenstand(genstand);
+                SenestOpsamletGenstand = genstand;
+            }
+        }
+
+        return true;
+    }
+
+    public Objekt? HentNærliggendeObjekt()
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            Objekt? objekt = NuværendeLokation.HentObjektFraKoordinat(tjekRække, tjekSøjle);
+
+            if (objekt != null)
+            {
+                return objekt;
+            }
+        }
+
+        return null;
+    }
+
+    public T? HentNærliggende<T>() where T : class
+    {
+        Retning[] retninger = [Retning.Nord, Retning.Syd, Retning.Øst, Retning.Vest];
+
+        for (int i = 0; i < retninger.Length; i++)
+        {
+            Retning retning = retninger[i];
+            (int tjekRække, int tjekSøjle) = Spiller.BeregnNæstePosition(retning);
+            T type = default;
+            // type = NuværendeLokation.HentFraKoordinat(tjekRække, tjekSøjle);
+
+            if (type != null)
+            {
+                return type;
             }
         }
 
@@ -137,6 +195,40 @@ public class SpilStyrer
         if (Lysforurening == 0)
         {
             SætSpilStatusTilSlut();
+        }
+    }
+
+    // TODO: Overvej at flytte til spiller klasse!
+    public bool KanInteragereMedObjekt(Objekt objekt)
+    {
+        if (objekt.ErBrugt)
+        {
+            SenesteInteraktionsBesked = $"Du har allerede brugt {objekt.Navn}.";
+            return false;
+        }
+
+        if (NuværendeOpgave == null || NuværendeOpgave.PåkrævetObjekt != objekt.Type)
+        {
+            SenesteInteraktionsBesked = $"Snak med {objekt.OpgaveGiver} først.";
+            return false;
+        }
+
+        return true;
+    }
+
+    // TODO: Overvej at flytte til spiller klasse!
+    public void InteragerMedObjekt(Objekt objekt)
+    {
+        if (objekt.PåkrævetGenstand != null && !Spiller.HarGenstand(objekt.PåkrævetGenstand.Value))
+        {
+            SenesteInteraktionsBesked = $"Du mangler en {objekt.PåkrævetGenstand.Value.ToString().ToLower()} for at gøre dette.";
+            return;
+        }
+
+        objekt.MarkerSomBrugt();
+        if (NuværendeOpgave != null && NuværendeOpgave.PåkrævetObjekt == objekt.Type)
+        {
+            NuværendeOpgave.MarkerSomFuldført();
         }
     }
 

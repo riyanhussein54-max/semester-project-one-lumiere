@@ -40,6 +40,7 @@ public static class DialogPool
             titel: "Grædende pige",
             beskrivelse: "Hjælp den grædende pige med at finde sin sut",
             lysforureningReduktion: 15,
+            påkrævetObjekt: ObjektType.LysdæmperKontakt,
             låsOpLokationer: [LokationType.Kontor, LokationType.Elgiganten],
             fagbeskrivelse: ""
         );
@@ -48,13 +49,14 @@ public static class DialogPool
         {
             [DialogTilstand.FørOpgave] =
             [
-                new Replik("Jeg er meget ked af det.", Følelse.KedAfDet),
-                new Replik("Please find mig min sut", Følelse.Græder)
+                new Replik("Det er alt for lyst inde på mit værelse.", Følelse.KedAfDet),
+                new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
+                new Replik("Please skru ned for lysniveauet.", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveAktiv] =
             [
-                new Replik("Jeg har altså stadig ikke fået min sut.", Følelse.Tåre),
-                new Replik("Please jeg har brug for min sut.", Følelse.Græder)
+                new Replik("Jeg kan slet ikke holde det ud!", Følelse.Græder),
+                new Replik("Please skru ned for lysniveauet.", Følelse.KedAfDet)
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
@@ -110,7 +112,8 @@ public static class DialogPool
         Opgave opgave = new Opgave(
             titel: "Lektielæsning",
             beskrivelse: "Tænd lampen inde på Lucius værelse",
-            lysforureningReduktion: 0,
+            lysforureningReduktion: 15,
+            påkrævetObjekt: ObjektType.LuciusLampe,
             låsOpLokationer: [LokationType.ØsterGade]
         );
 
@@ -118,15 +121,17 @@ public static class DialogPool
         {
             [DialogTilstand.FørOpgave] =
             [
-                new Replik("Hej!", Følelse.KedAfDet),
+                new Replik("Der er alt for mørkt herinde...", Følelse.KedAfDet),
+                new Replik("Jeg kan ikke se en skid.", Følelse.Sur),
+                new Replik("Tænd for mit lys.", Følelse.MegetSur),
             ],
             [DialogTilstand.OpgaveAktiv] =
             [
-                new Replik("Dette er en test", Følelse.KedAfDet)
+                new Replik("Tænd for mit lys.", Følelse.MegetSur),
             ],
             [DialogTilstand.OpgaveFuldført] =
             [
-                new Replik("2 + 2 = 5", Følelse.Glad)
+                new Replik("Tak bro!", Følelse.Glad),
             ],
             [DialogTilstand.EnAndenPersonsOpgaveErAktiv] =
             [
@@ -174,7 +179,8 @@ public static class DialogPool
         Opgave opgave = new Opgave(
             titel: "Uangivet",
             beskrivelse: "",
-            lysforureningReduktion: 0
+            lysforureningReduktion: 0,
+            påkrævetObjekt: ObjektType.Lygtepæl
         );
 
         Dictionary<DialogTilstand, Replik[]> dialog = new()

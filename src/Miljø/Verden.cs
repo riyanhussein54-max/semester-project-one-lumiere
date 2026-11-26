@@ -137,8 +137,8 @@ public class Verden
 
     private void SpawnObjekter()
     {
-        _lokationer[LokationType.ZehrasHjem].SpawnObjekt(ObjektPool.Lysdæmperkontakt);
+        _lokationer[LokationType.ZehrasHjem].SpawnObjekt(ObjektPool.LysdæmperKontakt);
         _lokationer[LokationType.LuciusHjem].SpawnObjekt(ObjektPool.Lampe);
-        _lokationer[LokationType.Park].SpawnObjekt(ObjektPool.GadeLampe);
+        _lokationer[LokationType.Park].SpawnObjekt(ObjektPool.Lygtepæl);
     }
 }

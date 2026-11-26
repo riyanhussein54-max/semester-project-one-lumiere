@@ -3,7 +3,24 @@
 /// </summary>
 public static class GenstandPool
 {
-    public static Genstand Elpære = new(GenstandType.Elpære, 2, 2, "PHILIPS LED-pære.");
-    public static Genstand Telefon = new(GenstandType.Telefon, 2, 4, "Samsung Galaxy A.");
-    public static Genstand Hammer = new(GenstandType.Hammer, 2, 4, "Den slår hårdt.");
+    public static readonly Genstand Elpære = new(
+        type: GenstandType.Elpære,
+        række: 2,
+        søjle: 2,
+        beskrivelse: "PHILIPS LED-pære."
+    );
+
+    public static readonly Genstand Telefon = new(
+        type: GenstandType.Telefon,
+        række: 2,
+        søjle: 4,
+        beskrivelse: "Samsung Galaxy A."
+    );
+
+    public static readonly Genstand Hammer = new(
+        type: GenstandType.Hammer,
+        række: 2,
+        søjle: 4,
+        beskrivelse: "Den slår hårdt."
+    );
 }
