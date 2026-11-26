@@ -51,10 +51,15 @@ public class SkærmTegner
         string tid = spilStyrer.NuværendeTid.ToString();
 
         TegnStatusTop();
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Tid", tid));
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Lysforurening", lys));
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Lokation", lokation));
+        Console.WriteLine("");
         Console.Write(FormaterStatusLinje("Opgave", opgaveNavn));
+        Console.WriteLine("");
 
         if (_visControls)
         {
