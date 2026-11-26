@@ -3,26 +3,42 @@
 /// </summary>
 public static class TypeWriter
 {
-    public static int Speed { get; set; } = 30;
+    public static int Hastighed { get; set; } = 30;
 
-    public static void PrintLine(string text)
+    public static bool PrintLine(string tekst, bool kanSkippes = true)
     {
-        PrintBogstaver(text);
+        bool blevSkippet = PrintBogstaver(tekst, kanSkippes);
         Console.Write("\n");
+        return blevSkippet;
     }
 
-    public static void Print(string text)
+    public static bool Print(string tekst, bool kanSkippes = true)
     {
-        PrintBogstaver(text);
+        return PrintBogstaver(tekst, kanSkippes);
     }
 
-    private static void PrintBogstaver(string text)
+    private static bool PrintBogstaver(string tekst, bool kanSkippes)
     {
-        char[] Letter = text.ToCharArray();
-        for (int i = 0; i < Letter.Length; i++)
+        char[] bogstaver = tekst.ToCharArray();
+        bool skipResten = false;
+        for (int i = 0; i < bogstaver.Length; i++)
         {
-            Console.Write(Letter[i]);
-            Thread.Sleep(Speed);
+            if (kanSkippes && !skipResten && Console.KeyAvailable)
+            {
+                if (Console.ReadKey(true).Key == ConsoleKey.Enter)
+                {
+                    skipResten = true;
+                }
+            }
+
+            Console.Write(tekst[i]);
+
+            if (!skipResten)
+            {
+                Thread.Sleep(Hastighed);
+            }
         }
+
+        return skipResten;
     }
 }
