@@ -5,13 +5,13 @@ public static class MenuTegner
         Console.Clear();
         Console.WriteLine(
             $"""
-            ┌──────────────────── [Hjælp] ────────────────────┐
-            │ WASD, Piletaster ______________ Bevæg spilleren │
-            │ E, Enter ____________________ Interager med NPC │
-            │ M ________________________________ Åben minimap │
-            │ I _________________________________ Åben rygsæk │
-            │ O ________________________________ Åben opgaver │
-            │ H _____________________________ Åben hjælpemenu │
+            ┌──────────────────── [Hjælp] ────────────────────┐ ┌─── [Symboler] ───┐
+            │ WASD, Piletaster ______________ Bevæg spilleren │ │ & = Dig          │
+            │ E, Enter ____________________ Interager med NPC │ │ # = Udgang/Dør   │
+            │ M ________________________________ Åben minimap │ │ ¤ = Genstand     │
+            │ I _________________________________ Åben rygsæk │ │ @ = NPC          │
+            │ O ________________________________ Åben opgaver │ │ @ = NPC          │
+            │ H _____________________________ Åben hjælpemenu │ └──────────────────┘
             │ R _____________________________ Skjul hjælpebar │
             │ Q, Esc _________________________ Forlad spillet │
             ├─────────────────────────────────────────────────┤
