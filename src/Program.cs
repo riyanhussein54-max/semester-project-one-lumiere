@@ -37,14 +37,12 @@ public class Program
         {
             ConsoleKey tast = Console.ReadKey(true).Key;
 
-
             while (Console.KeyAvailable)
             {
                 Console.ReadKey(true);
             }
 
             switch (tast)
-
             {
                 case ConsoleKey.E:
                 case ConsoleKey.Enter:
