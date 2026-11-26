@@ -37,6 +37,11 @@ public class Program
         {
             ConsoleKey key = Console.ReadKey(true).Key;
 
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
+
             switch (key)
             {
                 case ConsoleKey.E:
